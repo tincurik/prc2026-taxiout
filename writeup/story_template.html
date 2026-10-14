@@ -1,0 +1,1619 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two processes in one column: taxi-out time at ten European airports</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#fcfcfb; --panel:#f4f3ef; --panel2:#ebeae4; --line:#dcdbd3; --line-soft:#e9e8e2;
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --blue:#2a78d6; --orange:#eb6834; --aqua:#1baf7a; --yellow:#eda100; --grey:#898781;
+  --blue-soft:rgba(42,120,214,.14); --orange-soft:rgba(235,104,52,.14);
+  --tarmac:#e3e2db; --tarmac2:#cfcec6; --stripe:#a9a89f; --plane:#52514e; --building:#d7d6ce; --window:#bebdb4;
+  --tipbg:#ffffff; --shadow:0 6px 24px rgba(30,28,20,.10);
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#1a1a19; --panel:#222220; --panel2:#2c2b29; --line:#3a3936; --line-soft:#2c2b29;
+  --ink:#f0efec; --ink2:#c3c2b7; --muted:#9a998f;
+  --blue:#3987e5; --orange:#d95926; --aqua:#199e70; --yellow:#c98500; --grey:#9a998f;
+  --blue-soft:rgba(57,135,229,.18); --orange-soft:rgba(217,89,38,.18);
+  --tarmac:#2a2926; --tarmac2:#33322f; --stripe:#6b6a64; --plane:#c3c2b7; --building:#2f2e2b; --window:#45443f;
+  --tipbg:#0f0f0e; --shadow:0 6px 24px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+a{color:inherit;text-decoration-color:var(--blue);text-underline-offset:3px}
+code{font:13.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--panel);padding:1px 5px;border-radius:4px}
+b{font-weight:650}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+*,*::before,*::after{transition:none!important;animation:none!important}
+/* ---------- top bar */
+#bar{border-bottom:1px solid var(--line-soft)}
+#bar .wrap{display:flex;align-items:center;gap:14px;height:48px;max-width:1360px}
+#bar .brand{font-weight:650;font-size:14px;white-space:nowrap}
+#bar nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+#bar nav.more{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 38px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 38px),transparent)}
+#bar nav::-webkit-scrollbar{display:none}
+#bar nav a{font-size:13px;color:var(--ink2);text-decoration:none;padding:4px 8px;border-radius:12px;white-space:nowrap}
+#bar nav a:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+#nav-more{display:none}
+#bar .brand{font-size:13.5px}
+@media (max-width:1280px){ #bar .brand{display:none} }
+#bar nav a.on{background:var(--panel2);color:var(--ink)}
+.tbtn{all:unset;cursor:pointer;font-size:12.5px;color:var(--ink2);border:1px solid var(--line);border-radius:14px;padding:3px 10px;white-space:nowrap}
+.tbtn:hover{color:var(--ink);border-color:var(--muted)}
+/* ---------- hero */
+header.hero{padding:32px 0 12px}
+.kicker{font-size:14px;color:var(--muted);margin-bottom:8px}
+h1{font-size:30px;line-height:1.25;margin:0 0 14px;font-weight:700}
+.lede{color:var(--ink);margin:0}
+.kpis{display:flex;flex-wrap:wrap;gap:12px 40px;margin:28px 0 8px;align-items:flex-end}
+.kpi .v{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.kpi .l{font-size:13px;color:var(--ink2);margin-top:6px;max-width:230px}
+.kpi .arrow{font-size:20px;color:var(--muted);align-self:center;padding-bottom:18px}
+.tag{display:inline-block;font-size:11.5px;line-height:1.35;color:var(--ink2);border:1px solid var(--line);border-radius:9px;padding:0 7px;margin:0 2px;white-space:nowrap;font-style:normal;font-weight:500;font-family:system-ui,sans-serif;background:var(--bg)}
+.score{background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;padding:16px 18px 12px;margin:22px 0 6px}
+.score table.plain th,.score table.plain td{padding:7px 10px;vertical-align:top}
+.score table.plain thead th{font-size:13px;color:var(--ink);font-weight:650;vertical-align:bottom}
+.score table.plain thead th span{display:block;font-weight:400;color:var(--muted);font-size:12px;line-height:1.35;margin-top:2px}
+.score table.plain tbody th{text-align:left;font-weight:600;color:var(--ink);font-size:13.5px}
+.score table.plain tbody th span{display:block;font-weight:400;color:var(--muted);font-size:12px;line-height:1.35}
+.score table.plain{min-width:560px}
+.score td.n{font-size:17px;font-weight:650;color:var(--ink);white-space:nowrap}
+.score td.none{color:var(--muted);font-weight:400;font-size:13px}
+.score tr.ship td.n, .score tr.ship th{background:var(--blue-soft)}
+/* ---------- sections */
+section{padding:32px 0 10px;border-top:1px solid var(--line-soft)}
+.secnum{font-size:14px;color:var(--muted)}
+h2{font-size:23px;line-height:1.3;margin:4px 0 12px;font-weight:700;max-width:850px}
+h3{font-size:18.5px;margin:24px 0 8px}
+p{max-width:75ch;margin:0 0 14px}
+.muted{color:var(--muted)}
+.ink2{color:var(--ink2)}
+.small{font-size:13.5px}
+.sfig{margin:22px 0 14px;padding:0}
+.sfig img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line-soft);background:#fcfcfb}
+.sfig figcaption{font-size:14px;color:var(--ink2);margin:8px 2px 0;max-width:860px;font-family:inherit}
+.cap{font-size:14px;color:var(--ink2);font-style:italic;margin:8px 0 18px;max-width:820px}
+.fig{background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;padding:16px 18px;margin:18px 0 10px;position:relative}
+.fig svg{display:block;width:100%;height:auto;overflow:visible}
+.figtitle{font-weight:650;font-size:15.5px;margin:0 0 2px}
+.figsub{font-size:13.5px;color:var(--ink2);margin:0 0 10px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:4px 0 10px;font-size:14px}
+.chip{all:unset;cursor:pointer;font-size:13px;color:var(--ink2);border:1px solid var(--line);border-radius:14px;padding:4px 12px;background:var(--bg)}
+.chip:hover{color:var(--ink);border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,.tbtn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+input[type=range]{accent-color:var(--blue);width:100%;max-width:420px}
+.readout{font-variant-numeric:tabular-nums;font-weight:650}
+.big{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.05}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.key{display:inline-flex;align-items:center;gap:6px;margin-right:14px;font-size:13px;color:var(--ink2);white-space:nowrap}
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px}
+.legend{margin:6px 0 2px}
+/* svg text */
+svg text{fill:var(--ink2);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+svg .t-ink{fill:var(--ink)} svg .t-mut{fill:var(--muted)} svg .t-b{font-weight:650}
+.f-blue{fill:var(--blue)} .f-orange{fill:var(--orange)} .f-aqua{fill:var(--aqua)} .f-yellow{fill:var(--yellow)} .f-grey{fill:var(--grey)}
+.s-blue{stroke:var(--blue)} .s-orange{stroke:var(--orange)} .s-aqua{stroke:var(--aqua)} .s-yellow{stroke:var(--yellow)}
+.gridl{stroke:var(--line);stroke-width:1}
+.axisl{stroke:var(--tarmac2);stroke-width:1.2}
+/* tooltip */
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--tipbg);border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:13px;line-height:1.45;max-width:320px;box-shadow:var(--shadow);display:none;color:var(--ink2)}
+#tip b{color:var(--ink);display:block;margin-bottom:2px}
+#tip .row{display:flex;justify-content:space-between;gap:16px}
+#tip .row span:last-child{color:var(--ink);font-variant-numeric:tabular-nums}
+/* ---------- walk */
+.walkctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:8px 0 6px}
+.play{all:unset;cursor:pointer;width:38px;height:38px;border-radius:19px;background:var(--ink);color:var(--bg);display:inline-flex;align-items:center;justify-content:center;font-size:15px}
+.play:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.walkread{display:flex;flex-wrap:wrap;gap:6px 34px;margin-top:8px}
+.walkread .l{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+/* ---------- mechanisms */
+.mcard{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px 12px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s, transform .15s}
+.mcard:hover{border-color:var(--muted)}
+.mcard svg{height:78px}
+.mcard .nm{font-size:14px;line-height:1.45}
+.mcard .ev{font-size:13px;color:var(--ink2);line-height:1.45}
+.mcard .use{font-size:12.5px;color:var(--ink2);border-top:1px dashed var(--line);padding-top:6px;margin-top:auto}
+.mcard .use::before{content:"in the model: ";color:var(--muted)}
+/* ---------- explorer */
+.stages{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 4px}
+.stage{all:unset;cursor:pointer;flex:1 1 120px;background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.3;position:relative}
+.stage:hover{border-color:var(--muted)}
+.stage[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.stage .sn{font-weight:650;color:var(--ink)}
+.stage .sv{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:12.5px;margin-top:3px}
+.stage .bar{position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:10px 0 0 10px}
+.zone{cursor:pointer}
+.zone rect.hit{fill:transparent}
+.zone.on rect.hl{fill:var(--blue-soft)}
+.zone:hover rect.hl{fill:var(--blue-soft)}
+#famlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:10px}
+.fam{background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:8px;padding:9px 12px;font-size:13.5px}
+.fam .fh{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.fam .fn{font-weight:650;font-size:14px}
+.fam .fv{font-variant-numeric:tabular-nums;font-weight:650;white-space:nowrap;font-size:13px}
+.fam .fs{color:var(--muted);font-size:12px;margin-top:2px}
+.fam .fw{color:var(--ink2);margin-top:4px}
+.fam .fd{color:var(--muted);font-size:12.5px;margin-top:4px}
+#stagedetail{margin-top:14px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+#stagedetail h4{margin:0 0 4px;font-size:16px}
+.hb{display:grid;grid-template-columns:minmax(120px,240px) 1fr 70px;gap:8px;align-items:center;font-size:13px;margin:3px 0}
+.hb .tr{height:10px;background:var(--panel2);border-radius:3px;position:relative}
+.hb .tr i{position:absolute;top:0;bottom:0;left:0;border-radius:3px}
+.hb .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+/* ---------- board */
+.dlist{display:none}
+.dlist .st{padding:7px 0;border-bottom:1px solid var(--line-soft)}
+.dlist .sn{display:flex;justify-content:space-between;gap:10px;font-size:14px;color:var(--ink)}
+.dlist .sn b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.dlist .trk{position:relative;height:9px;background:var(--panel2);border-radius:3px;margin:5px 0 3px}
+.dlist .trk i{position:absolute;top:0;bottom:0;border-radius:3px}
+.dlist .sd{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.swipe{display:none;font-size:12px;color:var(--muted);text-align:right;margin:2px 4px 0}
+.board th:first-child,.board td:first-child{position:sticky;left:0;background:var(--panel);z-index:1}
+.board{background:var(--panel);color:var(--ink);border:1px solid var(--line-soft);border-radius:10px;padding:16px 16px 12px;margin:16px 0 8px;overflow-x:auto}
+.board table{border-collapse:separate;border-spacing:0 5px;width:100%;min-width:640px;font-variant-numeric:tabular-nums}
+.board th{font:600 11px/1 system-ui,sans-serif;color:var(--muted);text-align:left;padding:2px 8px 6px;cursor:pointer;white-space:nowrap}
+.board th.sorted{color:var(--ink);text-decoration:underline}
+.board td{padding:0 6px;vertical-align:middle}
+.flap{display:inline-flex}
+.flap span{display:inline-block;width:11px;color:var(--ink);font:600 14px/24px ui-monospace,Menlo,Consolas,monospace;text-align:center}
+.flap.city span{color:var(--ink2);width:10px;font-size:12.5px}
+.cell{display:flex;align-items:center;gap:6px;min-width:120px}
+.cell .bt{flex:1;height:8px;border-radius:2px;background:var(--panel2);position:relative;min-width:50px}
+.cell .bt i{position:absolute;left:0;top:0;bottom:0;border-radius:2px}
+.cell .nv{font:600 13px/1 ui-monospace,Menlo,Consolas,monospace;color:var(--ink);width:38px;text-align:right}
+.board .note{color:var(--muted);font-size:12px;margin:6px 4px 0}
+.board tr.hl td{background:var(--panel2)}
+.cal{display:grid;grid-template-columns:110px repeat(12,1fr);gap:3px;font-size:12.5px;align-items:center;margin:6px 0}
+.cal .mh{color:var(--muted);text-align:center;font-size:12px}
+.cal .rl{color:var(--ink2);font-size:12.5px;line-height:1.2}
+.cal .c{height:26px;border-radius:5px;background:var(--panel2);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ink2)}
+.cal .c.val{background:var(--blue);color:#fff}
+.cal .c.tr{background:var(--blue-soft)}
+.cal .c.buf{background:repeating-linear-gradient(135deg,var(--panel2) 0 4px,var(--line) 4px 6px)}
+.cal .c.held{background:var(--orange);color:#fff}
+.cal .rl.rsel{cursor:pointer;border-radius:4px;padding:2px 4px}
+.cal .rl.rsel:hover{background:var(--panel2)}
+.cal .rl.rsel.on{color:var(--ink);font-weight:650;box-shadow:inset 3px 0 0 var(--orange)}
+.cal .c.off{background:transparent;border:1px dashed var(--line)}
+.eb{cursor:pointer}
+.eb rect{transition:opacity .15s}
+.eb.dim{opacity:.28}
+.ebrow{cursor:pointer}
+.ebrow:hover rect.bg{fill:var(--panel2)}
+#ebdetail{margin-top:10px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14.5px;line-height:1.5;color:var(--ink2)}
+#ebdetail b{color:var(--ink)}
+.use .panel{display:none;background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;padding:14px 18px;margin:10px 0 0}
+.use .panel.on{display:block}
+.use pre{margin:8px 0;padding:10px 12px;background:var(--bg);border:1px solid var(--line-soft);border-radius:8px;overflow-x:auto;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink)}
+.use .panel p{font-family:system-ui,sans-serif;font-size:15px;line-height:1.55;margin:6px 0}
+.use .panel ul{margin:6px 0 6px 18px;padding:0;font-size:15px;line-height:1.55}
+.stat3{display:flex;flex-wrap:wrap;gap:6px 34px;margin:8px 0 2px}
+.stat3 .l{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.scrollx{overflow-x:auto}
+svg [tabindex]:focus-visible,.board th:focus-visible,.fam:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+svg [tabindex]:focus{outline:none} svg [tabindex]:focus-visible{outline:2px solid var(--blue)}
+@media (max-width:640px){ .swipe{display:block} .hs{overflow-x:auto;-webkit-overflow-scrolling:touch} html,body{overflow-x:hidden} }
+footer{padding:40px 0 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line-soft);margin-top:40px}
+.tablewrap{overflow-x:auto}
+table.plain{border-collapse:collapse;font-size:13.5px;width:100%;font-variant-numeric:tabular-nums}
+table.plain th{color:var(--muted);font-weight:500;text-align:left;border-bottom:1px solid var(--line);padding:5px 8px}
+table.plain td{border-bottom:1px solid var(--line-soft);padding:5px 8px}
+table.plain td.n,table.plain th.n{text-align:right}
+details{margin:8px 0}
+summary{cursor:pointer;color:var(--ink2);font-size:13.5px}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  body{font-size:15.5px}
+  #bar .brand{display:none}
+  header.hero{padding-top:34px}
+  .fig{padding:12px 10px;border-radius:10px;margin-left:-6px;margin-right:-6px}
+  .kpi .arrow{display:none}
+  .hb{grid-template-columns:110px 1fr 56px}
+  .cal{grid-template-columns:70px repeat(12,1fr)}
+  .cal .c{font-size:0}
+}
+/* ---------- essay layer: serif reading column, figures wider than the text */
+:root{--serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+section > p, section > h3, .lede, section > ol, section > ul.tech{max-width:75ch}
+section > p:not(.cap):not(.small), .lede, .lessons li, ul.tech li{font-family:var(--serif);font-size:17px;line-height:1.6;color:var(--ink)}
+section > p.cap{font-family:inherit}
+.fig, .wide, .board, .grid2, .grid3, .formula{clear:both}
+.pull{font-family:var(--serif);font-size:17px;line-height:1.6;color:var(--ink);border-left:3px solid var(--line);margin:20px 0;padding:2px 0 2px 16px;max-width:75ch;font-style:normal}
+.formula{margin:14px 0 18px;max-width:680px}
+.formula code{font-size:16px;padding:10px 16px;display:inline-block;border-radius:8px;border:1px solid var(--line)}
+aside.sn{float:right;clear:right;width:250px;margin:6px 0 14px 28px;font-size:13.5px;line-height:1.5;color:var(--ink2);border-top:2px solid var(--line);padding-top:8px}
+aside.sn b{color:var(--ink);display:block;margin-bottom:2px}
+.clocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:8px;margin:6px 0 18px;max-width:1000px}
+.clocks div{background:var(--panel);border:1px solid var(--line-soft);border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.35;color:var(--ink2)}
+.clocks code{display:block;background:none;padding:0;font-size:14.5px;font-weight:650;color:var(--ink);margin-bottom:3px}
+.zoom{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:0 0 14px;font-size:11.5px;color:var(--muted)}
+.zoom span.n{border:1px solid var(--line);border-radius:10px;padding:1px 8px;white-space:nowrap}
+.zoom span.n.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.zoom span.a{color:var(--line)}
+.zoom a{color:inherit;text-decoration:none}
+ul.tech{margin:0 0 14px;padding-left:22px}
+ul.tech li{margin:0 0 8px}
+ul.tech li b{font-family:system-ui,sans-serif;font-size:.9em}
+.incode{font-size:13px;color:var(--muted);max-width:680px;margin:-4px 0 16px;font-family:system-ui,sans-serif}
+.incode code{font-size:12px}
+abbr[title]{text-decoration:underline dotted var(--muted);text-underline-offset:3px;cursor:help}
+.lessons{counter-reset:l;list-style:none;padding:0;margin:10px 0 0;max-width:760px!important}
+.lessons li{counter-increment:l;position:relative;padding:0 0 14px 32px;margin:0 0 18px;border-bottom:1px solid var(--line-soft)}
+.lessons li::before{content:counter(l) ".";position:absolute;left:0;top:0;font:600 17px/1.6 system-ui,sans-serif;color:var(--muted)}
+.lessons li b{display:block;font-family:system-ui,sans-serif;font-size:17px;margin-bottom:2px}
+#ovsvg .st{cursor:pointer}
+#ovsvg .st rect.box{transition:stroke-width .15s, filter .15s}
+#ovsvg .st:hover rect.box, #ovsvg .st.on rect.box{stroke-width:2.6}
+#ovsvg .edge{fill:none;stroke:var(--muted);stroke-width:1.1;opacity:.28;transition:opacity .15s,stroke .15s}
+#ovsvg .edge.on{opacity:1;stroke:var(--ink);stroke-width:1.6}
+#ovsvg .src{cursor:pointer}
+#ovsvg .src.dim, #ovsvg .st.dim{opacity:.35}
+#ovsvg .flow{fill:none;stroke-width:2.2;stroke-dasharray:5 7;}
+@media (max-width:1000px){ aside.sn{float:none;width:auto;margin:6px 0 16px;max-width:680px;background:var(--panel);border:none;border-left:3px solid var(--line);padding:8px 12px;border-radius:0 8px 8px 0} }
+@media (max-width:640px){ section > p:not(.cap):not(.small), .lessons li{font-size:16px} .clocks{grid-template-columns:repeat(2,1fr)} .lessons li{padding-left:28px} }
+</style>
+</head>
+<body>
+<div id="bar"><div class="wrap">
+  <div class="brand">Two processes in one column</div>
+  <nav id="nav">
+    <a href="#overview">Overview</a><a href="#walk">Label</a><a href="#error">Error</a><a href="#mechanisms">Record</a><a href="#mixture">Mixture</a>
+    <a href="#stages">Stages</a><a href="#track">Track</a><a href="#months12">Stackers</a><a href="#stream">Stream</a><a href="#calibration">Calibrate</a><a href="#validation">Validate</a><a href="#descent">Descent</a><a href="#left">Left</a><a href="#use">Use</a>
+  </nav>
+  <button class="tbtn" id="theme" aria-label="Switch light or dark">◐ theme</button>
+</div></div>
+
+<div class="wrap">
+<header class="hero">
+  <div class="kicker">EUROCONTROL PRC Data Challenge 2026 · taxi-out time at ten European airports</div>
+  <h1>Two processes<br>in one column</h1>
+  <p class="lede">We cut a taxi-time model's error from {{baseline}}&nbsp;s to {{final}}&nbsp;s by first asking what the label measures. In {{copy_share_2025}} of 2025 departures the recorded off-block is the schedule, copied into the record.</p>
+  <figure class="sfig"><!--SFIG fig_taxi_schematic--><figcaption>Illustration, not data: one departure from stand to take-off and what each data source sees of it. The label runs from the recorded off-block to the recorded take-off.</figcaption></figure>
+  <div class="kpis">
+    <div class="kpi"><div class="v">{{baseline}}</div><div class="l">RMSE (s) of each airport's mean taxi time, the baseline, on January and July 2025</div></div>
+    <div class="kpi"><div class="v">{{final}}</div><div class="l">the shipped chain, same months, cross-validated (Jan {{final_jan}}, Jul {{final_jul}})</div></div>
+    <div class="kpi"><div class="v">{{reh}}</div><div class="l">the reference chain on February and June 2025, hidden from the whole pipeline (baseline {{reh_base}})</div></div>
+  </div>
+  <figure class="sfig"><!--SFIG fig_hero--><figcaption>Left: one bar per stage, on the same two folds, coloured by kind of change. Right: the 344,419 validation departures, predicted against recorded; darker means more.</figcaption></figure>
+  <details><summary>Which number is which: every RMSE on this page is one cell of this table</summary>
+  <div class="score" id="scorecard">
+    <div class="figsub">Seconds, lower is better; a tag such as <span class="tag">reference · Jan+Jul · CV</span> names the cell.</div>
+    <div class="swipe">swipe sideways ›</div>
+    <div class="tablewrap"><table class="plain">
+      <thead><tr><th>chain</th>
+        <th class="n">Jan + Jul 2025<span>CV: each month scored by models that never trained on it</span></th>
+        <th class="n">Feb + Jun 2025<span>rehearsal: hidden from the whole pipeline, like the test months</span></th>
+        <th class="n">Jan, Feb, Jun, Jul pooled<span>the four held-out months together</span></th></tr></thead>
+      <tbody>
+        <tr><th>airport mean (the baseline)<span>one number per airport</span></th><td class="n">{{baseline}}</td><td class="n">{{reh_base}}</td><td class="n none">not measured</td></tr>
+        <tr><th>reference chain<span>each step measured on its own; the tables below use it</span></th><td class="n">{{ref}}</td><td class="n">{{reh}}</td><td class="n none">not measured</td></tr>
+        <tr class="ship"><th>shipped chain<span>the reference chain plus context features, month-complete stackers, stream-transformer inputs, four post-steps and a plan-window step</span></th><td class="n">{{final}}</td><td class="n none">no single number<sup>*</sup></td><td class="n">{{pool_rmse}}</td></tr>
+      </tbody></table></div>
+    <p class="small muted" style="margin:6px 0 2px"><sup>*</sup> Month-complete stackers learn from the other held-out pairs, so each pair needs its own refit; section 9 scores their gain on six pairs of months instead.</p>
+  </div>
+  </details>
+  <p class="small muted" style="margin-top:14px">Drag, hover and press play. Every number comes from the tables in <code>writeup/data/</code> and <code>docs/</code>. Static version: <a href="README.md">writeup/README.md</a>.</p>
+</header>
+
+<!-- ================================================================ 0 -->
+<section id="overview">
+  <div class="secnum">Overview</div>
+  <h2>Two questions per departure, then a chain of corrections.</h2>
+  <p class="lead">Is the record a copy of the schedule, and if not, how long did the aircraft taxi? The prediction mixes the two answers by the copy probability <code>p</code>; rules, models that read the open ground track and a published daily total then correct it.</p>
+  <div class="fig wide" id="ovfig">
+    <svg id="ovsvg" viewBox="0 0 1000 560" role="img" aria-label="The pipeline: five kinds of input, two questions, the mixture, three corrections, and the error after each"></svg>
+  </div>
+  <p class="cap">Hover a box to see what it reads, click it to jump to its section; the line underneath is the error after each box. The reference chain shown here also calibrates to a monthly taxi-out per runway; the shipped chain does not.</p>
+</section>
+
+<!-- ================================================================ 1 -->
+<section id="walk">
+  <div class="secnum">1 · The label</div>
+  <h2>The label measures the move from stand to runway, if the record is honest.</h2>
+  <p>The label is <code>TAXITIME = MVT − BLOCK</code>: take-off minus the <i>recorded</i> off-block. Press play to watch one departure, then change what the record holds.</p>
+  <div class="fig wide">
+    <div class="walkctl">
+      <button class="play" id="wplay" aria-label="Play">▶</button>
+      <input type="range" id="wt" min="0" max="1000" value="0" aria-label="Time">
+      <span class="ink2 small">the record holds</span>
+      <button class="chip" id="wreal" aria-pressed="true">the push-back</button>
+      <button class="chip" id="wcopy" aria-pressed="false">the schedule (a copy)</button>
+    </div>
+    <svg id="walksvg" viewBox="0 0 1000 330" role="img" aria-label="An aircraft leaves its stand, taxis and takes off; below, the clocks that make its label"></svg>
+    <div class="walkread">
+      <div><div class="l">clock</div><div class="big" id="wclock">SCHED</div></div>
+      <div><div class="l">label so far</div><div class="big" id="wlabel">–</div></div>
+      <div><div class="l">physical taxi so far</div><div class="big" id="wtaxi">–</div></div>
+    </div>
+    <p class="cap" id="wcap" style="margin-bottom:0"></p>
+  </div>
+  <p class="cap">Schematic flights (minutes after the scheduled off-block), not real departures.</p>
+  <p>In about {{phys_rows}}&nbsp;% of departures the record is an event: someone saw the aircraft push back. In the rest ({{copy_share_2025}} of 2025, {{copy_month_range}} in every month, {{lirf_copy}} at Rome, LIRF) it is the scheduled time, and a flight that left three hours late has a "taxi time" of three hours. Two facts make this second process predictable: a copy's label is known exactly (take-off minus schedule, both in the test files), and arrival records are not masked, so the habits of whoever stamps the off-block show on flights whose times are visible.</p>
+  <details><summary>The task, and the seven clocks the model reads against each other</summary>
+  <p>Ten European airports, all of 2025 to learn from ({{train_rows}} labelled departures) and {{test_rows}} departures of 2026 to predict. By ICAO code: {{airport_names}}. We predict the seconds from off-block (the aircraft leaves its stand) to take-off, scored by root mean squared error (RMSE).</p>
+  <div class="clocks">
+    <div><code>SCHED</code><span>the timetable's off-block time</span></div>
+    <div><code>IOBT</code><span>the initial off-block time of the flight plan</span></div>
+    <div><code>EOBT</code><span>the estimated off-block time of the flight plan, as updated</span></div>
+    <div><code>LOBT</code><span>off-block in the last flight plan filed</span></div>
+    <div><code>AOBT_3</code><span>the actual off-block time as the Network Manager (NM) estimates it, independent of the airport</span></div>
+    <div><code>BLOCK</code><span>the airport's recorded off-block; hidden in the test files</span></div>
+    <div><code>MVT</code><span>take-off</span></div>
+  </div>
+  <p><code>AOBT_3</code> does most of the work: on an honest record <code>MVT − AOBT_3</code> is already close to the taxi time. Learning only the correction to it cuts the error from {{baseline}} to {{anchor_to}}&nbsp;s, the largest single step in the descent. {{n_aobt}} of the eleven regressors start from it, the other {{n_lobt}} from <code>LOBT</code>.</p>
+  </details>
+</section>
+
+<!-- ================================================================ 2 -->
+<section id="error">
+  <div class="secnum">2 · Where the error lives</div>
+  <h2>{{phys_rows}}&nbsp;% of the rows hold {{phys_sse}}&nbsp;% of the squared error. {{vlong_n}} rows hold {{vlong_sse}}&nbsp;%.</h2>
+  <p>RMSE squares each error, so one flight wrong by three hours costs as much as thousands wrong by two minutes.</p>
+  <div class="fig wide">
+    <div class="figtitle">From rows to squared error</div>
+    <div class="figsub"><span class="tag">reference chain · Jan+Jul · CV {{ref}}</span> the {{n_cv}} departures of January and July 2025: each kind of label's share of the rows (left) and of the squared error (right). Hover a band.</div>
+    <svg id="ribbon" viewBox="0 0 1000 372" role="img" aria-label="Share of rows against share of squared error by label regime"></svg>
+  </div>
+  <p class="cap">The thin sliver of very long records on the left becomes almost half the error on the right. Schedule copies hold {{copy_sse}}&nbsp;%, so a perfect model of every ordinary taxi would still lose most of the score elsewhere.</p>
+  <h3>Set aside the worst departures, one at a time</h3>
+  <div class="fig wide">
+    <div class="ctl"><label for="kslide" class="ink2 small">departures set aside</label><input type="range" id="kslide" min="0" value="0" aria-label="Departures set aside"></div>
+    <div class="grid3" style="margin-bottom:6px">
+      <div><div class="big" id="kk">0</div><div class="small ink2">departures set aside (<span id="kpct">0</span> of the rows)</div></div>
+      <div><div class="big" id="ksse">0 %</div><div class="small ink2">of the squared error they carry</div></div>
+      <div><div class="big" id="krmse">–</div><div class="small ink2">RMSE of the rest, in seconds <span class="tag">reference chain · Jan+Jul · CV</span></div></div>
+    </div>
+    <svg id="conc" viewBox="0 0 1000 300" role="img" aria-label="Cumulative share of squared error against departures sorted by error"></svg>
+  </div>
+  <p class="cap">Sorted by squared error, the first two departures carry {{top2}}&nbsp;%, the first ten {{top10}}&nbsp;% and the first hundred {{top100}}. The two are Paris departures from January 2025 whose recorded off-block lies {{top2_hours}} before take-off (labels {{top2_labels}}), and nothing in their inputs points to it. Without them the RMSE would be {{without2}}&nbsp;s instead of {{ref}}&nbsp;s; every score on this page includes them.</p>
+</section>
+
+<!-- ================================================================ 3 -->
+<section id="mechanisms">
+  <div class="secnum">3 · How a record goes wrong</div>
+  <h2>Every way a record goes wrong leaves a trace in the other clocks.</h2>
+  <p>We measured each recording mechanism on all of 2025 and turned it into a feature, a rule or both; each timeline shows a typical case.</p>
+  <div class="grid3 wide" id="mechgrid"></div>
+  <div class="fig wide" style="margin-top:22px">
+    <div class="figtitle">What the mechanisms cost</div>
+    <div class="figsub">Every 2025 departure with a label over an hour or below zero, by mechanism; share of the squared error a flat prediction would make on them. Hover a segment.</div>
+    <svg id="taxo" viewBox="0 0 1000 120" role="img" aria-label="Share of the cost of long labels by mechanism"></svg>
+  </div>
+  <p class="cap">Together they form the rules chain, box 4 of the overview. Rome alone has three regimes. The most common mechanism, the schedule copy, gets its own model.</p>
+</section>
+
+<!-- ================================================================ 4 -->
+<section id="mixture">
+  <div class="secnum">4 · The key idea</div>
+  <h2>Predict the chance that the record is a copy, then mix two answers.</h2>
+  <p>The model must regress well on the many ordinary rows and recognise the kind of record on the few huge ones. It predicts the probability <code>p</code> of a copy and the physical taxi if not; a copy's label, <code>MVT − SCHED</code>, comes straight from the files. The prediction mixes them:</p>
+  <div class="formula"><code>prediction = p · (MVT − SCHED) + (1 − p) · taxi</code></div>
+  <aside class="sn"><b>Why the mix is exact.</b> The expected squared error of a guess <i>x</i> is <i>p</i>(<i>x</i> − A)² + (1 − <i>p</i>)(<i>x</i> − B)², a parabola whose lowest point is <i>p</i>A + (1 − <i>p</i>)B.</aside>
+  <div class="fig wide">
+    <div class="grid2" style="gap:10px 28px">
+      <div class="ctl" style="display:block"><label class="ink2 small" for="pslide">copy probability <span class="readout" id="pval"></span></label><br><input type="range" id="pslide" min="0" max="100" value="30" aria-label="Copy probability, percent"></div>
+      <div class="ctl" style="display:block"><label class="ink2 small" for="aslide">the flight left this late, so a copy's label is <span class="readout" id="aval"></span></label><br><input type="range" id="aslide" min="30" max="300" value="180" aria-label="Minutes late the flight left"></div>
+    </div>
+    <div class="legend"><span class="key"><span class="sw" style="background:var(--blue);height:3px"></span>expected cost at this copy probability</span><span class="key"><span class="sw" style="border-top:2px dashed var(--orange);height:0"></span>cost if it is a copy</span><span class="key"><span class="sw" style="border-top:2px dotted var(--aqua);height:0"></span>cost if it is a physical taxi</span></div>
+    <svg id="mixsvg" viewBox="0 0 1000 330" role="img" aria-label="Expected squared error against the prediction"></svg>
+    <div id="mixbars" style="margin-top:6px"></div>
+  </div>
+  <p class="cap">Drag <code>p</code> and the delay and watch the lowest point of the blue curve. Schematic flight: a physical taxi of {{mix_phys}} minutes, or the whole delay if the record is a copy. Either answer alone costs more than the mix, most when the model is least sure.</p>
+  <h3>Why 30 % must mean 30 %</h3>
+  <p>If such flights are copies at rate <code>q</code> and the model says <code>p</code>, the extra cost is <code>(p − q)² · (delay − taxi)²</code>; a copy missed on a flight that left three hours late costs about {{miss_cost}}. So we judge the classifier by log loss, which rewards honest probabilities: {{logloss}} out of fold, against {{logloss_const}} for a constant at the base rate.</p>
+  <div class="fig wide">
+    <div class="ctl" style="display:block"><label class="ink2 small" for="qslide">true copy rate of such flights <span class="readout" id="qval"></span> (model says <span class="readout" id="pval2"></span>)</label><br><input type="range" id="qslide" min="0" max="100" value="30" aria-label="True copy rate, percent"></div>
+    <svg id="calsvg" viewBox="0 0 1000 120" role="img" aria-label="Extra cost of a miscalibrated probability"></svg>
+  </div>
+  <div class="fig wide" id="relfig">
+    <div class="figtitle">The copy probability against what happened</div>
+    <div class="figsub">Out-of-fold copy probability in ten bins against the observed copy share, January and July 2025. Dot area = departures in the bin; the diagonal is perfect calibration. Hover a dot.</div>
+    <div class="ctl" id="relctl"></div>
+    <svg id="relsvg" viewBox="0 0 1000 380" role="img" aria-label="Reliability of the copy probability"></svg>
+  </div>
+  <p class="cap">The mean <code>p</code> is {{clf_meanp}} where {{clf_share}} of the rows are copies, with no scaling after the fit.</p>
+  <details><summary>What the classifier reads</summary>
+  <p>How the record is made, all of it label-free: who stamps the off-block, whether the plan was re-filed, and the airline's habits on its <i>arrivals</i>, whose records are not masked. A departure copies the schedule in {{stand_prev_copy}} of cases when the stand's previous arrival was a copy, against {{stand_prev_else}} otherwise.</p>
+  </details>
+</section>
+
+<!-- ================================================================ 5 -->
+<section id="stages">
+  <div class="secnum">5 · Inside the boxes</div>
+  <h2>What each stage reads, and where on the airport it looks.</h2>
+  <p>Pick a stage to see what it reads and what it is worth, or hover a place on the airport to see which feature families look there. No input is a departure's own off-block or taxi time.</p>
+  <div class="fig wide">
+    <svg id="scene" viewBox="0 0 1000 210" role="img" aria-label="The airport, with the places each feature family looks at"></svg>
+    <div class="stages" id="stagebtns"></div>
+    <div id="stagedetail"></div>
+    <div id="famhead" class="figtitle" style="margin-top:16px"></div>
+    <div id="famlist"></div>
+  </div>
+  <details><summary>The eleven regressors, and what "out of fold" means</summary>
+  <p>Each regressor starts from a clock-based guess, the anchor (take-off minus the Network Manager's off-block, or minus the plan's), and learns the correction. They differ in learner (gradient-boosted trees, neural networks, a denoising autoencoder), anchor and inputs. Alone in the mixture each scores {{member_best}}–{{member_worst}}&nbsp;s; the blend scores {{blend_cv}}&nbsp;s. Most of their value comes later, when their disagreements become an input.</p>
+  <p>Every stage learns from predictions made by a model that never saw that row's month (out of fold), so it sees errors as they look on unseen data.</p>
+  </details>
+</section>
+
+<!-- ================================================================ 6 -->
+<section id="track">
+  <div class="secnum">6 · The ground track</div>
+  <h2>The open ground track shows when the aircraft moved, which is enough.</h2>
+  <aside class="sn"><b>ADS-B.</b> Aircraft broadcast their position by radio; volunteer receivers record it.</aside>
+  <p>Transponders are often off at the stand, so receivers first hear most departures <i>after</i> they left it (median {{first_heard}} after off-block). The track misses the off-block but shows the taxi: when the aircraft moved, where it stopped, when the take-off roll began.</p>
+  <div class="fig wide">
+    <svg id="tracksvg" viewBox="0 0 1000 200" role="img" aria-label="A departure's ADS-B ground track along the taxiway"></svg>
+    <p class="cap" style="margin:4px 0 0">Schematic track: points start only once the transponder is on; stops show as clusters; the roll start marks the runway.</p>
+  </div>
+  <p>A second-level model, a stacker, predicts the error the chain still makes from the track's timings, stops and path, the clock gaps and the disagreement between the eleven regressors, and adds it back. Four averaged stackers take the chain from {{rules_cv}} to {{stack_cv}}&nbsp;s.</p>
+  <div class="grid2 wide">
+    <div class="fig">
+      <div class="figtitle">Rows with and without a track</div>
+      <div class="figsub"><span class="tag">reference chain · Jan+Jul · CV</span> RMSE on rows up to 2 h after each stage.</div>
+      <svg id="matchsvg" viewBox="0 0 480 210" role="img" aria-label="Error with and without an ADS-B match"></svg>
+    </div>
+    <div class="fig">
+      <div class="figtitle">Where the open receivers hear the ground</div>
+      <div class="figsub">Share of departures with an ADS-B ground track, by airport and month. Hover a cell.</div>
+      <svg id="covsvg" viewBox="0 0 480 270" role="img" aria-label="ADS-B coverage by airport and month"></svg>
+    </div>
+  </div>
+  <p class="cap">Coverage is all-or-nothing by airport and changes between years, so one model corrects matched rows and another corrects unmatched rows from clocks alone. One of the four stackers weights its rows to the 2026 coverage mix.</p>
+  <details><summary>The regressors' disagreement as an input</summary>
+  <p>Each regressor's gap to the blend tells the stacker <i>where</i> that member is right: the track-reading members where a track exists, the plan-anchored ones where a plan exists. It gains {{disagree}}, and {{disagree_reh}} on the held-out rehearsal months.</p>
+  </details>
+</section>
+
+<!-- ================================================================ 7 -->
+<section id="months12">
+  <div class="secnum">7 · Stackers that study every month</div>
+  <h2>Every month of the year, predicted by a pipeline that never saw it.</h2>
+  <p>A stacker must learn the first-level models' mistakes on months they never saw. The first stackers learned them on January and July only. The shipped ones learn on all twelve: five more rehearsals each hide two months from the whole pipeline, and in each the stacker learns only from the other pairs. Click a row.</p>
+  <div class="fig wide">
+    <div class="ctl"><span class="ink2 small">the stacker learns from</span><button class="chip" data-sm="two" aria-pressed="false">two months</button><button class="chip" data-sm="all" aria-pressed="true">all twelve</button></div>
+    <div class="cal" id="smcal"></div>
+    <div class="legend"><span class="key"><span class="sw" style="background:var(--orange)"></span>hidden from the pipeline, predicted honestly</span><span class="key"><span class="sw" style="background:var(--blue-soft)"></span>the pipeline trains on</span><span class="key"><span class="sw" style="background:var(--blue)"></span>the stacker learns the mistakes of</span></div>
+    <p class="cap" id="smcap" style="margin:6px 0 0"></p>
+  </div>
+  <p>Over twelve months weighted like the test set this is worth {{m12_gain}} <span class="tag">chain · 12 months weighted</span>. For the test months the stacker learns from all twelve ({{m12_rows}} rows).</p>
+</section>
+
+<!-- ================================================================ 7b -->
+<section id="stream">
+  <div class="secnum">7b · The airport as a stream</div>
+  <h2>Every flight around the one being predicted.</h2>
+  <p>A runway queue is a run of departures close together in the airport's stream of movements, and a model that reads one row sees one aircraft. The stream transformer reads 512 consecutive movements, departures and arrivals; each departure attends to those around it, with a learned decay per attention head. Click a departure, then drag the memory.</p>
+  <div class="fig wide">
+    <div class="grid2" style="gap:10px 28px">
+      <div class="ctl" style="display:block"><label class="ink2 small" for="stau">this attention head remembers about <span class="readout" id="staul"></span></label><br><input type="range" id="stau" min="3" max="60" value="18" aria-label="Attention memory, minutes"></div>
+      <div class="ctl"><span class="ink2 small">who is looking</span><button class="chip" data-sv="student" aria-pressed="true">student: some tracks hidden</button><button class="chip" data-sv="teacher" aria-pressed="false">teacher: every track visible</button></div>
+    </div>
+    <div class="legend"><span class="key"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1 l6 6 l-6 6 l-6 -6Z" style="fill:var(--ink2)"/></svg>arrival</span><span class="key"><span class="sw" style="background:var(--blue);border-radius:6px"></span>departure</span><span class="key"><span class="sw" style="background:var(--aqua);height:4px"></span>has an ADS-B ground track</span><span class="key"><span class="sw" style="border:2px dashed var(--orange);border-radius:6px;background:transparent"></span>track hidden from the student</span></div>
+    <div class="scrollx"><svg id="streamsvg" viewBox="0 0 1000 350" role="img" aria-label="Departures and arrivals in time order, with attention from one departure to its neighbours, and the queue those neighbours form at the runway"></svg></div>
+    <div class="stat3"><div><div class="l">attention on the 5 nearest movements</div><div class="big" id="sa5">–</div></div><div><div class="l">departures inside the memory</div><div class="big" id="sn">–</div></div><div><div class="l">of them with no visible track</div><div class="big" id="sd">–</div></div></div>
+  </div>
+  <p class="cap">Schematic afternoon, not real flights. Arcs are one head's attention weights from the selected departure, thick near it and fading with time. Below, the departures inside the memory form the queue that flight sits in.</p>
+  <p>It matters most at hubs where open receivers hear nothing on the ground: a departure there has no track, but its neighbours' clocks, plans and schedules are in the stream. Month-complete stackers with both stream members, against the chain with departure-stream context only: {{bundle_gain}} <span class="tag">chain · 6 pairs, 12 months weighted</span>. The neighbour-label head alone, against the plain track-aware member: {{nb_gain}} <span class="tag">chain · 6 pairs, 12 months weighted</span>.</p>
+  <details><summary>How the network learns to work without the track, and its two members</summary>
+  <ul class="tech">
+    <li><b>Modality dropout.</b> We hide the ADS-B block of a random share of the tracked departures, and the network must still predict them.</li>
+    <li><b>A teacher.</b> An averaged copy of the network, the <i>teacher</i>, sees every track in the chunk; the <i>student</i> must agree with it on the departures whose track it cannot see.</li>
+    <li><b>The target months, without labels.</b> Both read the input streams of the months they will predict, masking a share of tokens and reconstructing their inputs.</li>
+  </ul>
+  <p>The track-aware stream member gives the stackers its prediction, its gap to the chain, its spread and its chance of a label above 30 and above 60 minutes; the shipped variant adds a head for the queue level (the neighbouring departures' mean label) and two columns. The context stream member, the same network fed the feature set's departure-stream windows, joins the eleven regressors in the disagreement features.</p>
+  <p class="incode">In the code: the track-aware member is <code>ts_kdu3</code> (<code>stx_nb</code> with the neighbour-label head, the shipped one) and the context member <code>stx_ctx</code> (<code>overnight/stx.py</code>).</p>
+  </details>
+</section>
+
+<!-- ================================================================ 8 -->
+<section id="calibration">
+  <div class="secnum">8 · The calibration</div>
+  <h2>A published daily total pins down the sums, without reading any flight's label.</h2>
+  <p>EUROCONTROL's daily pre-departure delay per airport equals the day's sum of <code>max(BLOCK − SCHED, 0)</code> (correlation {{dly_corr}} on 2025), and <code>BLOCK = MVT − label</code>. So the predictions imply a delay total for each day, which must match the published one. Drag the factor:</p>
+  <div class="fig wide">
+    <div class="ctl"><label for="dslide" class="ink2 small">the day's correction factor</label><input type="range" id="dslide" min="0" max="100" value="0" aria-label="Correction"><span class="readout small" id="dval"></span></div>
+    <svg id="daysvg" viewBox="0 0 1000 250" role="img" aria-label="Implied delays of one day's departures against the published total"></svg>
+    <p class="cap" style="margin:4px 0 0">Schematic day: each bar is one departure's delay implied by its prediction; drag until their sum meets the published line.</p>
+  </div>
+  <p>One factor per airport and day rescales the ordinary rows until the totals match, and the step applies {{dly_apply}} of that change. It reads one number per airport-day, never a value for one flight, and is worth {{dly_gain}}&nbsp;s of CV RMSE on the reference chain. The organisers confirmed on 13-10-2026 that data EUROCONTROL publishes may be used.</p>
+  <details><summary>The monthly runway taxi-out: tested and left out</summary>
+  <p>The reference chain, not the shipped one, also calibrates to EUROCONTROL's mean taxi-out per airport, runway and month (valid flights only: up to 120 minutes, de-iced flights removed). It models the offset between a cell's mean label and the published mean, mostly the excluded flights, and moves the predicted rows a quarter of the way towards the published mean plus that offset, by at most {{runway_cap}}&nbsp;s per cell (<a href="../docs/model.md#calibration-to-published-aggregates">details</a>). It gains {{runway_gain}}&nbsp;s of CV RMSE [{{runway_ci}}], below the noise of one refit, though it gains in every held-out pair of months ({{runway_pairs}}); the daily step gains {{dly_gain}}&nbsp;s. The shipped chain leaves it out so that it uses one published aggregate of the scored months instead of two, at a cost of {{runway_cost}} RMSE on twelve months.</p>
+  </details>
+  <h3>After the calibration</h3>
+  <div class="fig wide">
+    <div class="figtitle">Is the model right on average? <span class="tag">reference chain · Jan+Jul · CV</span></div>
+    <div class="ctl"><span class="ink2 small">group the rows by</span><button class="chip" data-cv="by prediction" aria-pressed="true">what it predicted</button><button class="chip" data-cv="by true value" aria-pressed="false">what actually happened</button></div>
+    <svg id="biassvg" viewBox="0 0 1000 260" role="img" aria-label="Mean error by band"></svg>
+    <p class="cap" id="biascap" style="margin:4px 0 0"></p>
+  </div>
+  <p class="cap">Grouped by what it predicted, the chain is right on average within a few seconds up to half an hour. Grouped by what happened, a long taxi whose cause the inputs do not show is predicted short, as any conditional mean must be.</p>
+</section>
+
+<section id="post">
+  <div class="secnum">8b · Four small corrections</div>
+  <h2>Where the stack is still off, four rules fitted on a year of out-of-fold rows.</h2>
+  <p>Four post-steps, fitted on the twelve-month pool without reading a 2026 label, fix groups of rows the stack misses. Together they gained {{post_gain}} RMSE on twelve months of 2025 in an earlier version of the chain <span class="tag">chain · 6 pairs, 12 months weighted</span> and improve every month; about half of the gain is one far Rome record. On the two folds the chain goes from {{bundle_cv}} to {{final}}.</p>
+  <details><summary>The four steps</summary>
+  <ul class="tech">
+    <li>A re-mix refits the Rome copy weight, because the chain under-commits to copying the schedule.</li>
+    <li>A runway-neighbour corrector subtracts the queue level that the neighbours' own predictions and clocks reveal.</li>
+    <li>A far-row mixture turns the few far Rome records into a blend of "copy" and "one day later", never a normal taxi; every such row in 2025 was one of the two.</li>
+    <li>An arrival-twin window rule reads Rome departures whose flight plan is visible only through their arrival twin.</li>
+  </ul>
+  <p>The twelve-month gain was measured on the chain that still had the monthly runway step. Without the rows that carry most of it, the broad part is smaller (<a href="../docs/model.md#four-post-steps-on-the-chain-output">the model page</a>).</p>
+  </details>
+</section>
+
+<!-- ================================================================ 9 -->
+<section id="validation">
+  <div class="secnum">9 · Validation</div>
+  <h2>Judged on months no fitted parameter has seen.</h2>
+  <p>The test months have no labels, and 2026 differs from 2025. A classifier on label-free features tells all of 2025 from January/July 2026 at {{auc_years}}, but January/July 2025 from January/July 2026 only at {{auc_same}}, so the validation folds sit on the test set's own months. Pick a scheme:</p>
+  <div class="fig wide">
+    <div class="figtitle">The calendar of 2025</div>
+    <div class="ctl"><button class="chip" data-cal="0" aria-pressed="true">January fold</button><button class="chip" data-cal="1" aria-pressed="false">July fold</button><button class="chip" data-cal="reh" aria-pressed="false">Rehearsal</button><button class="chip" data-cal="pairs" aria-pressed="false">Six pairs of hidden months</button></div>
+    <div class="cal" id="cal"></div>
+    <div class="legend"><span class="key"><span class="sw" style="background:var(--blue)"></span>scored</span><span class="key"><span class="sw" style="background:var(--blue-soft)"></span>trained on</span><span class="key"><span class="sw" style="background:repeating-linear-gradient(135deg,var(--panel2) 0 4px,var(--line) 4px 6px)"></span>buffer, left out</span><span class="key"><span class="sw" style="background:var(--orange)"></span>hidden like a test month</span></div>
+    <p class="cap" id="calcap" style="margin:6px 0 0"></p>
+  </div>
+  <details><summary>How two runs are compared</summary>
+  <p>Every comparison resamples whole days 1,000 times and recomputes the difference (a day-block bootstrap), so a lucky day cannot pass as a gain. We also rehearse the whole pipeline one year early, with February and June 2025 hidden exactly like the test months, and judge the last changes on all twelve months weighted like the test set.</p>
+  </details>
+  <h3>The departures board: four months, ten airports</h3>
+  <p>January and July are the validation folds; February and June the rehearsal, where the unchanged pipeline ran with those months hidden ({{reh_rows}} departures, {{reh}}&nbsp;s overall: February {{reh_feb}}, June {{reh_jun}}). Click a column to sort.</p>
+  <div class="ctl"><span class="ink2 small">rows</span><button class="chip" data-bm="le2h" aria-pressed="true">labels up to 2 h</button><button class="chip" data-bm="all" aria-pressed="false">all rows</button></div>
+  <div class="swipe">swipe sideways ›</div>
+  <div class="board wide" id="board"></div>
+  <figure class="sfig"><!--SFIG fig_density--><figcaption>The same 344,419 departures in two views. Left: each prediction against the recorded time (orange line: a perfect prediction). Right: how far off each one is. The 4,858 departures recorded at 40 minutes or more lie outside the left view: 1.4 % of the rows, 62 % of the squared error.</figcaption></figure>
+  <h3>Every step, on the hidden months</h3>
+  <div class="fig wide">
+    <div class="figsub"><span class="tag">reference chain · Feb+Jun · held out</span> Each step of the chain, rerun on the hidden months, against the step before it. Left of the line is better.</div>
+    <div class="legend"><span class="key"><span class="sw" style="background:var(--blue)"></span>February 2025, hidden</span><span class="key"><span class="sw" style="background:var(--orange)"></span>June 2025, hidden</span><span class="key">dot: change in MSE; line: 95 % day-block bootstrap interval</span></div>
+    <svg id="rehsvg" viewBox="0 0 1000 330" role="img" aria-label="Change in MSE per step on February and June 2025"></svg>
+  </div>
+  <p class="cap">The rules chain, the stackers and both calibrations gain in both hidden months (the shipped chain keeps only the daily one). The Rome plan-row classifier gains in February, loses in June and is neutral over the six pairs of hidden months, so the final model leaves it out.</p>
+  <h3>Seasons</h3>
+  <div class="fig wide">
+    <div class="figtitle">Where the error comes from, month by month</div>
+    <div class="figsub"><span class="tag">base mixture · every month of 2025 · held out</span> each month predicted by a base mixture that had not seen it (before stackers and calibration), so the totals are higher than the chains above. Hover a bar.</div>
+    <div class="legend"><span class="key"><span class="sw" style="background:var(--blue)"></span>ordinary taxi rows</span><span class="key"><span class="sw" style="background:var(--orange)"></span>schedule copies</span><span class="key"><span class="sw" style="background:var(--aqua)"></span>long taxi, 1–2 h</span><span class="key"><span class="sw" style="background:var(--yellow)"></span>very long, over 2 h</span></div>
+    <svg id="monthsvg" viewBox="0 0 1000 300" role="img" aria-label="Mean squared error by month and source"></svg>
+  </div>
+  <p class="cap">Copies are about equally common in every month, but a missed copy costs about the square of the flight's delay, and delays peak in summer.</p>
+  <details><summary>The twelve-month score</summary>
+  <p>We judged the last changes on all twelve months, rerun as six pairs of hidden months (January + July, February + June, and four more rehearsals {{pairs}}) and weighted like the test months ({{test_weights}}).</p>
+  </details>
+</section>
+
+<!-- ================================================================ 10 -->
+<section id="descent">
+  <div class="secnum">10 · The whole way down</div>
+  <h2>From {{baseline}}&nbsp;s to {{final}}&nbsp;s, cutting the error by {{cut_pct}}&nbsp;%.</h2>
+  <p>The three largest cuts come from reading the label: take-off against the Network Manager's off-block clock, the mixture, and Rome's recording regimes. Open data gives the largest later gain. Hover a step.</p>
+  <div class="fig wide">
+    <div class="legend" id="desclegend"></div>
+    <svg id="descsvg" viewBox="0 0 1000 420" role="img" aria-label="RMSE after each stage"></svg>
+    <div class="dlist" id="desclist"></div>
+  </div>
+  <p class="cap"><span class="tag">Jan+Jul · CV</span> Each step measured on the two folds in the order it joined. The last seven (context features, month-complete stackers, dropping one Rome classifier, the stream-transformer inputs, the neighbour-label head, dropping the monthly runway calibration, four post-steps) turn the reference chain into the shipped chain.</p>
+</section>
+
+<!-- ================================================================ 11 -->
+<section id="left">
+  <div class="secnum">11 · What is left</div>
+  <h2>Half of the remaining error cannot be reached. The rest is a queue.</h2>
+  <p>On {{pool_rows}} departures from four held-out months of 2025 (January, February, June, July) the shipped chain scores {{pool_rmse}}&nbsp;s. Each square below is one percent of the squared error; click a kind of row.</p>
+  <div class="fig wide">
+    <div class="figtitle">One hundred squares of squared error <span class="tag">shipped chain · 4 months pooled · held out</span></div>
+    <div class="figsub">Five kinds of row, in order of how reachable they are. Hover or click.</div>
+    <svg id="ebsvg" viewBox="0 0 1000 340" role="img" aria-label="Share of squared error by kind of row"></svg>
+    <div id="ebdetail"></div>
+  </div>
+  <p class="cap">{{art_rows}} rows, a tenth of a percent of the departures, hold {{art_share}}&nbsp;% of the squared error: date stamps, stays of hours the inputs never announce, schedule copies of flights that left very late. Without them the RMSE is {{pool_rmse_noart}}&nbsp;s instead of {{pool_rmse}}&nbsp;s. The reachable part is the blue block: the ordinary rows, {{bulk_share}}&nbsp;% of the squared error over {{bulk_rows}} departures.</p>
+  <h3>Where the ordinary rows are wrong</h3>
+  <p>Four airports without ground tracks (Istanbul, Paris Charles de Gaulle, Heathrow and Rome) hold {{hub_share}}&nbsp;% of all squared error, more than every other airport and track combination together.</p>
+  <div class="fig wide">
+    <div class="figtitle">Squared error of the ordinary rows, by airport and track <span class="tag">shipped chain · 4 months pooled · held out</span></div>
+    <div class="ctl"><button class="chip" data-eb="top" aria-pressed="true">the twelve largest cells</button><button class="chip" data-eb="all" aria-pressed="false">all cells</button></div>
+    <div class="scrollx"><svg id="ebcells" viewBox="0 0 1000 340" role="img" aria-label="Share of the squared error by airport and ADS-B availability"></svg></div>
+  </div>
+  <p class="cap">Share of the total squared error. Orange: the four hubs whose departures have no ground track. Hover a bar for rows and RMSE.</p>
+  <h3>The mechanism: a queue shared by the flights around it</h3>
+  <p>At such a hub the runway queue in a given half hour is longer or shorter than the model assumed for everyone, so flights taking off within minutes of each other miss by nearly the same amount. Toggle a slow afternoon:</p>
+  <div class="fig wide">
+    <div class="ctl"><button class="chip" data-q="0" aria-pressed="true">an ordinary half hour</button><button class="chip" data-q="1" aria-pressed="false">the runway is 7 minutes slower for everyone</button></div>
+    <div class="scrollx"><svg id="qsvg" viewBox="0 0 1000 250" role="img" aria-label="Six departures: predicted taxi time against actual"></svg></div>
+    <div class="ctl" style="margin-top:6px"><span class="ink2 small">if the level of the neighbours' errors were known, within</span><button class="chip" data-w="15" aria-pressed="false">±15 min</button><button class="chip" data-w="30" aria-pressed="true">±30 min</button><button class="chip" data-w="60" aria-pressed="false">±60 min</button></div>
+    <div class="stat3"><div><div class="l">RMSE gain, seconds</div><div class="big" id="qgain">–</div></div><div><div class="l">of the pool's RMSE</div><div class="big" id="qrel">–</div></div></div>
+  </div>
+  <p class="cap">Schematic departures, not real ones. The gain is an oracle that reads the neighbours' true errors, so it is a ceiling for any queue-level signal, computed on the pool above: about three seconds of RMSE, one percent of the score. The stream transformer and the month-complete stackers aim at this block; what is left is a level shared by a runway's departures, which one flight cannot reveal.</p>
+</section>
+
+<!-- ================================================================ 13 -->
+<section id="use" class="use">
+  <div class="secnum">Using the model</div>
+  <h2>Run it on new months, take an input away, add a piece.</h2>
+  <p>Each stage reads its inputs by name, so the common changes are small. <a href="../docs/extending.md"><code>docs/extending.md</code></a> has the details, the hardware and the time per step.</p>
+  <details><summary>Commands for seven common changes, checked against the code</summary>
+  <div class="ctl" role="tablist" aria-label="What do you want to do?">
+    <button class="chip" data-use="months" aria-pressed="true">predict new months</button>
+    <button class="chip" data-use="stats" aria-pressed="false">without the published statistics</button>
+    <button class="chip" data-use="adsb" aria-pressed="false">without ADS-B</button>
+    <button class="chip" data-use="feature" aria-pressed="false">add a feature</button>
+    <button class="chip" data-use="member" aria-pressed="false">add or swap a member</button>
+    <button class="chip" data-use="airport" aria-pressed="false">add an airport</button>
+    <button class="chip" data-use="check" aria-pressed="false">check a change</button>
+  </div>
+  <div class="panel on" id="use-months">
+    <p>Put the new months in the layout of the two challenge files (every movement; departures' off-block and taxi time empty). Everything that reads only 2025, including the five rehearsals the month-complete stackers learn from, is reused, so a new month costs only the <code>final</code> phase.</p>
+<pre># 1. the two new files in the challenge layout go to data/raw
+python scripts/fetch_final.py --from-dir &lt;dir&gt; --refresh
+# 2. data, features, member refits and the reference chain of the final phase (outputs/overnight_final)
+FINAL_DIR=&lt;dir&gt; EC_PHASE=final bash pipeline/50_final_phase.sh data seed features members chain
+# 3. the stream-transformer members, then the stackers again with their inputs and the tail, then the four post-steps
+BND_NB=1 EC_PHASE=final bash pipeline/39_bnd1.sh members
+BND_NB=1 EC_PHASE=final bash pipeline/39_bnd1.sh chain
+BND_NB=1 EC_PHASE=final bash pipeline/39_post_steps.sh run
+# 4. coverage gate; then the plan-window step, the template check and the file's sha256
+EC_PHASE=final python scripts/final_coverage.py --require adsb2m
+bash pipeline/40_final_file.sh outputs/overnight_final/test/ar_134naclh_tww.parquet</pre>
+  </div>
+  <div class="panel" id="use-stats">
+    <p>The calibration to EUROCONTROL's published daily delay is a switch of the tail; the shipped chain already leaves out the monthly runway one. The chain then ends at the duplicated-record rule, and the post-steps and the file step run as above. Without the daily step the reference chain scores {{dly_gain}} CV RMSE worse.</p>
+<pre># the tail then skips the daily calibration too: the chain still ends at ar_134na_dup
+TAIL_SKIP=lplan,dlyh,prc25,prc2 BND_NB=1 EC_PHASE=final bash pipeline/39_bnd1.sh chain
+EC_PHASE=final bash pipeline/39_post_steps.sh run
+bash pipeline/40_final_file.sh outputs/overnight_final/test/ar_134naclh_tww.parquet</pre>
+    <p>The published day-level traffic that the members read as features is not a switch: it is one name in three member scripts.</p>
+  </div>
+  <div class="panel" id="use-adsb">
+    <p>A departure with no ground track is handled by design: the stackers correct it from clocks and the chain's prediction, as they do at Istanbul and Paris, where open receivers hear almost nothing. A chain with no ADS-B input at all has no switch; <code>docs/extending.md</code> says which lines to edit and what it leaves out.</p>
+  </div>
+  <div class="panel" id="use-feature">
+    <p>A feature family is one script that writes one file with a row per departure. Models and stackers find it by name. It must use only clocks, categories and other flights' records, and be built in every phase.</p>
+<pre># the new family: overnight/features_rwy10.py writes data/processed[_&lt;phase&gt;]/features_dep_rwy10.parquet
+# a member reads it by name (a new fit under outputs/overnight/oof), and its test-side refit follows
+python -u mix.py --id my_member ... --extra ext_metar,ext_prc,ext_osm,ext_opdiev,ext_ord,rwy10
+python -u final.py --from my_member --scale 1.15
+# the month-complete stackers read it by name too
+M12_EXTRA=adsbdir4,adsbrev,ef_10111040_stxctx_memb,ctx,ts_kdu_f,rwy10 bash pipeline/35_m12_stackers.sh x c l w avg</pre>
+  </div>
+  <div class="panel" id="use-member">
+    <ul>
+      <li><b>Without touching the blend:</b> <code>features_memb.py --all 1 --add &lt;id&gt; --out &lt;name&gt;</code> lets the stackers see the new member's disagreement with the eleven, as the stream transformer does.</li>
+      <li><b>Into the blend:</b> add its id to the list the blend reads, add its fit and refit lines to the member scripts of the stage and of every phase, and give the blend a new id.</li>
+    </ul>
+  </div>
+  <div class="panel" id="use-airport">
+    <p>The airport list lives in a handful of places: the time zone table (an airport outside it is dropped from the features), the downloads (weather, holidays, taxi network), the ADS-B reference point, and, if the published statistics are used, their lists. Rome's rules are not generic; a new airport starts without them. It also needs labelled months, because the airport enters as a category. <code>docs/extending.md</code> has the table.</p>
+  </div>
+  <div class="panel" id="use-check">
+    <pre># a paired bootstrap over whole days on the two folds: the change in RMSE and its 95 % interval
+python overnight/compare.py &lt;reference id&gt; &lt;candidate id&gt;
+# twelve months weighted like the test months
+python overnight/month_weighted.py &lt;candidate id&gt; &lt;reference id&gt;
+# every stage on synthetic data, on a CPU: checks that the code runs, not accuracy
+bash smoke/run_smoke.sh</pre>
+  </div>
+  </details>
+</section>
+</div>
+
+<footer><div class="wrap">
+  Built by <code>writeup/build_story.py</code> from <code>writeup/data/*.csv</code> and the tables in <code>docs/</code>; no model is run. Read on: <a href="../docs/task-and-data.md">the task and the label</a> · <a href="../docs/features.md">features</a> · <a href="../docs/model.md">the model</a> · <a href="../docs/validation.md">validation</a> · <a href="../docs/results.md">results</a> · <a href="../docs/limits.md">limits</a> · <a href="../docs/extending.md">using and extending it</a> · <a href="../docs/glossary.md">glossary</a>. Code and documentation GNU GPLv3.
+</div></footer>
+<div id="tip"></div>
+
+<script>
+const D = /*DATA*/null;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const MIN = s => String(s).replace(/(^|[\s(\[+/,;=])-(?=\d)/g, '$1−');
+const fmt = (x, nd=0) => MIN(Number(x).toLocaleString('en-US', {minimumFractionDigits:nd, maximumFractionDigits:nd}));
+const sgn = (x, nd=2) => (x > 0 ? '+' : '') + fmt(x, nd);
+const pct = (x, nd=1) => fmt(100*x, nd) + ' %';
+const COL = {'Label structure':'blue', 'Models and features':'orange', 'Open data':'aqua', 'Removed':'grey'};
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const css = v => getComputedStyle(document.documentElement).getPropertyValue('--'+v).trim();
+
+// ---------------------------------------------------------------- theme
+const root = document.documentElement;
+root.dataset.theme = (localStorage.getItem('wtheme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+$('#theme').onclick = () => { root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('wtheme', root.dataset.theme); redrawAll(); };
+
+// ---------------------------------------------------------------- tooltip
+const tipEl = $('#tip');
+function tip(e, html){ tipEl.innerHTML = html; tipEl.style.display = 'block'; tipMove(e); }
+function tipMove(e){ const w = tipEl.offsetWidth, h = tipEl.offsetHeight;
+  tipEl.style.left = Math.min(innerWidth - w - 8, e.clientX + 14) + 'px'; tipEl.style.top = Math.max(8, Math.min(innerHeight - h - 8, e.clientY + 16)) + 'px'; }
+function untip(){ tipEl.style.display = 'none'; }
+const plain = h => String(h).replace(/<\/(div|b)>/g, '. ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+function focusTip(el){ const r = el.getBoundingClientRect(); tip({clientX: r.left + r.width/2, clientY: r.top - 8}, el.dataset.tip); }
+function bindTips(svg){ svg.querySelectorAll('[data-tip]').forEach(el => {
+  el.addEventListener('mouseenter', e => tip(e, el.dataset.tip)); el.addEventListener('mousemove', tipMove); el.addEventListener('mouseleave', untip);
+  el.addEventListener('touchstart', e => tip(e.touches[0], el.dataset.tip), {passive:true});
+  if(!el.hasAttribute('data-notab')){ el.setAttribute('tabindex', '0'); if(!el.hasAttribute('role')) el.setAttribute('role', 'img'); el.setAttribute('aria-label', plain(el.dataset.tip));
+    el.addEventListener('focus', () => focusTip(el)); el.addEventListener('blur', untip); } }); }
+// Enter or Space on a focused figure element acts like a click
+document.addEventListener('keydown', e => { if((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('svg [tabindex], .board th[tabindex], .rsel[tabindex]')){
+  e.preventDefault(); e.target.dispatchEvent(new MouseEvent('click', {bubbles:true})); } });
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+const row = (a, b) => `<div class="row"><span>${a}</span><span>${b}</span></div>`;
+
+// ---------------------------------------------------------------- shared drawing
+function plane(x, y, dir=1, rot=0, sc=1, cls='plane'){
+  const fill = cls === 'plane' ? 'var(--plane)' : `var(--${cls})`;
+  return `<g transform="translate(${x},${y}) rotate(${rot}) scale(${dir*sc},${sc})" style="fill:${fill}">
+   <path d="M-17,0 C-17,-3.5 -9,-5 4,-5 C14,-5 20,-2.5 21,0 C20,3.2 14,4.4 4,4.4 C-9,4.4 -17,3.6 -17,0Z"/>
+   <path d="M-17,-1 L-22,-10 L-15,-10 L-9,-3Z"/><path d="M-1,1.5 L-8,9 L2,9 L8,2Z" opacity=".85"/></g>`;
+}
+// The ground of the airport: terminal + stand at the left, taxiway, holding point, runway, climb-out to the right.
+const G = {y:150, stand:150, push:200, hold:640, rwy0:660, rwy1:930};
+function ground(w=1000){
+  const g = [];
+  g.push(`<rect x="0" y="${G.y+6}" width="${w}" height="14" style="fill:var(--tarmac)"/>`);
+  g.push(`<rect x="${G.rwy0}" y="${G.y+3}" width="${G.rwy1-G.rwy0+40}" height="18" rx="2" style="fill:var(--tarmac2)"/>`);
+  g.push(`<line x1="${G.rwy0+10}" y1="${G.y+12}" x2="${G.rwy1+30}" y2="${G.y+12}" style="stroke:var(--bg)" stroke-dasharray="16 12" stroke-width="2"/>`);
+  g.push(`<line x1="${G.hold}" y1="${G.y+2}" x2="${G.hold}" y2="${G.y+22}" style="stroke:var(--orange)" stroke-width="3"/>`);
+  g.push(`<rect x="18" y="${G.y-62}" width="104" height="68" rx="4" style="fill:var(--building)"/>`);
+  for(let k=0;k<5;k++) g.push(`<rect x="${28+k*19}" y="${G.y-50}" width="11" height="11" rx="1.5" style="fill:var(--window)"/>`);
+  g.push(`<rect x="122" y="${G.y-30}" width="30" height="6" style="fill:var(--window)"/>`);
+  if(w >= 1000){
+    g.push(`<rect x="560" y="${G.y-66}" width="9" height="66" style="fill:var(--building)"/><path d="M548 ${G.y-66} h33 l-4 -16 h-25Z" style="fill:var(--window)"/><rect x="549" y="${G.y-86}" width="31" height="5" rx="2" style="fill:var(--building)"/>`);
+    [[300, 40, 1], [790, 26, .8]].forEach(([cx, cy, k]) => g.push(`<path transform="translate(${cx},${cy}) scale(${k})" d="M0 24 q-20 0 -20 -12 q0 -12 15 -12 q4 -12 20 -9 q12 -5 21 6 q17 0 17 13 q0 14 -19 14Z" style="fill:var(--panel2)"/>`));
+  }
+  return g.join('');
+}
+
+// ================================================================ 1. the walk
+const W = (() => {
+  const S = D.schematic, o = S.ordinary, c = S.copy;
+  // minutes after SCHED. "push" = the real push-back; "block" = what the record holds.
+  const cases = {
+    real: {block:o.block, push:o.block, aobt:o.aobt, mvt:o.mvt},
+    copy: {block:0, push:c.aobt, aobt:c.aobt, mvt:c.mvt},
+  };
+  let mode = 'real', t = 0, playing = false, raf = null, last = 0;
+  const svg = $('#walksvg');
+  const span = k => { const f = cases[k]; return [-0.1*f.mvt, f.mvt*1.16]; };
+  // position of the aircraft at minute t
+  function pose(f, t){
+    const tp = f.push, tpush = Math.max(1.2, 0.07*(f.mvt - f.push)), tq = f.mvt - Math.max(1.5, 0.12*(f.mvt - f.push)), troll = f.mvt - 0.04*(f.mvt - f.push);
+    if(t <= tp) return {x:G.stand, y:G.y, dir:-1, rot:0, ph:'at the stand'};
+    if(t <= tp + tpush){ const u = (t - tp)/tpush; return {x:G.stand + u*(G.push - G.stand), y:G.y, dir:-1, rot:0, ph:'push-back'}; }
+    if(t <= tq){ const u = (t - tp - tpush)/(tq - tp - tpush); return {x:G.push + u*(G.hold - 22 - G.push), y:G.y, dir:1, rot:0, ph:'taxiing'}; }
+    if(t <= troll) return {x:G.hold - 22, y:G.y, dir:1, rot:0, ph:'holding at the runway'};
+    if(t <= f.mvt){ const u = (t - troll)/(f.mvt - troll); return {x:G.hold + 30 + u*u*(G.rwy1 - G.hold - 60), y:G.y+12, dir:1, rot:0, ph:'take-off roll'}; }
+    const [, hi] = span(mode); const u = Math.min(1, (t - f.mvt)/(hi - f.mvt));
+    return {x:G.rwy1 - 30 + u*80, y:G.y + 12 - u*110, dir:1, rot:-22*Math.min(1,u*3), ph:'airborne'};
+  }
+  function draw(){
+    const f = cases[mode], [lo, hi] = span(mode), T = lo + (hi - lo)*t;
+    const X = m => 60 + (m - lo)/(hi - lo)*880;
+    const p = pose(f, T), g = [ground()];
+    g.push(`<text x="${G.stand-10}" y="${G.y+42}" text-anchor="middle" font-size="12">stand</text><text x="${(G.push+G.hold)/2}" y="${G.y+42}" text-anchor="middle" font-size="12">taxiway</text><text x="${G.hold}" y="${G.y+42}" text-anchor="middle" font-size="12">holding point</text><text x="${(G.rwy0+G.rwy1)/2+20}" y="${G.y+42}" text-anchor="middle" font-size="12">runway</text>`);
+    if(p.ph === 'push-back') g.push(`<rect x="${p.x-38}" y="${G.y-4}" width="16" height="9" rx="2" style="fill:var(--yellow)"/>`);
+    g.push(plane(p.x, p.y, p.dir, p.rot, 1.25));
+    g.push(`<text x="20" y="22" font-size="13" class="t-mut">${p.ph}</text>`);
+    // the timeline of clocks
+    const ty = 262;
+    g.push(`<line x1="40" y1="${ty}" x2="960" y2="${ty}" class="axisl"/>`);
+    // label bracket: BLOCK -> min(T, MVT)
+    if(T > f.block){ const x0 = X(f.block), x1 = X(Math.min(T, f.mvt));
+      g.push(`<rect x="${x0}" y="${ty-7}" width="${Math.max(0, x1-x0)}" height="14" rx="3" style="fill:var(--blue);opacity:.28"/>`); }
+    // physical taxi bracket: push -> min(T, MVT)
+    if(T > f.push){ const x0 = X(f.push), x1 = X(Math.min(T, f.mvt));
+      g.push(`<rect x="${x0}" y="${ty+12}" width="${Math.max(0, x1-x0)}" height="6" rx="2" style="fill:var(--aqua)"/>`); }
+    const pins = mode === 'real'
+      ? [['SCHED', 0, 'up'], ['BLOCK (recorded)', f.block, 'down'], ['AOBT_3, NM estimate', f.aobt, 'up'], ['MVT, take-off', f.mvt, 'down']]
+      : [['SCHED = BLOCK (copied)', 0, 'down'], ['actual push-back, not in the record', f.push, 'up'], ['MVT, take-off', f.mvt, 'down']];
+    pins.forEach(([lab, m, side]) => {
+      const x = X(m), on = T >= m - 1e-9, up = side === 'up';
+      const y2 = up ? ty - 30 : ty + 34;
+      g.push(`<line x1="${x}" y1="${ty}" x2="${x}" y2="${y2}" style="stroke:var(--ink2);opacity:${on?1:.25}" stroke-width="1.4"/>`);
+      g.push(`<circle cx="${x}" cy="${ty}" r="5.5" style="fill:${on?'var(--ink)':'var(--bg)'};stroke:var(--ink2)" stroke-width="1.5"/>`);
+      g.push(`<text x="${x}" y="${up ? y2-6 : y2+14}" text-anchor="middle" font-size="12.5" class="${on?'t-ink':'t-mut'}">${lab} · ${fmt(m)} min</text>`);
+    });
+    g.push(`<line x1="${X(T)}" y1="${ty-44}" x2="${X(T)}" y2="${ty+44}" style="stroke:var(--orange)" stroke-width="1.5" stroke-dasharray="3 3"/>`);
+    svg.innerHTML = g.join('');
+    const lab = T > f.block ? Math.min(T, f.mvt) - f.block : null, taxi = T > f.push ? Math.min(T, f.mvt) - f.push : null;
+    $('#wclock').textContent = `SCHED ${T < 0 ? '−' : '+'} ${fmt(Math.abs(T))} min`;
+    $('#wlabel').textContent = lab === null ? '–' : fmt(lab) + ' min';
+    $('#wtaxi').textContent = taxi === null ? '–' : fmt(taxi) + ' min';
+    $('#wcap').innerHTML = mode === 'real'
+      ? `The record holds the push-back, so the label (blue) is the physical taxi (green): ${fmt(f.mvt - f.block)} minutes.`
+      : `The record holds the schedule. The aircraft really taxied for ${fmt(f.mvt - f.push)} minutes, but the label counts every minute of delay at the stand: ${fmt(f.mvt)} minutes. NM's own clock, <code>AOBT_3</code>, still sees the push-back.`;
+    $('#wt').value = Math.round(t*1000);
+  }
+  function tick(ts){ if(!playing) return; const dt = last ? (ts - last)/1000 : 0; last = ts;
+    t = Math.min(1, t + dt/7); draw(); if(t >= 1){ stop(); return; } raf = requestAnimationFrame(tick); }
+  function play(){ if(t >= 1) t = 0; playing = true; last = 0; $('#wplay').textContent = '❚❚'; $('#wplay').setAttribute('aria-label','Pause'); raf = requestAnimationFrame(tick); }
+  function stop(){ playing = false; cancelAnimationFrame(raf); $('#wplay').textContent = '▶'; $('#wplay').setAttribute('aria-label','Play'); }
+  $('#wplay').onclick = () => playing ? stop() : play();
+  $('#wt').oninput = e => { stop(); t = e.target.value/1000; draw(); };
+  const setMode = m => { mode = m; $('#wreal').setAttribute('aria-pressed', m==='real'); $('#wcopy').setAttribute('aria-pressed', m==='copy'); stop(); t = 1; draw(); };
+  $('#wreal').onclick = () => setMode('real'); $('#wcopy').onclick = () => setMode('copy');
+  t = 1; draw();
+  return {draw, started:false};
+})();
+
+// ================================================================ 2. ribbon: rows -> squared error
+function drawRibbon(){
+  const svg = $('#ribbon'), R = D.regimes, cols = ['blue','orange','aqua','yellow'];
+  const top = 30, H = 300, gap = 3, xl = 250, xr = 720, bw = 34, minh = 2;
+  const stack = key => { const hs = R.map(r => Math.max(minh, (+r[key])*(H - gap*(R.length-1)))); const sc = (H - gap*(R.length-1))/hs.reduce((a,b)=>a+b,0);
+    let y = top; return hs.map(h => { const a = y, hh = h*sc; y += hh + gap; return [a, hh]; }); };
+  const L = stack('share_rows'), Rr = stack('share_sse'), g = [];
+  const labY = L.map(([a, h]) => a + h/2);
+  for(let i = labY.length - 1; i >= 0; i--){ const lim = i === labY.length - 1 ? top + H + 10 : labY[i+1] - 17; labY[i] = Math.min(labY[i], lim); }
+  g.push(`<text x="${xl+bw/2}" y="18" text-anchor="middle" font-size="13" class="t-ink t-b">share of the rows</text><text x="${xr+bw/2}" y="18" text-anchor="middle" font-size="13" class="t-ink t-b">share of the squared error</text>`);
+  R.forEach((r, i) => {
+    const [ly, lh] = L[i], [ry, rh] = Rr[i], c = cols[i];
+    const t = `<b>${esc(r.regime)}</b>` + row('departures', fmt(+r.rows)) + row('share of rows', pct(+r.share_rows, 2)) + row('share of squared error', pct(+r.share_sse)) + row('RMSE', fmt(+r.rmse, 1) + ' s');
+    const mx = (xl + bw + xr)/2;
+    g.push(`<path class="rb" data-i="${i}" data-tip="${esc(t)}" d="M${xl+bw},${ly} C${mx},${ly} ${mx},${ry} ${xr},${ry} L${xr},${ry+rh} C${mx},${ry+rh} ${mx},${ly+lh} ${xl+bw},${ly+lh}Z" style="fill:var(--${c});opacity:.30;cursor:pointer;transition:opacity .15s"/>`);
+    g.push(`<rect data-notab="1" data-tip="${esc(t)}" x="${xl}" y="${ly}" width="${bw}" height="${lh}" rx="3" style="fill:var(--${c})"/>`);
+    g.push(`<rect data-notab="1" data-tip="${esc(t)}" x="${xr}" y="${ry}" width="${bw}" height="${rh}" rx="3" style="fill:var(--${c})"/>`);
+    const lyc = labY[i];
+    if(Math.abs(lyc - (L[i][0] + L[i][1]/2)) > 3) g.push(`<path d="M${xl-8},${lyc} L${xl-3},${L[i][0] + L[i][1]/2}" style="stroke:var(--muted)"/>`);
+    g.push(`<text x="${xl-12}" y="${lyc+4}" text-anchor="end" font-size="13"><tspan class="t-ink">${esc(r.regime)}</tspan> · ${pct(+r.share_rows, +r.share_rows < .01 ? 2 : 1)}</text>`);
+    g.push(`<text x="${xr+bw+12}" y="${ry + rh/2 + 5}" font-size="${rh > 40 ? 22 : 15}" class="t-ink t-b">${pct(+r.share_sse, 0)}</text>`);
+  });
+  svg.innerHTML = g.join(''); bindTips(svg);
+  svg.querySelectorAll('.rb').forEach(p => { p.addEventListener('mouseenter', () => svg.querySelectorAll('.rb').forEach(q => q.style.opacity = q === p ? .6 : .12));
+    p.addEventListener('mouseleave', () => svg.querySelectorAll('.rb').forEach(q => q.style.opacity = .30)); });
+}
+
+// ================================================================ 2b. concentration slider
+const C = (() => {
+  const pts = [[0, 0, D.ref], ...D.sse.map(r => [r[0], r[1], r[2]])], N = D.n_cv;
+  const sl = $('#kslide'); sl.max = pts.length - 1;
+  const x0 = 70, x1 = 960, y0 = 260, y1 = 20, lx = k => x0 + Math.log10(k + 1)/Math.log10(N + 1)*(x1 - x0), ly = s => y0 - s*(y0 - y1);
+  let idx = 0;
+  function draw(){
+    const svg = $('#conc'), g = [], [k, s, rm] = pts[idx];
+    [0, .25, .5, .75, 1].forEach(v => g.push(`<line x1="${x0}" x2="${x1}" y1="${ly(v)}" y2="${ly(v)}" class="gridl"/><text x="${x0-8}" y="${ly(v)+4}" text-anchor="end" font-size="12">${v*100} %</text>`));
+    [1, 10, 100, 1000, 10000, 100000].forEach(v => g.push(`<text x="${lx(v)}" y="${y0+20}" text-anchor="middle" font-size="12">${fmt(v)}</text>`));
+    g.push(`<text x="${(x0+x1)/2}" y="${y0+38}" text-anchor="middle" font-size="12" class="t-mut">departures, worst first (log scale, ${fmt(N)} in all)</text>`);
+    const path = pts.map((p, i) => `${i?'L':'M'}${lx(p[0]).toFixed(1)},${ly(p[1]).toFixed(1)}`).join('');
+    const area = pts.slice(0, idx + 1).map((p, i) => `${i?'L':'M'}${lx(p[0]).toFixed(1)},${ly(p[1]).toFixed(1)}`).join('') + `L${lx(k)},${y0}L${x0},${y0}Z`;
+    g.push(`<path d="${area}" style="fill:var(--orange);opacity:.18"/>`);
+    g.push(`<path d="${path}" fill="none" style="stroke:var(--blue)" stroke-width="2.4"/>`);
+    // reference marks
+    [[2,'2 rows'],[10,'10'],[102,'~100'],[1024,'~1,000']].forEach(([kk, lab]) => { const p = pts.find(q => q[0] === kk); if(!p) return;
+      g.push(`<circle cx="${lx(p[0])}" cy="${ly(p[1])}" r="3.5" style="fill:var(--blue)"/>`); });
+    g.push(`<line x1="${lx(k)}" x2="${lx(k)}" y1="${y1}" y2="${y0}" style="stroke:var(--orange)" stroke-width="1.5" stroke-dasharray="4 3"/>`);
+    g.push(`<circle cx="${lx(k)}" cy="${ly(s)}" r="7" style="fill:var(--orange);stroke:var(--bg)" stroke-width="2.5"/>`);
+    const p2 = pts.find(q => q[0] === 2);
+    g.push(`<text x="${lx(2)+12}" y="${ly(p2[1])+24}" font-size="12.5" class="t-ink">the two Paris records</text>`);
+    g.push(`<rect x="${x0}" y="${y1}" width="${x1-x0}" height="${y0-y1}" fill="transparent" id="conchit" style="cursor:ew-resize"/>`);
+    svg.innerHTML = g.join('');
+    $('#kk').textContent = fmt(k); $('#kpct').textContent = k ? (k/N < .001 ? fmt(100*k/N, 3) + ' %' : pct(k/N, 1)) : '0 %';
+    $('#ksse').textContent = pct(s, 1); $('#krmse').textContent = fmt(rm, 1);
+    const hit = $('#conchit');
+    const scrub = e => { const r = svg.getBoundingClientRect(), x = (e.clientX - r.left)/r.width*1000;
+      const kk = Math.pow(10, (x - x0)/(x1 - x0)*Math.log10(N + 1)) - 1; let best = 0;
+      pts.forEach((p, i) => { if(Math.abs(Math.log10(p[0]+1) - Math.log10(kk+1)) < Math.abs(Math.log10(pts[best][0]+1) - Math.log10(kk+1))) best = i; });
+      if(best !== idx){ idx = best; sl.value = idx; draw(); } };
+    hit.addEventListener('pointermove', e => { if(e.buttons || e.pointerType === 'mouse') scrub(e); });
+    hit.addEventListener('pointerdown', scrub);
+  }
+  sl.oninput = e => { idx = +e.target.value; draw(); };
+  idx = pts.findIndex(p => p[0] === 2); sl.value = idx; draw();
+  return {draw};
+})();
+
+// ================================================================ 3. mechanisms
+const GLYPH = [
+  [/schedule copy/i, [['SCHED = BLOCK', .08, 'b', 'd'], ['push', .72, 'g', 'u'], ['MVT', .92, 'i', 'd']], [.08, .92], 'label = the whole delay'],
+  [/plan cliff/i, [['SCHED', .06, 'i', 'd'], ['LOBT', .56, 'i', 'u'], ['BLOCK', .62, 'b', 'd'], ['MVT', .9, 'i', 'u']], [.62, .9], 're-planned over 1 h late: never a copy', [.06, .56]],
+  [/plan window/i, [['LOBT', .45, 'i', 'u'], ['BLOCK', .66, 'b', 'd'], ['MVT', .93, 'i', 'u']], [.66, .93], 'BLOCK always within the window', null, [.17, .73]],
+  [/date-shifted/i, [['BLOCK, AOBT_3', .06, 'b', 'd'], ['MVT', .94, 'i', 'd']], [.06, .94], 'a day early', null, null, true],
+  [/gate hold/i, [['LOBT', .14, 'i', 'u'], ['BLOCK', .2, 'b', 'd'], ['AOBT_3', .62, 'i', 'u'], ['MVT', .9, 'i', 'd']], [.2, .9], 'handler stamps near the plan'],
+  [/long copy/i, [['SCHED = BLOCK', .06, 'b', 'd'], ['MVT', .94, 'i', 'd']], [.06, .94], 'Rome, no plan, hours late', null, null, true],
+  [/datestamp/i, [['BLOCK', .1, 'b', 'd'], ['midnight', .46, 'g', 'u'], ['MVT', .92, 'i', 'd']], [.1, .92], 'schedule date + true time of day'],
+  [/near-schedule/i, [['SCHED', .2, 'i', 'u'], ['MVT', .55, 'i', 'u']], null, 'labels bunch in one narrow band', null, [.7, .82]],
+  [/duplicated/i, [['BLOCK', .12, 'b', 'd'], ['MVT', .86, 'i', 'u'], ['MVT again', .9, 'i', 'd']], [.12, .86], 'one take-off, two records'],
+];
+function glyph(name){
+  const G0 = GLYPH.find(g => g[0].test(name.replace(/<[^>]+>/g,'')));
+  if(!G0) return '';
+  const [, ticks, lab, note, brace, band, broken] = G0, X = u => 8 + u*264, y = 42, g = [];
+  g.push(`<line x1="4" x2="276" y1="${y}" y2="${y}" class="axisl"/>`);
+  if(broken) g.push(`<rect x="${X(.5)-6}" y="${y-8}" width="12" height="16" style="fill:var(--bg)"/><path d="M${X(.5)-7},${y+7} l5,-14 M${X(.5)+1},${y+7} l5,-14" style="stroke:var(--muted)" stroke-width="1.3"/>`);
+  if(band) g.push(`<rect x="${X(band[0])}" y="${y-9}" width="${X(band[1])-X(band[0])}" height="18" rx="4" style="fill:var(--blue-soft);stroke:var(--blue)" stroke-dasharray="3 2"/>`);
+  if(lab) g.push(`<rect x="${X(lab[0])}" y="${y-3.5}" width="${X(lab[1])-X(lab[0])}" height="7" rx="3" style="fill:var(--blue);opacity:.45"/>`);
+  if(brace) g.push(`<path d="M${X(brace[0])},${y-24} v-4 H${X(brace[1])} v4" fill="none" style="stroke:var(--orange)" stroke-width="1.6"/>`);
+  ticks.forEach(([t, u, kind, side]) => {
+    const fill = kind === 'b' ? 'var(--blue)' : kind === 'g' ? 'var(--bg)' : 'var(--ink)';
+    g.push(`<circle cx="${X(u)}" cy="${y}" r="4.2" style="fill:${fill};stroke:${kind==='g'?'var(--muted)':'var(--bg)'}" stroke-width="1.5"/>`);
+    const ty = side === 'u' ? y - 12 : y + 20, anchor = u < .12 ? 'start' : u > .88 ? 'end' : 'middle';
+    g.push(`<text x="${X(u) + (anchor==='start'?-4:anchor==='end'?4:0)}" y="${ty}" text-anchor="${anchor}" font-size="10.5">${t}</text>`);
+  });
+  g.push(`<text x="140" y="76" text-anchor="middle" font-size="10.5" class="t-mut">${note}</text>`);
+  return `<svg viewBox="0 0 280 80" aria-hidden="true">${g.join('')}</svg>`;
+}
+const gloss = h => h.replace(/\b(E[DGH][A-Z]{2}|LEBL|LEMD|LFPG|LIRF|LSZH|LTFM)\b(?![^<]*>)/g, (m, c) => D.names[c] ? `<abbr title="${esc(D.names[c])}">${c}</abbr>` : c);
+function drawMech(){
+  $('#mechgrid').innerHTML = D.mech.map(m => `<div class="mcard">${glyph(m.name)}<div class="nm">${gloss(m.name)}</div><div class="ev">${gloss(m.evidence)}</div><div class="use">${gloss(m.use)}</div></div>`).join('');
+  const svg = $('#taxo'), T = D.taxonomy, tot = T.reduce((a, b) => a + b.cost, 0), cols = ['orange','yellow','aqua','blue','grey'];
+  let x = 20; const g = [], W0 = 960;
+  T.forEach((t, i) => { const w = t.cost/tot*W0;
+    const tt = `<b>${t.name}</b>` + row('departures', t.rows) + row('share of the cost', fmt(t.cost) + ' %');
+    g.push(`<rect data-tip="${esc(tt)}" x="${x}" y="20" width="${Math.max(2, w-2)}" height="34" rx="4" style="fill:var(--${cols[i % cols.length]});cursor:pointer"/>`);
+    if(w > 70) g.push(`<text x="${x+6}" y="76" font-size="12.5" class="t-ink">${t.name.replace(/\s*\(.*\)/,'')}</text><text x="${x+6}" y="94" font-size="12.5">${fmt(t.cost)} % · ${t.rows} rows</text>`);
+    x += w; });
+  svg.innerHTML = g.join(''); bindTips(svg);
+}
+
+// ================================================================ 4. mixture
+const M = (() => {
+  const B = D.schematic.mix.phys;
+  function draw(){
+    const p = $('#pslide').value/100, A = +$('#aslide').value, q = $('#qslide').value/100;
+    $('#pval').textContent = fmt(p, 2); $('#aval').textContent = fmt(A) + ' min'; $('#qval').textContent = fmt(q, 2); $('#pval2').textContent = fmt(p, 2);
+    const lo = -20, hi = 320, x0 = 70, x1 = 960, y0 = 280, y1 = 20, X = v => x0 + (v - lo)/(hi - lo)*(x1 - x0);
+    const f = (x, w) => w*(x - A)**2 + (1 - w)*(x - B)**2, raw = Math.max((A - B)**2*0.62, 2500);
+    const step = [1000, 2000, 2500, 5000, 10000].find(v => raw/v <= 5) || 10000, ymax = Math.ceil(raw/step)*step, Y = v => y0 - v/ymax*(y0 - y1), Yc = v => Math.max(y1, Y(v));
+    const curve = fn => { let d = ''; for(let i = 0; i <= 200; i++){ const x = lo + (hi - lo)*i/200; d += (i?'L':'M') + X(x).toFixed(1) + ',' + Y(fn(x)).toFixed(1); } return d; };
+    const g = [], m = p*A + (1 - p)*B;
+    g.push(`<defs><clipPath id="mixclip"><rect x="${x0}" y="${y1-4}" width="${x1-x0}" height="${y0-y1+8}"/></clipPath></defs>`);
+    for(let v = 0; v <= ymax; v += step) g.push(`<line x1="${x0}" x2="${x1}" y1="${Y(v)}" y2="${Y(v)}" class="gridl"/><text x="${x0-8}" y="${Y(v)+4}" text-anchor="end" font-size="11.5">${fmt(v)}</text>`);
+    for(let v = 0; v <= 300; v += 60) g.push(`<text x="${X(v)}" y="${y0+20}" text-anchor="middle" font-size="12">${v}</text>`);
+    g.push(`<text x="${(x0+x1)/2}" y="${y0+40}" text-anchor="middle" font-size="12" class="t-mut">predicted label (minutes)</text><text x="${x0}" y="${y1-8}" font-size="12" class="t-mut">squared error (min²)</text><g clip-path="url(#mixclip)">`);
+    g.push(`<path d="${curve(x => (x - A)**2)}" fill="none" style="stroke:var(--orange)" stroke-width="1.5" stroke-dasharray="6 5" opacity=".9"/>`);
+    g.push(`<path d="${curve(x => (x - B)**2)}" fill="none" style="stroke:var(--aqua)" stroke-width="1.5" stroke-dasharray="2 4"/>`);
+    g.push(`<path d="${curve(x => f(x, p))}" fill="none" style="stroke:var(--blue)" stroke-width="3"/></g>`);
+    // three bets
+    [[B, 'bet: physical taxi', 'aqua'], [A, 'bet: copy', 'orange']].forEach(([x, lab, c]) => {
+      g.push(`<line x1="${X(x)}" x2="${X(x)}" y1="${y0}" y2="${Yc(f(x, p))}" style="stroke:var(--${c})" stroke-width="1.2" stroke-dasharray="2 3"/><circle cx="${X(x)}" cy="${Yc(f(x, p))}" r="6" style="fill:var(--${c});stroke:var(--bg)" stroke-width="2"/>`);
+      g.push(`<circle cx="${X(x)}" cy="${y0}" r="5" style="fill:var(--${c})"/>`); });
+    g.push(`<text x="${X(B)}" y="${y0-10}" text-anchor="${B < 40 ? 'start' : 'middle'}" dx="8" font-size="12" class="t-ink">taxi ${fmt(B)} min</text>`);
+    g.push(`<text x="${X(A)}" y="${y0-10}" text-anchor="middle" font-size="12" class="t-ink">copy ${fmt(A)} min</text>`);
+    g.push(`<line x1="${X(m)}" x2="${X(m)}" y1="${y0}" y2="${Yc(f(m, p))}" style="stroke:var(--blue)" stroke-width="1.6"/><circle cx="${X(m)}" cy="${Yc(f(m, p))}" r="8.5" style="fill:var(--blue);stroke:var(--bg)" stroke-width="2.5"/>`);
+    g.push(`<text x="${X(m)}" y="${Math.max(y1+14, Math.min(y0 - 34, Yc(f(m, p)) - 18))}" text-anchor="middle" font-size="13.5" class="t-ink t-b">the mix: ${fmt(m, 1)} min</text>`);
+    $('#mixsvg').innerHTML = g.join('');
+    const bets = [['bet on the taxi', f(B, p), 'aqua'], ['bet on the copy', f(A, p), 'orange'], ['the mix', f(m, p), 'blue']], mx = Math.max(...bets.map(b => b[1]), 1);
+    $('#mixbars').innerHTML = `<div class="small ink2" style="margin-bottom:4px">expected squared error of each bet (min²)</div>` + bets.map(([l, v, c]) =>
+      `<div class="hb"><span>${l}</span><span class="tr"><i style="width:${v/mx*100}%;background:var(--${c})"></i></span><span class="v">${fmt(v)}</span></div>`).join('');
+    // calibration panel
+    const best = f(q*A + (1 - q)*B, q), got = f(m, q), extra = got - best, cmax = Math.max((A - B)**2*0.25, 1);
+    const cs = [['cost with the true rate', best, 'blue'], ['extra cost of saying ' + fmt(p, 2), extra, 'orange']];
+    const g2 = []; let yy = 18;
+    cs.forEach(([l, v, c]) => { const w = Math.min(1, v/cmax)*640; g2.push(`<text x="0" y="${yy+13}" font-size="13">${l}</text><rect x="300" y="${yy}" width="${Math.max(2, w)}" height="18" rx="4" style="fill:var(--${c})"/><text x="${310 + w}" y="${yy+14}" font-size="13" class="t-ink">${fmt(v)} min²</text>`); yy += 34; });
+    g2.push(`<text x="0" y="${yy+14}" font-size="12.5" class="t-mut">extra = (p − q)² · (${fmt(A)} − ${fmt(B)})² = ${fmt(extra)} min²</text>`);
+    $('#calsvg').innerHTML = g2.join('');
+  }
+  ['#pslide', '#aslide', '#qslide'].forEach(s => $(s).addEventListener('input', draw));
+  draw(); return {draw};
+})();
+
+// ================================================================ 4b. reliability of p
+let relGroup = 'all';
+function drawRel(){
+  const R0 = D.reliability || [];
+  if(!R0.length){ $('#relfig').style.display = 'none'; return; }
+  const groups = [...new Set(R0.map(r => r.group))];
+  $('#relctl').innerHTML = groups.map(g => `<button class="chip" data-rg="${g}" aria-pressed="${g===relGroup}">${g}</button>`).join('');
+  $$('#relctl .chip').forEach(b => b.onclick = () => { relGroup = b.dataset.rg; drawRel(); });
+  const R = R0.filter(r => r.group === relGroup), x0 = 90, x1 = 640, y0 = 340, y1 = 20, sq = Math.sqrt;
+  const X = v => x0 + sq(v)*(x1 - x0), Y = v => y0 - sq(v)*(y0 - y1), g = [], mxn = Math.max(...R0.map(r => r.n));
+  [0, .01, .05, .1, .2, .3, .5, .7, .9, 1].forEach(v => { g.push(`<line x1="${X(v)}" x2="${X(v)}" y1="${y0}" y2="${y1}" class="gridl"/><line x1="${x0}" x2="${x1}" y1="${Y(v)}" y2="${Y(v)}" class="gridl"/>`);
+    g.push(`<text x="${X(v)}" y="${y0+18}" text-anchor="middle" font-size="11">${fmt(100*v)}</text><text x="${x0-8}" y="${Y(v)+4}" text-anchor="end" font-size="11">${fmt(100*v)}</text>`); });
+  g.push(`<line x1="${X(0)}" y1="${Y(0)}" x2="${X(1)}" y2="${Y(1)}" style="stroke:var(--muted)" stroke-dasharray="5 4"/>`);
+  g.push(`<text x="${(x0+x1)/2}" y="${y0+36}" text-anchor="middle" font-size="12" class="t-mut">predicted copy probability, % (square-root axis)</text>`);
+  g.push(`<text transform="translate(${x0-44},${(y0+y1)/2}) rotate(-90)" text-anchor="middle" font-size="12" class="t-mut">observed copy share, %</text>`);
+  g.push(`<path d="${R.map((r, i) => (i?'L':'M') + X(r.p).toFixed(1) + ',' + Y(r.rate).toFixed(1)).join('')}" fill="none" style="stroke:var(--blue)" stroke-width="1.6" opacity=".6"/>`);
+  R.forEach(r => { const rad = 3 + 16*sq(r.n/mxn);
+    const t = `<b>p in ${r.bin}</b>` + row('departures', fmt(r.n)) + row('mean p', pct(r.p, 1)) + row('observed copies', pct(r.rate, 1));
+    g.push(`<circle data-tip="${esc(t)}" cx="${X(r.p)}" cy="${Y(r.rate)}" r="${rad}" style="fill:var(--blue);fill-opacity:.55;stroke:var(--blue);cursor:pointer" stroke-width="1.5"/>`); });
+  // side panel: rows per bin
+  const bx = 700, bw = 280, bh = (y0 - y1)/R.length;
+  g.push(`<text x="${bx}" y="${y1-4}" font-size="12" class="t-mut">departures per bin</text>`);
+  R.slice().reverse().forEach((r, i) => { const y = y1 + 6 + i*bh, w = Math.max(1.5, r.n/mxn*(bw - 130));
+    g.push(`<text x="${bx}" y="${y+bh/2+3}" font-size="11">${r.bin}</text><rect x="${bx+70}" y="${y+bh*.2}" width="${w}" height="${bh*.6}" rx="2" style="fill:var(--blue)"/><text x="${bx+76+w}" y="${y+bh/2+3}" font-size="11" class="t-ink">${fmt(r.n)}</text>`); });
+  $('#relsvg').innerHTML = g.join(''); bindTips($('#relsvg'));
+}
+
+// ================================================================ 5. stages and the scene
+const ZONES = [
+  {n:1, name:'The stand and the record', x0:0, x1:175},
+  {n:2, name:'Push-back', x0:175, x1:265},
+  {n:3, name:'Taxiway', x0:265, x1:600},
+  {n:4, name:'Runway queue', x0:600, x1:760},
+  {n:5, name:'Weather and the network', x0:760, x1:1000},
+];
+// family -> zones (by the start of the family name in docs/features.md); unknown families fall into the model's own view (0)
+const FZ = [[/^Clocks/,[1]],[/^Recording/,[1]],[/^Arrival/,[1]],[/^Stand and runway/,[1,4]],[/^Record ordering/,[1]],[/^Pushback/,[2]],[/^ADS-B/,[2,3,4]],
+  [/^Own-flight/,[2,3,4]],[/^Geometry/,[3]],[/^Surface load/,[4]],[/^Departure-stream/,[4]],[/^Weather/,[5]],[/^Network/,[5]]];
+const famZones = f => (FZ.find(z => z[0].test(f.family)) || [0, [0]])[1];
+// family -> the development stage it arrived with (progress.csv), matched on words of the stage name
+const FV = [[/^Clocks/,/off-block clock/i],[/^Recording/,/Mixture/],[/^Arrival/,/Mixture/],[/^Stand and runway/,/stand and runway history/i],[/^Own-flight/,/OPDI/],
+  [/^ADS-B/,/ADS-B ground-track/i],[/^Member disagreement/,/disagreement/i],[/^Departure-stream/,/Departure-stream/i],[/^Month-complete/,/Month-complete/i]];
+function famValue(f){ const r = FV.find(z => z[0].test(f.family)); if(!r) return null; return D.progress.find(p => r[1].test(p.stage)) || null; }
+const tailSteps = D.tail.slice(1), stackRow = D.tail[1];
+const refFinal = D.progress[D.progress.length - 1];
+const STAGES = [
+  {id:'clf', name:'Copy classifier', zones:[1,4], fams:[/^Clocks/,/^Recording/,/^Arrival/,/^Surface load/,/^Stand and runway/],
+   text:'XGBoost on challenge data only: the clocks, how the record is made, the arrival-side copy habits, the load and the stand and runway history. It estimates p, the chance that the recorded off-block is the schedule.'},
+  {id:'reg', name:'Eleven regressors', val:'CV alone 4xx', zones:[1,2,3,4,5], fams:[/./],
+   text:'CatBoost, MLPs and a denoising autoencoder, each fitted on non-copy rows to the label minus a clock-based anchor (NM\'s off-block estimate or the plan\'s last filed off-block), so it learns a correction, not the whole taxi. Their weights come from non-negative least squares, cross-fitted between the two folds.'},
+  {id:'mix', name:'Mixture + blend', val:'', zones:[1], fams:[/^Clocks/],
+   text:'p · (MVT − SCHED + δ) + (1 − p) · Σ wᵢ regᵢ: one copy probability for all members, only the regressor branch is blended.'},
+  {id:'rules', name:'Rules chain', val:'', zones:[1], fams:[/^Clocks/,/^Recording/],
+   text:'The record mechanisms of section 3 in order: a delayed-row gate, the plan cliff, Rome\'s three recording regimes, the clock rules and the plan window.'},
+  {id:'stack', name:'Stackers', val:'', zones:[2,3,4], fams:[/^ADS-B/,/^Pushback/,/^Member/,/^Month-complete/,/^Departure-stream/],
+   text:'Four second-level models predict the chain\'s remaining error from the ADS-B track, push-back, the clock gaps, the regressors\' disagreement and the departures around the flight; their average is added back.'},
+  {id:'tail', name:'Record tail + calibration', val:'', zones:[1,5], fams:[/^Network/,/^Clocks/],
+   text:'Small steps for specific record faults (Rome copy classifiers, duplicated take-offs) and the calibration to EUROCONTROL\'s published daily delay (and, in this reference chain only, its monthly runway taxi-out). Each step against the one before, with its 95 % day-block bootstrap interval:'},
+];
+let curStage = 'clf', curZone = null;
+function drawScene(){
+  const g = [ground()], svg = $('#scene');
+  ZONES.forEach(z => g.push(`<g class="zone" data-z="${z.n}" tabindex="0" role="button" aria-label="${z.n} · ${z.name}: show the feature families that look here"><rect class="hl" x="${z.x0+2}" y="4" width="${z.x1-z.x0-4}" height="202" rx="10" style="fill:transparent;transition:fill .15s"/>
+     <rect class="hit" x="${z.x0}" y="0" width="${z.x1-z.x0}" height="210"/><text x="${(z.x0+z.x1)/2}" y="200" text-anchor="middle" font-size="12" class="t-ink">${z.n} · ${z.name}</text></g>`));
+  g.push(plane(G.stand, G.y, -1, 0, 1.1));
+  g.push(`<rect x="${G.push-6}" y="${G.y-4}" width="14" height="8" rx="2" style="fill:var(--yellow)"/>`);
+  g.push(plane(G.push+40, G.y, -1, 0, 1));
+  g.push(plane(430, G.y, 1, 0, 1)); g.push(plane(G.hold-50, G.y, 1, 0, .9)); g.push(plane(G.hold-22, G.y, 1, 0, .9));
+  g.push(plane(880, 70, 1, -18, 1));
+  g.push(`<path d="M880 40 q-18 0 -18 -12 q0 -12 14 -12 q4 -10 18 -8 q12 -4 20 6 q16 0 16 12 q0 14 -18 14Z" transform="translate(-10,10)" style="fill:var(--building);stroke:var(--tarmac2)"/>`);
+  g.push(`<text x="88" y="${G.y-72}" text-anchor="middle" font-size="11" class="t-mut">SCHED · LOBT · AOBT_3 · BLOCK</text>`);
+  g.push(`<path d="M${G.push+60} 112 q-9 -3 -9 6 M${G.push+60} 112 q9 -3 9 6" fill="none" style="stroke:var(--blue)"/>`);
+  for(let i=0;i<9;i++) g.push(`<circle cx="${280+i*38}" cy="${G.y-16+Math.sin(i)*2}" r="2.4" style="fill:var(--blue)"/>`);
+  svg.innerHTML = g.join('');
+  svg.querySelectorAll('.zone').forEach(z => {
+    z.addEventListener('mouseenter', () => { curZone = +z.dataset.z; drawFams(); markZones(); });
+    z.addEventListener('click', () => { curZone = +z.dataset.z; drawFams(); markZones(); });
+    z.addEventListener('focus', () => { curZone = +z.dataset.z; drawFams(); markZones(); });
+  });
+  svg.addEventListener('mouseleave', () => { curZone = null; drawFams(); markZones(); });
+  markZones();
+}
+function markZones(){
+  const st = STAGES.find(s => s.id === curStage), on = curZone ? [curZone] : st.zones;
+  $$('#scene .zone').forEach(z => z.classList.toggle('on', on.includes(+z.dataset.z)));
+}
+function stageVal(id){
+  const fam = D.progress;
+  if(id === 'clf') return `log loss {{logloss}} · AUC {{clf_auc}}`;
+  if(id === 'reg') return `alone: ${fmt(Math.min(...D.members.map(m => m.cv)), 1)}–${fmt(Math.max(...D.members.map(m => m.cv)), 1)}`;
+  if(id === 'mix') return `CV ${'{{blend_cv}}'}`;
+  if(id === 'rules') return `CV ${fmt(D.tail[0].cv, 2)}`;
+  if(id === 'stack') return `CV ${fmt(stackRow.cv, 2)}`;
+  if(id === 'tail') return `CV ${fmt(D.ref, 2)}`;
+}
+function drawStages(){
+  $('#stagebtns').innerHTML = STAGES.map((s, i) => `<button class="stage" data-s="${s.id}" aria-pressed="${s.id===curStage}"><span class="bar" style="background:var(--${['blue','orange','blue','blue','aqua','aqua'][i]})"></span><div class="sn">${i+1}. ${s.name}</div><div class="sv">${stageVal(s.id)}</div></button>`).join('<span aria-hidden="true" style="align-self:center;color:var(--muted)">→</span>');
+  $$('#stagebtns .stage').forEach(b => b.onclick = () => { curStage = b.dataset.s; curZone = null; drawStages(); drawFams(); markZones(); });
+  const st = STAGES.find(s => s.id === curStage);
+  let extra = '';
+  if(curStage === 'reg'){
+    const mx = Math.max(...D.members.map(m => m.w));
+    extra = `<div class="small ink2" style="margin:10px 0 4px">the eleven members: blend weight (bar) and CV RMSE of each alone as a mixture</div>` + D.members.map(m =>
+      `<div class="hb" data-tip="${esc(`<b>member ${m.n}: ${m.learner}</b>` + row('anchor', m.anchor) + row('extra inputs', m.inputs) + row('CV alone', fmt(m.cv, 2)) + row('blend weight', fmt(m.w, 3)))}"><span>${m.n}. ${m.learner} · ${m.anchor}</span><span class="tr"><i style="width:${m.w/mx*100}%;background:var(--orange)"></i></span><span class="v">${fmt(m.w, 3)}</span></div>`).join('') +
+      `<p class="small muted" style="margin-top:6px">Members with weight 0 still feed the stackers' disagreement features.</p>`;
+  }
+  if(curStage === 'mix') extra = `<div class="small ink2" style="margin-top:8px">${row('equal weights', '{{blend_eq}}')}${row('NNLS, cross-fitted between the folds (used)', '{{blend_cv}}')}</div>`;
+  if(curStage === 'stack'){
+    const mn = Math.min(...D.stackers.map(s => s.cv)), mxs = Math.max(...D.stackers.map(s => s.cv));
+    extra = `<div class="small ink2" style="margin:10px 0 4px">bar: the gain over the chain before them (${fmt(D.tail[0].cv, 2)}); number: the chain's CV RMSE after that stacker</div>` + D.stackers.map(s =>
+      `<div class="hb"><span>${s.name}</span><span class="tr"><i style="width:${(D.tail[0].cv - s.cv)/(D.tail[0].cv - mn)*100}%;background:var(--aqua)"></i></span><span class="v">${fmt(s.cv, 2)}</span></div>`).join('');
+  }
+  if(curStage === 'tail') extra = forest();
+  if(curStage === 'clf') extra = `<p class="small ink2" style="margin-top:8px">Then the plan cliff sets p = 0 for flights re-planned more than an hour after schedule: {{plan_cliff}} in 2025.</p>`;
+  $('#stagedetail').innerHTML = `<h4>${st.name}</h4><p class="small ink2" style="margin:0">${gloss(st.text)}</p>${extra}`;
+  $('#stagedetail').querySelectorAll('[data-tip]').forEach(el => { el.addEventListener('mouseenter', e => tip(e, el.dataset.tip)); el.addEventListener('mousemove', tipMove); el.addEventListener('mouseleave', untip); });
+}
+function forest(){
+  const lo = Math.min(...tailSteps.map(s => s.lo)) - .4, hi = .6, X = v => 300 + (v - lo)/(hi - lo)*620, g = [], h = 30;
+  g.push(`<line x1="${X(0)}" x2="${X(0)}" y1="0" y2="${tailSteps.length*h + 6}" class="axisl"/>`);
+  tailSteps.forEach((s, i) => { const y = 16 + i*h;
+    const t = `<b>${esc(s.step)}</b>` + row('Δ RMSE', sgn(s.d)) + row('95 % interval', `${sgn(s.lo)} to ${sgn(s.hi)}`) + row('CV after', fmt(s.cv, 2)) + (s.what ? `<div style="margin-top:4px">${s.what}</div>` : '');
+    g.push(`<g data-tip="${esc(t)}" style="cursor:pointer"><rect x="0" y="${y-13}" width="1000" height="${h-2}" fill="transparent"/><text x="0" y="${y+4}" font-size="12.5" class="t-ink">${esc(s.step)}</text>
+      <line x1="${X(s.lo)}" x2="${X(s.hi)}" y1="${y}" y2="${y}" style="stroke:var(--blue)" stroke-width="2.4" stroke-linecap="round"/><circle cx="${X(s.d)}" cy="${y}" r="6" style="fill:var(--blue);stroke:var(--bg)" stroke-width="2"/>
+      <text x="${X(hi)+8}" y="${y+4}" font-size="12" text-anchor="end">${sgn(s.d)}</text></g>`); });
+  g.push(`<text x="${X(0)}" y="${tailSteps.length*h + 22}" text-anchor="middle" font-size="11.5" class="t-mut">0 · left is better (s of RMSE)</text>`);
+  return `<svg viewBox="0 0 1000 ${tailSteps.length*h + 30}" style="margin-top:10px">${g.join('')}</svg>`;
+}
+function drawFams(){
+  const st = STAGES.find(s => s.id === curStage);
+  const fams = curZone ? D.families.filter(f => famZones(f).includes(curZone)) : D.families.filter(f => st.fams.some(r => r.test(f.family)));
+  $('#famhead').textContent = curZone ? `Feature families that look at: ${ZONES[curZone-1].name}` : `Feature families the ${st.name.toLowerCase()} reads`;
+  $('#famlist').innerHTML = fams.map(f => { const v = famValue(f), z = famZones(f);
+    const col = v ? COL[v.family] : 'grey';
+    return `<div class="fam" style="border-left-color:var(--${col})"><div class="fh"><span class="fn">${f.family}</span>${v ? `<span class="fv" title="the change in CV RMSE when it joined the model">${sgn(v.to - v.from)} s when it arrived</span>` : ''}</div>
+      ${v ? `<div class="fs">arrived with: ${esc(v.stage)} (CV ${fmt(v.from, 2)} → ${fmt(v.to, 2)}, in the order of development; the chain was different then)</div>` : ''}<div class="fw">${gloss(f.holds)}</div><div class="fd">why: ${gloss(f.why)}</div></div>`; }).join('');
+}
+
+// ================================================================ 6. the track
+function drawTrack(){
+  const g = [ground()], svg = $('#tracksvg');
+  g.push(plane(G.stand, G.y, -1, 0, 1.05, 'plane'));
+  const pts = [], stops = [[300, 4], [455, 6], [G.hold-22, 9]];
+  for(let x = G.push + 30; x <= G.hold - 22; x += 22) pts.push(x);
+  stops.forEach(([x, n]) => { for(let i = 0; i < n; i++) pts.push(x + (i%3 - 1)*2.2); });
+  for(let i = 0; i < 9; i++) pts.push(G.hold + 30 + i*i*3.4);
+  pts.sort((a, b) => a - b).forEach(x => g.push(`<circle cx="${x}" cy="${G.y - 22 + (x > G.hold+20 ? 0 : 0)}" r="3" style="fill:var(--blue);opacity:.85"/>`));
+  const mark = (x, lab, hi=0) => g.push(`<line x1="${x}" x2="${x}" y1="${G.y-30}" y2="${G.y-58-hi}" style="stroke:var(--ink2)"/><text x="${x}" y="${G.y-64-hi}" text-anchor="middle" font-size="12" class="t-ink">${lab}</text>`);
+  mark(G.stand, 'off-block: not heard', 26);
+  mark(G.push + 30, 'first heard');
+  mark(300, 'stop', 26); mark(455, 'stop');
+  mark(G.hold - 22, 'last stop', 26);
+  mark(G.hold + 30, 'roll start');
+  g.push(`<text x="${(G.push+G.hold)/2}" y="${G.y+42}" text-anchor="middle" font-size="12">path length, stops, stopped seconds</text>`);
+  svg.innerHTML = g.join('');
+}
+function drawMatch(){
+  const svg = $('#matchsvg'), R = D.matched, cols = [['chain','after the rules chain'], ['stack','after the stackers'], ['ref','reference chain']];
+  const parse = s => s.split('/').map(v => parseFloat(v)), vals = R.map(r => cols.map(([k]) => parse(r[k])[1]));
+  const all = vals.flat(), lo = Math.floor(Math.min(...all)/10)*10 - 10, hi = Math.ceil(Math.max(...all)/10)*10 + 10;
+  const X = v => 120 + (v - lo)/(hi - lo)*330, g = [];
+  for(let v = Math.ceil(lo/20)*20; v <= hi; v += 20) g.push(`<line x1="${X(v)}" x2="${X(v)}" y1="20" y2="170" class="gridl"/><text x="${X(v)}" y="188" text-anchor="middle" font-size="11.5">${v}</text>`);
+  R.forEach((r, i) => { const y = 55 + i*75, v = vals[i];
+    g.push(`<text x="0" y="${y+4}" font-size="13" class="t-ink">${r.rows}</text><text x="0" y="${y+20}" font-size="11.5" class="t-mut">${r.count} rows</text>`);
+    g.push(`<line x1="${X(v[0])}" x2="${X(v[2])}" y1="${y}" y2="${y}" style="stroke:var(--tarmac2)" stroke-width="5" stroke-linecap="round"/>`);
+    v.forEach((x, j) => { const t = `<b>${r.rows}, ${cols[j][1]}</b>` + row('RMSE / ≤ 2 h', r[cols[j][0]]);
+      g.push(`<circle data-tip="${esc(t)}" cx="${X(x)}" cy="${y}" r="${j===2?8:6}" style="fill:var(--${['grey','aqua','blue'][j]});stroke:var(--bg);cursor:pointer" stroke-width="2"/>`); });
+    g.push(`<text x="${X(v[2]) - 12}" y="${y-12}" text-anchor="end" font-size="12.5" class="t-ink t-b">${fmt(v[2], 1)}</text><text x="${X(v[0]) + 10}" y="${y-12}" text-anchor="start" font-size="11.5">${fmt(v[0], 1)}</text>`);
+  });
+  g.push(`<text x="120" y="206" font-size="11.5"><tspan style="fill:var(--grey)">●</tspan> rules chain  <tspan style="fill:var(--aqua)">●</tspan> stackers  <tspan style="fill:var(--blue)">●</tspan> reference chain</text>`);
+  svg.innerHTML = g.join(''); bindTips(svg);
+}
+const cityOf = a => (D.names[a] || '').replace(/^London |^Paris |^Rome /, '').split(' ')[0];
+function drawCov(){
+  const svg = $('#covsvg'), C0 = D.coverage, n = C0.cols.length, gx = 92, cw = (470 - gx)/(n + .6), ch = 21, g = [];
+  const xs = C0.cols.map((c, i) => gx + (i + (c >= '2026' ? .6 : 0))*cw);
+  C0.cols.forEach((c, i) => g.push(`<text x="${xs[i] + cw/2}" y="14" text-anchor="middle" font-size="9.5">${MON[+c.slice(5)-1][0]}</text>`));
+  g.push(`<text x="${xs[0]}" y="${30 + C0.rows.length*ch + 12}" font-size="11" class="t-mut">2025</text><text x="${xs[C0.cols.findIndex(c => c >= '2026')]}" y="${30 + C0.rows.length*ch + 12}" font-size="11" class="t-mut">2026 test months</text>`);
+  C0.rows.forEach((r, j) => { const y = 22 + j*ch;
+    g.push(`<text x="0" y="${y + ch/2 + 4}" font-size="11.5" class="t-ink">${r.apt} <tspan class="t-mut">${esc(cityOf(r.apt))}</tspan></text>`);
+    r.v.forEach((v, i) => { const t = `<b>${r.apt} · ${D.names[r.apt] || ''}</b>` + row(C0.cols[i], pct(v, 0) + ' with a track');
+      g.push(`<rect data-tip="${esc(t)}" x="${xs[i]+1}" y="${y+1}" width="${cw-2}" height="${ch-2}" rx="3" style="fill:var(--blue);fill-opacity:${(0.06 + 0.94*v).toFixed(3)};cursor:pointer"/>`); }); });
+  svg.setAttribute('viewBox', `0 0 480 ${44 + C0.rows.length*ch}`);
+  svg.innerHTML = g.join(''); bindTips(svg);
+}
+
+// ================================================================ 7. calibration (schematic day + bias chart)
+const DAY = (() => {
+  // a schematic day: 26 departures, implied delays shaped like a busy morning and evening wave (illustration only)
+  const n = 26, base = [...Array(n)].map((_, i) => 4 + 9*Math.exp(-(((i - 6)/3.2)**2)) + 14*Math.exp(-(((i - 19)/3.5)**2)) + ((i*37) % 7)/2);
+  const target = base.reduce((a, b) => a + b, 0)*1.22;
+  function draw(){
+    const u = $('#dslide').value/100, f = 1 + u*(target/base.reduce((a, b) => a + b, 0) - 1), vals = base.map(v => v*f), sum = vals.reduce((a, b) => a + b, 0);
+    const g = [], x0 = 40, bw = 23, y0 = 200, sc = 6;
+    vals.forEach((v, i) => g.push(`<rect x="${x0 + i*bw}" y="${y0 - v*sc}" width="${bw-3}" height="${v*sc}" rx="3" style="fill:var(--blue)"/>`));
+    g.push(`<line x1="${x0}" x2="${x0 + n*bw}" y1="${y0}" y2="${y0}" class="axisl"/><text x="${x0}" y="${y0+18}" font-size="12" class="t-mut">one airport-day, departures in take-off order</text>`);
+    const tx = 700, H = 170, mxv = target*1.25, Yb = v => y0 - v/mxv*H;
+    g.push(`<rect x="${tx}" y="${Yb(sum)}" width="70" height="${y0 - Yb(sum)}" rx="4" style="fill:var(--blue)"/>`);
+    g.push(`<line x1="${tx-20}" x2="${tx+170}" y1="${Yb(target)}" y2="${Yb(target)}" style="stroke:var(--orange)" stroke-width="2.5"/>`);
+    g.push(`<text x="${tx+80}" y="${Yb(target)-8}" font-size="12.5" class="t-ink">published daily delay</text>`);
+    g.push(`<text x="${tx+80}" y="${Math.max(Yb(sum)+16, Yb(target)+20)}" font-size="12.5">Σ implied delay: ${fmt(100*sum/target, 0)} % of it</text>`);
+    g.push(`<text x="${tx+35}" y="${y0+18}" text-anchor="middle" font-size="12" class="t-mut">the day's sum</text>`);
+    $('#daysvg').innerHTML = g.join('');
+    $('#dval').textContent = Math.abs(sum - target)/target < .005 ? 'sums match' : '';
+  }
+  $('#dslide').addEventListener('input', draw); draw(); return {draw};
+})();
+let biasView = 'by prediction';
+function drawBias(){
+  const R = D.calibration.filter(r => r.view === biasView), svg = $('#biassvg'), g = [];
+  const sym = v => Math.sign(v)*Math.log10(1 + Math.abs(v)/10), lo = sym(Math.min(...R.map(r => r.bias), -50)), hi = sym(Math.max(...R.map(r => r.bias), 50));
+  const y0 = 20, y1 = 210, Y = v => y0 + (hi - sym(v))/(hi - lo)*(y1 - y0), bw = 900/R.length;
+  [-5000, -1000, -250, -50, 0, 50, 250].filter(v => sym(v) >= lo && sym(v) <= hi).forEach(v => g.push(`<line x1="70" x2="980" y1="${Y(v)}" y2="${Y(v)}" class="${v===0?'axisl':'gridl'}"/><text x="62" y="${Y(v)+4}" text-anchor="end" font-size="11.5">${sgn(v, 0).replace('+0','0')}</text>`));
+  R.forEach((r, i) => { const x = 80 + i*bw, ya = Y(Math.max(r.bias, 0)), yb = Y(Math.min(r.bias, 0));
+    const t = `<b>${esc(biasView)}: ${esc(r.band)}</b>` + row('departures', fmt(r.n)) + row('mean error', sgn(r.bias, 1) + ' s') + row('RMSE', fmt(r.rmse, 1) + ' s');
+    g.push(`<g data-tip="${esc(t)}" style="cursor:pointer"><rect x="${x}" y="${y0}" width="${bw}" height="${y1-y0}" fill="transparent"/><rect x="${x + bw*.2}" y="${ya}" width="${bw*.6}" height="${Math.max(1.5, yb - ya)}" rx="3" style="fill:var(--${r.bias >= 0 ? 'orange' : 'blue'})"/></g>`);
+    g.push(`<text x="${x + bw/2}" y="${r.bias >= 0 ? ya - 6 : yb + 15}" text-anchor="middle" font-size="11.5" class="t-ink">${sgn(r.bias, 0)}</text>`);
+    g.push(`<text x="${x + bw/2}" y="${y1 + 22}" text-anchor="middle" font-size="11.5">${esc(r.band.replace('or less', '≤ 0'))}</text>`);
+    g.push(`<text x="${x + bw/2}" y="${y1 + 38}" text-anchor="middle" font-size="10.5" class="t-mut">${fmt(r.n)}</text>`); });
+  g.push(`<text x="0" y="12" font-size="11.5" class="t-mut">mean error, prediction − truth (s, log-like axis)</text>`);
+  svg.innerHTML = g.join(''); bindTips(svg);
+  $('#biascap').textContent = biasView === 'by prediction'
+    ? 'Grouped by what it predicted, the model is right on average up to half an hour: the band means stay within a few seconds of zero.'
+    : 'Grouped by what actually happened, long taxis are predicted too short: the price of predicting the mean when the cause of a long taxi is invisible in the inputs.';
+}
+$$('[data-cv]').forEach(b => b.onclick = () => { biasView = b.dataset.cv; $$('[data-cv]').forEach(x => x.setAttribute('aria-pressed', x === b)); drawBias(); });
+
+// ================================================================ 8. validation
+let calMode = '0';
+function drawCal(){
+  const pairs = '{{pairs}}'.split(',').map(s => s.trim().split('+').map(m => MON.indexOf(m) + 1));
+  const rowsOut = [];
+  const cell = (cls, txt='') => `<div class="c ${cls}">${txt}</div>`;
+  const head = `<div></div>` + MON.map(m => `<div class="mh">${m}</div>`).join('');
+  let cap = '';
+  if(calMode === '0' || calMode === '1'){
+    const f = D.folds[+calMode];
+    rowsOut.push(`<div class="rl">${f.fold} fold</div>` + MON.map((m, i) => { const k = i + 1;
+      return f.val.includes(k) ? cell('val', 'scored') : f.buffer.includes(k) ? cell('buf', 'buffer') : f.train.includes(k) ? cell('tr', 'train') : cell(''); }).join(''));
+    cap = `Validation on the same calendar month as the test set. The months next to it are left out, so rolling and history features of neighbouring days cannot leak; nine training months keep the model about the size of the twelve-month refit.`;
+  } else if(calMode === 'reh'){
+    rowsOut.push(`<div class="rl">rehearsal</div>` + MON.map((m, i) => [2, 6].includes(i + 1) ? cell('held', 'hidden') : [1, 7].includes(i + 1) ? cell('val', 'scored') : cell('tr', 'train')).join(''));
+    cap = `The whole pipeline rerun one year early: February and June masked exactly like the test months and appended to the January/July rows, features rebuilt, every member refit on ten months, then blend, rules, stackers and tail, scored against the hidden labels: {{reh}} s.`;
+  } else {
+    [[1, 7], [2, 6], ...pairs].forEach((p, j) => rowsOut.push(`<div class="rl">pair ${j+1}</div>` + MON.map((m, i) => p.includes(i + 1) ? cell('held', '') : cell('tr', '')).join('')));
+    cap = `Six pairs of hidden months cover all twelve months. Each test month's change is estimated from the pairs that hold its calendar month, shrunk towards the mean of all months, and weighted by its share of the test rows ({{test_weights}}).`;
+  }
+  $('#cal').innerHTML = head + rowsOut.join('');
+  $('#calcap').textContent = cap;
+}
+$$('[data-cal]').forEach(b => b.onclick = () => { calMode = b.dataset.cal; $$('[data-cal]').forEach(x => x.setAttribute('aria-pressed', x === b)); drawCal(); });
+let boardMetric = 'le2h', boardSort = {col:'avg', dir:-1};
+const flap = (s, cls='') => `<span class="flap ${cls}">${[...String(s)].map(ch => `<span>${ch === ' ' ? '&nbsp;' : ch}</span>`).join('')}</span>`;
+function drawBoard(){
+  const key = boardMetric === 'le2h' ? 'rmse_le2h' : 'rmse';
+  const A = Object.keys(D.names).map(a => {
+    const jan = D.airports.find(r => r.apt === a && r.fold === 'jan'), jul = D.airports.find(r => r.apt === a && r.fold === 'jul');
+    const feb = D.rehearsal.find(r => r.apt === a && r.month === '2025-02'), jun = D.rehearsal.find(r => r.apt === a && r.month === '2025-06');
+    const v = {jan:jan[key], feb:feb[key], jun:jun[key], jul:jul[key]};
+    const cov = D.coverage.rows.find(r => r.apt === a);
+    return {apt:a, ...v, avg:(v.jan + v.feb + v.jun + v.jul)/4, cov};
+  });
+  A.sort((x, y) => boardSort.col === 'apt' ? x.apt.localeCompare(y.apt)*-boardSort.dir : (x[boardSort.col] - y[boardSort.col])*boardSort.dir);
+  const mx = Math.max(...A.flatMap(r => [r.jan, r.feb, r.jun, r.jul]));
+  const scale = v => Math.sqrt(v/mx)*100;
+  const th = (c, l) => `<th data-col="${c}" tabindex="0" role="button" aria-sort="${boardSort.col === c ? (boardSort.dir < 0 ? 'descending' : 'ascending') : 'none'}" class="${boardSort.col === c ? 'sorted' : ''}">${l}${boardSort.col === c ? (boardSort.dir < 0 ? ' ▼' : ' ▲') : ''}</th>`;
+  const cellv = (v, col) => `<div class="cell"><span class="bt"><i style="width:${scale(v)}%;background:${col}"></i></span><span class="nv">${fmt(v)}</span></div>`;
+  const spark = r => { if(!r.cov) return ''; const v = r.cov.v; return `<svg viewBox="0 0 ${v.length*7} 24" width="${v.length*7}" height="24" aria-hidden="true">${v.map((x, i) => `<rect x="${i*7 + (D.coverage.cols[i] >= '2026' ? 0 : 0)}" y="${22 - x*20}" width="5" height="${Math.max(1.2, x*20)}" rx="1" fill="${D.coverage.cols[i] >= '2026' ? '#f5c542' : '#6b6a64'}"/>`).join('')}</svg>`; };
+  $('#board').innerHTML = `<table><thead><tr>${th('apt', 'Airport')}<th></th>${th('jan', 'Jan · CV')}${th('feb', 'Feb · hidden')}${th('jun', 'Jun · hidden')}${th('jul', 'Jul · CV')}${th('avg', 'Mean')}<th>ADS-B 2025 · 2026</th></tr></thead><tbody>` +
+    A.map(r => `<tr><td>${flap(r.apt)}</td><td>${flap((D.names[r.apt] || '').split(' ')[0].toUpperCase(), 'city')}</td><td>${cellv(r.jan, '#3987e5')}</td><td>${cellv(r.feb, '#d95926')}</td><td>${cellv(r.jun, '#d95926')}</td><td>${cellv(r.jul, '#3987e5')}</td><td>${flap(fmt(r.avg).padStart(3, ' '))}</td><td>${spark(r)}</td></tr>`).join('') +
+    `</tbody></table><div class="note">RMSE in seconds of the reference chain, ${boardMetric === 'le2h' ? 'on rows with a label up to 2 h' : 'on all rows (very long records included)'}. Blue: the cross-validation folds; orange: the rehearsal months, hidden from the whole pipeline. Bars on a square-root scale. ADS-B: share of departures with a ground track, 2025 months grey, 2026 test months yellow.</div>`;
+  $$('#board th[data-col]').forEach(t => t.onclick = () => { const c = t.dataset.col; boardSort = {col:c, dir:boardSort.col === c ? -boardSort.dir : -1}; drawBoard(); const again = $(`#board th[data-col="${c}"]`); if(again) again.focus(); });
+}
+$$('[data-bm]').forEach(b => b.onclick = () => { boardMetric = b.dataset.bm; $$('[data-bm]').forEach(x => x.setAttribute('aria-pressed', x === b)); drawBoard(); });
+function drawReh(){
+  const S = D.reh_steps, svg = $('#rehsvg'), g = [];
+  const vals = S.flatMap(s => [s.feb, s.jun].filter(Boolean).flatMap(v => [v[3], v[4]]));
+  const lo = Math.min(...vals), hi = Math.max(...vals, 0) + 400, X = v => 330 + (v - lo)/(hi - lo)*640, h = 36;
+  g.push(`<line x1="${X(0)}" x2="${X(0)}" y1="6" y2="${S.length*h + 8}" class="axisl"/>`);
+  S.forEach((s, i) => { const y = 22 + i*h;
+    g.push(`<text x="0" y="${y+4}" font-size="12.5" class="t-ink">${esc(s.step)}</text>`);
+    [['feb', -6, 'blue', 'February'], ['jun', 6, 'orange', 'June']].forEach(([k, dy, c, nm]) => { const v = s[k];
+      if(!v){ g.push(`<text x="${X(0)-8}" y="${y+dy+4}" text-anchor="end" font-size="11" class="t-mut">${nm}: no rows touched</text>`); return; }
+      const t = `<b>${esc(s.step)} · ${nm} 2025</b>` + row('RMSE', `${fmt(v[0], 2)} → ${fmt(v[1], 2)}`) + row('Δ MSE', sgn(v[2], 0) + ' s²') + row('95 % interval', `${sgn(v[3], 0)} to ${sgn(v[4], 0)}`);
+      g.push(`<g data-tip="${esc(t)}" style="cursor:pointer"><rect x="300" y="${y+dy-6}" width="700" height="12" fill="transparent"/><line x1="${X(v[3])}" x2="${X(v[4])}" y1="${y+dy}" y2="${y+dy}" style="stroke:var(--${c})" stroke-width="2.2" stroke-linecap="round"/><circle cx="${X(v[2])}" cy="${y+dy}" r="5" style="fill:var(--${c});stroke:var(--bg)" stroke-width="1.8"/></g>`); }); });
+  g.push(`<text x="${X(0)}" y="${S.length*h + 24}" text-anchor="middle" font-size="11.5" class="t-mut">0 · change in MSE (s²), left is better</text>`);
+  svg.setAttribute('viewBox', `0 0 1000 ${S.length*h + 34}`);
+  svg.innerHTML = g.join(''); bindTips(svg);
+}
+function drawMonths(){
+  const R = D.months, svg = $('#monthsvg'), parts = [['normal', 'ordinary taxi rows', 'blue'], ['copy', 'schedule copies', 'orange'], ['1-2h', 'long taxi, 1–2 h', 'aqua'], ['gt2h', 'very long, over 2 h', 'yellow']];
+  const mx = Math.max(...R.map(r => r.total_mse)), y0 = 250, H = 210, Y = v => v/mx*H, bw = 860/12, g = [];
+  [0, 50000, 100000, 150000, 200000].filter(v => v <= mx).forEach(v => g.push(`<line x1="70" x2="960" y1="${y0 - Y(v)}" y2="${y0 - Y(v)}" class="gridl"/><text x="62" y="${y0 - Y(v) + 4}" text-anchor="end" font-size="11.5">${fmt(v/1000)}k</text>`));
+  R.forEach((r, i) => { const x = 90 + i*bw; let yb = y0;
+    const t = `<b>${MON[r.month-1]} 2025 · RMSE ${fmt(r.rmse, 1)} s</b>` + parts.map(([k, l]) => row(l, fmt(r[k]) + ' s²')).join('') + row('RMSE, rows ≤ 2 h', fmt(r.rmse_le2h, 1) + ' s');
+    g.push(`<g data-tip="${esc(t)}" style="cursor:pointer"><rect x="${x-6}" y="20" width="${bw}" height="${y0-20}" fill="transparent"/>`);
+    parts.forEach(([k, , c]) => { const h = Y(r[k]); if(h > 2.2) g.push(`<rect x="${x}" y="${yb - h + 1}" width="${bw*.62}" height="${h - 2}" rx="2" style="fill:var(--${c})"/>`); yb -= h; });
+    g.push(`</g><text x="${x + bw*.31}" y="${yb - 7}" text-anchor="middle" font-size="11.5" class="t-ink">${fmt(r.rmse)}</text><text x="${x + bw*.31}" y="${y0 + 18}" text-anchor="middle" font-size="12">${MON[r.month-1]}</text>`); });
+  g.push(`<text x="70" y="12" font-size="11.5" class="t-mut">mean squared error (s²); RMSE above each bar</text>`);
+  svg.innerHTML = g.join(''); bindTips(svg);
+}
+
+// ================================================================ 9. descent
+const SHORT = [[/residual on the NM/i, 'NM clock anchor'], [/^Mixture/, 'Copy mixture'], [/LIRF record-regime/, 'Rome regimes'], [/Target clip/, 'Deeper trees, stand history'],
+  [/CatBoost and denoising/, 'CatBoost, autoencoder, blend'], [/^Clock rules/, 'Clock rules'], [/OPDI/, 'OPDI taxi events'], [/^Plan-window rules/, 'Plan-window rules'], [/ADS-B ground-track/, 'ADS-B stacker'],
+  [/MLP and LOBT/, 'MLP and plan members'], [/Record rules, EUROCONTROL/, 'Record rules, calibrations'], [/disagreement/i, 'Disagreement inputs'], [/Departure-stream/, 'Stream context'],
+  [/Month-complete/, 'Month-complete stackers'], [/plan-row classifier dropped/, 'Rome plan-row dropped'], [/Stream-transformer/, 'Stream-transformer inputs'],
+  [/Neighbour-label/, 'Neighbour-label head'], [/Monthly runway calibration dropped/, 'Runway calibration dropped'], [/Four chain post-steps/, 'Four post-steps']];
+const shortStage = st => { const m = SHORT.find(r => r[0].test(st)); return m ? m[1] : st; };
+function drawDescentList(P, hi, lo){
+  $('#desclist').innerHTML = P.map((p, i) => { const c = COL[p.family] || 'grey', a = (hi - p.from)/(hi - lo)*100, w = Math.max(1.2, Math.abs(p.from - p.to)/(hi - lo)*100), l = p.to > p.from ? a - w : a;
+    return `<div class="st"><div class="sn"><span>${i + 1} · ${esc(shortStage(p.stage))}</span><b>${sgn(p.to - p.from)}</b></div><div class="trk"><i style="left:${Math.max(0, l)}%;width:${w}%;background:var(--${c})"></i></div><div class="sd">${esc(p.stage)} · CV ${fmt(p.from, 2)} → ${fmt(p.to, 2)}</div></div>`; }).join('');
+}
+function drawDescent(){
+  const P = D.progress, svg = $('#descsvg'), g = [], n = P.length;
+  const narrowD = innerWidth < 640;
+  $('#desclist').style.display = narrowD ? 'block' : 'none'; svg.style.display = narrowD ? 'none' : 'block';
+  if(narrowD) drawDescentList(P, P[0].from, Math.min(...P.map(p => p.to)));
+  const hi = P[0].from, lo = Math.min(...P.map(p => p.to)), x0 = 70, x1 = 900, y0 = 30, y1 = 330;
+  const Y = v => y0 + (hi - v)/(hi - lo)*(y1 - y0)*0.92, X = i => x0 + i/(n + 1)*(x1 - x0);
+  [600, 500, 400, 300].filter(v => v <= hi + 40 && v >= lo - 20).forEach(v => g.push(`<line x1="${x0}" x2="${x1}" y1="${Y(v)}" y2="${Y(v)}" class="gridl"/><text x="${x0-8}" y="${Y(v)+4}" text-anchor="end" font-size="11.5">${v}</text>`));
+  g.push(`<rect x="${x0}" y="${Y(lo)+16}" width="${x1-x0}" height="10" rx="2" style="fill:var(--tarmac2)"/>`);
+  let d = `M${X(0)},${Y(hi)}`;
+  P.forEach((p, i) => { d += `H${X(i+1)}V${Y(p.to)}`; });
+  d += `H${X(n+1)}`;
+  g.push(`<path d="${d}" fill="none" style="stroke:var(--line)" stroke-width="1.5"/>`);
+  P.forEach((p, i) => { const xa = X(i+1), ya = Y(p.from), yb = Y(p.to), c = COL[p.family] || 'grey';
+    const t = `<b>${esc(p.stage)}</b>` + row('kind', p.family) + row('CV RMSE', `${fmt(p.from, 2)} → ${fmt(p.to, 2)}`) + row('change', sgn(p.to - p.from) + ' s');
+    g.push(`<g data-tip="${esc(t)}" style="cursor:pointer"><rect x="${xa - 16}" y="${Math.min(ya, yb) - 6}" width="32" height="${Math.abs(yb - ya) + 12}" fill="transparent"/>
+      <rect x="${xa - 6}" y="${Math.min(ya, yb)}" width="12" height="${Math.max(2.5, Math.abs(yb - ya))}" rx="4" style="fill:var(--${c})"/></g>`);
+    if(Math.abs(p.to - p.from) > 20) g.push(`<text x="${xa + 12}" y="${(ya + yb)/2 + 4}" font-size="12" class="t-ink">${sgn(p.to - p.from, 0)}</text>`);
+    g.push(`<text transform="translate(${xa},${Y(lo) + 36}) rotate(35)" font-size="11.5" class="t-mut">${esc(shortStage(p.stage))}</text>`); });
+  g.push(plane(X(0), Y(hi) - 12, 1, 14, 1.1));
+  g.push(`<text x="${X(0)+24}" y="${Y(hi)-10}" font-size="13" class="t-ink t-b">${fmt(hi, 2)} s · baseline</text>`);
+  g.push(plane(X(n+1) - 10, Y(lo) + 8, 1, 0, 1.1, 'blue'));
+  g.push(`<text x="${X(n+1)}" y="${Y(lo) - 12}" text-anchor="end" font-size="14" class="t-ink t-b">${fmt(P[n-1].to, 2)} s</text>`);
+  g.push(`<text x="${X(n+1)}" y="${Y(lo) - 30}" text-anchor="end" font-size="12" class="t-mut">the shipped chain</text>`);
+  svg.setAttribute('viewBox', '0 0 1000 470');
+  svg.innerHTML = g.join(''); bindTips(svg);
+  $('#desclegend').innerHTML = Object.entries(COL).map(([k, c]) => `<span class="key"><span class="sw" style="background:var(--${c})"></span>${k === 'Removed' ? 'a step the final model drops' : k.toLowerCase()}</span>`).join('');
+}
+
+// ================================================================ 7. what the stackers see: months, then neighbours
+const SM = (() => {
+  let mode = 'all', sel = 1;
+  const pairs = () => [[1, 7], [2, 6], ...'{{pairs}}'.split(',').map(s => s.trim().split('+').map(m => MON.indexOf(m) + 1))];
+  function draw(){
+    const P = pairs(), cell = (cls, t = '') => `<div class="c ${cls}">${t}</div>`;
+    let h = `<div></div>` + MON.map(m => `<div class="mh">${m}</div>`).join('');
+    P.forEach((p, j) => { h += `<div class="rl rsel${j === sel ? ' on' : ''}" data-j="${j}" tabindex="0" role="button">${j ? 'rehearsal ' + j : 'January / July'}</div>` + MON.map((m, i) => p.includes(i + 1) ? cell('held', 'hidden') : cell('tr')).join(''); });
+    const hid = P[sel];
+    h += `<div class="rl"><b>the stacker</b></div>` + MON.map((m, i) => mode === 'two' ? ([1, 7].includes(i + 1) ? cell('val', 'learns') : cell('off')) : hid.includes(i + 1) ? cell('held', 'scored') : cell('val', 'learns')).join('');
+    $('#smcal').innerHTML = h;
+    $('#smcap').textContent = mode === 'two'
+      ? `Two months: the stacker sees the mistakes of a pipeline in January and July only (${fmt(D.n_cv)} rows). What the pipeline gets wrong in the other ten months, it cannot learn.`
+      : `Row ${sel + 1} hidden: the stacker on this row learns from the honest mistakes of the other five pairs, ten months, and is scored on the two it never saw. The stacker for the test months does the same with all twelve ({{m12_rows}} rows).`;
+  }
+  $('#smcal').onclick = e => { const r = e.target.closest('.rsel'); if(r){ sel = +r.dataset.j; draw(); const again = $(`#smcal .rsel[data-j="${sel}"]`); if(again) again.focus(); } };
+  $$('[data-sm]').forEach(b => b.onclick = () => { mode = b.dataset.sm; $$('[data-sm]').forEach(x => x.setAttribute('aria-pressed', x === b)); draw(); });
+  return {draw};
+})();
+
+const STR = (() => {
+  let s = 11; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const mv = [];
+  for(let k = 0; k < 54; k++){ const dep = rnd() < .6, tracked = dep && rnd() < .72; mv.push({t: 3 + k*3.28 + (rnd() - .5)*2.6, dep, tracked, dark: tracked && rnd() < .5}); }
+  let sel = mv.findIndex(o => o.dep && o.t > 85), view = 'student';
+  function draw(){
+    const svg = $('#streamsvg'), g = [], X = t => 96 + t*(880/180), yA = 56, yD = 140, me = mv[sel], tau = +$('#stau').value;
+    const visible = o => o.tracked && (view === 'teacher' || !o.dark);
+    $('#staul').textContent = tau + ' min';
+    g.push(`<text x="8" y="20" font-size="11.5" class="t-mut" letter-spacing=".6">A CHUNK OF THE STREAM, IN TIME ORDER (SCHEMATIC)</text>`);
+    g.push(`<text x="8" y="${yA+4}" font-size="12" class="t-ink">arrivals</text><text x="8" y="${yD+4}" font-size="12" class="t-ink">departures</text>`);
+    g.push(`<line x1="96" x2="976" y1="${yA}" y2="${yA}" class="gridl"/><line x1="96" x2="976" y1="${yD}" y2="${yD}" class="gridl"/>`);
+    [0, 30, 60, 90, 120, 150, 180].forEach(t => g.push(`<text x="${X(t)}" y="226" text-anchor="middle" font-size="11" class="t-mut">${t ? '+' + t + ' min' : '0'}</text><line x1="${X(t)}" x2="${X(t)}" y1="212" y2="217" class="axisl"/>`));
+    g.push(`<line x1="96" x2="976" y1="214" y2="214" class="axisl"/>`);
+    const W = mv.map((o, j) => j === sel ? 0 : Math.exp(-Math.abs(o.t - me.t) / tau));
+    mv.forEach((o, j) => { const w = W[j]; if(w < .05) return; const x0 = X(me.t), x1 = X(o.t);
+      const d = o.dep ? (dp => `M${x0},${yD+8} C${x0},${yD+8+dp} ${x1},${yD+8+dp} ${x1},${yD+8}`)(Math.min(58, 14 + Math.abs(x1 - x0)*.16))
+                      : `M${x0},${yD-8} C${x0},${yA+46} ${x1},${yA+46} ${x1},${yA+8}`;
+      g.push(`<path d="${d}" fill="none" style="stroke:var(--${o.dep ? 'blue' : 'grey'})" stroke-width="${(.6 + 3*w).toFixed(2)}" opacity="${(.15 + .7*w).toFixed(2)}"/>`); });
+    mv.forEach((o, j) => { const x = X(o.t), w = W[j];
+      const tp = `<b>${o.dep ? 'Departure' : 'Arrival'} at +${fmt(o.t)} min</b>` + (o.dep ? row('ground track', o.tracked ? (visible(o) ? 'visible' : 'hidden from the student') : 'none') : '') + (j === sel ? '' : row('attention weight', fmt(w, 2)));
+      if(!o.dep){ g.push(`<path d="M${x},${yA-7} l6,7 l-6,7 l-6,-7Z" style="fill:var(--ink2)" data-notab="1" data-tip="${esc(tp)}"/>`); return; }
+      if(o.tracked && !visible(o)) g.push(`<circle cx="${x}" cy="${yD}" r="${j === sel ? 12 : 10}" fill="none" style="stroke:var(--orange)" stroke-width="2" stroke-dasharray="3 3"/>`);
+      g.push(`<circle cx="${x}" cy="${yD}" r="${j === sel ? 8.5 : 6}" style="fill:var(--blue);${j === sel ? 'stroke:var(--ink)' : 'stroke:var(--panel)'}" stroke-width="${j === sel ? 2.4 : 1.5}"/>`);
+      if(visible(o)) g.push(`<rect x="${x-5}" y="${yD+13}" width="10" height="3.5" rx="1.5" style="fill:var(--aqua)"/>`);
+      g.push(`<circle class="hit" role="button" data-i="${j}" cx="${x}" cy="${yD}" r="11" fill="transparent" style="cursor:pointer" data-tip="${esc(tp)}"/>`); });
+    // the queue the neighbours form at the runway
+    const near = mv.map((o, j) => [o, j]).filter(([o, j]) => o.dep && Math.abs(o.t - me.t) <= tau).sort((a, b) => a[0].t - b[0].t), yQ = 312;
+    g.push(`<rect x="96" y="${yQ-8}" width="880" height="16" rx="2" style="fill:var(--tarmac)"/><rect x="912" y="${yQ-11}" width="64" height="22" rx="2" style="fill:var(--tarmac2)"/><line x1="900" x2="900" y1="${yQ-12}" y2="${yQ+12}" style="stroke:var(--orange)" stroke-width="3"/>`);
+    g.push(`<text x="944" y="${yQ+26}" text-anchor="middle" font-size="11" class="t-mut">runway</text>`);
+    near.slice(0, 12).forEach(([o, j], k) => { const cls = j === sel ? 'blue' : (o.tracked && !visible(o)) || !o.tracked ? 'orange' : 'plane'; g.push(plane(870 - k*66, yQ - 2, 1, 0, .8, cls)); });
+    g.push(`<text x="96" y="${yQ+26}" font-size="12" class="t-ink">${near.length} departure${near.length === 1 ? '' : 's'} within ±${tau} min${near.length > 12 ? ' (12 drawn)' : ''}: the queue this flight sits in. Orange: no visible track.</text>`);
+    svg.innerHTML = g.join(''); bindTips(svg);
+    svg.querySelectorAll('.hit').forEach(h => h.onclick = () => { sel = +h.dataset.i; draw(); const again = svg.querySelector(`.hit[data-i="${sel}"]`); if(again && document.activeElement === document.body) again.focus(); });
+    const ws = W.filter((w, j) => j !== sel).sort((a, b) => b - a), tot = ws.reduce((a, b) => a + b, 0);
+    $('#sa5').textContent = fmt(100 * ws.slice(0, 5).reduce((a, b) => a + b, 0) / tot) + ' %';
+    $('#sn').textContent = near.length; $('#sd').textContent = near.filter(([o]) => !visible(o)).length;
+  }
+  $('#stau').oninput = draw;
+  $$('[data-sv]').forEach(b => b.onclick = () => { view = b.dataset.sv; $$('[data-sv]').forEach(x => x.setAttribute('aria-pressed', x === b)); draw(); });
+  return {draw};
+})();
+
+// ================================================================ 11. what is left
+const EB = (() => {
+  let sel = null, cells = 'top', q = 0, win = '30';
+  const COLS = {datestamp:['ink2', 1], giant:['grey', 1], far:['grey', .5], monster:['yellow', 1], bulk:['blue', 1]};
+  const KIND = {artefact:'artefact', tail:'large misses', bulk:'reachable'};
+  const HUBS = ['LTFM', 'LFPG', 'EGLL', 'LIRF'], poolRmse = parseFloat('{{pool_rmse}}');
+  const TXT = {
+    datestamp: 'A Rome record whose off-block carries the schedule\'s date and the true time of day, so the label is about a day plus the taxi. Nothing in the other clocks says so.',
+    giant: 'A stay of over two hours that is not a copy, with no plan and no clock that announces it: a remote hold, a record left open. The model predicts the ordinary taxi, the conditional mean.',
+    far: 'A schedule copy of a flight that left more than an hour late: the label is its whole delay. If the inputs cannot tell that this flight\'s record is a copy, the calibrated probability is all the model has.',
+    monster: 'Misses above half an hour on ordinary rows: Rome flights hedged towards a copy that did not happen, and Istanbul taxis longer than any input predicted.',
+    bulk: 'Spread, not shift: the model is right on average for short and long taxis alike. What remains is a level shared by neighbouring flights, below.'};
+  function drawWaffle(){
+    const svg = $('#ebsvg'), g = [], B = D.budget, nar = $('#ebsvg').parentElement.clientWidth < 640; let cum = 0;
+    svg.setAttribute('viewBox', nar ? '0 0 420 690' : '0 0 1000 340');
+    B.forEach(b => { const a = Math.round(cum); cum += b.share; const e = Math.round(cum);
+      for(let i = a; i < e; i++){ const c = COLS[b.key], r = Math.floor(i / 10), k = i % 10;
+        g.push(`<rect class="eb${sel && sel !== b.key ? ' dim' : ''}" data-notab="1" data-k="${b.key}" x="${14 + k*32}" y="${12 + r*32}" width="28" height="28" rx="4" style="fill:var(--${c[0]})" opacity="${c[1]}" data-tip="${esc(`<b>${b.label}</b>` + row('share of squared error', fmt(b.share, 1) + ' %') + row('rows', fmt(b.rows)))}"/>`); } });
+    B.forEach((b, i) => { const x0 = nar ? 6 : 360, w = nar ? 408 : 620, y = nar ? 346 + i*66 : 14 + i*64, c = COLS[b.key];
+      g.push(`<g class="ebrow eb${sel && sel !== b.key ? ' dim' : ''}" data-k="${b.key}" tabindex="0" role="button" aria-label="${esc(b.label)}: ${fmt(b.share, 1)} % of the squared error. Press to show what it is."><rect class="bg" x="${x0}" y="${y-6}" width="${w}" height="58" rx="8" fill="transparent" ${sel === b.key ? 'style="stroke:var(--ink)" stroke-width="1.5"' : ''}/>
+        <rect x="${x0+14}" y="${y+6}" width="26" height="26" rx="5" style="fill:var(--${c[0]})" opacity="${c[1]}"/>
+        <text x="${x0+54}" y="${y+16}" font-size="15" class="t-ink t-b">${esc(b.label)}</text>
+        <text x="${x0+54}" y="${y+36}" font-size="12.5">${fmt(b.share, 1)} % of the squared error · ${fmt(b.rows)} rows · RMSE ${fmt(b.rmse)} s</text>
+        <text x="${x0+w-12}" y="${y+16}" text-anchor="end" font-size="11.5" class="t-mut">${KIND[b.kind]}</text></g>`); });
+    svg.innerHTML = g.join(''); bindTips(svg);
+    svg.querySelectorAll('[data-k]').forEach(e => e.onclick = () => { sel = sel === e.dataset.k ? null : e.dataset.k; drawWaffle(); });
+    const b = sel && B.find(x => x.key === sel), ord = B.find(x => x.key === 'bulk');
+    $('#ebdetail').innerHTML = b ? `<b>${esc(b.label)}.</b> ${TXT[b.key]}` + (b.key !== 'bulk' ? ` One such row costs as much squared error as about ${fmt(Math.round((b.rmse / ord.rmse)**2 / 100) * 100)} ordinary rows.` : '') : `Click a square or a row to see what the kind of row is. The first three kinds are the artefacts.`;
+  }
+  function drawCells(){
+    const svg = $('#ebcells'), B = D.bulk.slice(0, cells === 'top' ? 12 : 20), g = [], rh = 26;
+    svg.setAttribute('viewBox', `0 0 1000 ${16 + B.length*rh}`);
+    B.forEach((b, i) => { const y = 8 + i*rh, hub = HUBS.includes(b.apt) && b.adsb === 'no_adsb', w = b.share / 10 * 560;
+      g.push(`<g data-tip="${esc(`<b>${b.apt}${D.names[b.apt] ? ' · ' + D.names[b.apt] : ''}, ${b.adsb === 'adsb' ? 'with track' : 'no track'}</b>` + row('share of the squared error', fmt(b.share, 1) + ' %') + row('rows', fmt(b.rows)) + row('RMSE', fmt(b.rmse) + ' s'))}">
+        <rect x="0" y="${y-2}" width="1000" height="${rh-2}" fill="transparent"/>
+        <text x="290" y="${y+14}" text-anchor="end" font-size="13" class="${hub ? 't-ink t-b' : ''}">${b.apt}${D.names[b.apt] ? ' ' + esc(D.names[b.apt]) : ''} · ${b.adsb === 'adsb' ? 'with track' : 'no track'}</text>
+        <rect x="300" y="${y+2}" width="${Math.max(w, 2)}" height="16" rx="3" style="fill:var(--${hub ? 'orange' : 'blue'})" opacity="${hub ? 1 : .5}"/>
+        <text x="${308 + w}" y="${y+14}" font-size="12.5" class="t-ink">${fmt(b.share, 1)} %</text></g>`); });
+    svg.innerHTML = g.join(''); bindTips(svg);
+  }
+  const SIX = [14, 16, 13, 18, 15, 17], NZ = [-1.5, 1, -.5, 1.5, -1, .5];
+  function drawQueue(){
+    const svg = $('#qsvg'), g = [], X = m => 130 + m*(820/32), shift = q ? 7 : 0;
+    [0, 10, 20, 30].forEach(m => g.push(`<line x1="${X(m)}" x2="${X(m)}" y1="6" y2="212" class="gridl"/><text x="${X(m)}" y="228" text-anchor="middle" font-size="11" class="t-mut">${m} min</text>`));
+    SIX.forEach((p, i) => { const y = 14 + i*33, a = p + shift + NZ[i];
+      g.push(`<text x="8" y="${y+15}" font-size="12.5" class="t-ink">departure ${i+1}</text>
+        <rect x="${X(0)}" y="${y+3}" width="${X(Math.min(p, a)) - X(0)}" height="18" rx="3" style="fill:var(--blue-soft)"/>
+        <rect x="${X(p)}" y="${y+3}" width="${Math.max(X(a) - X(p), 0)}" height="18" rx="3" style="fill:var(--orange)" opacity=".85"/>
+        <line x1="${X(p)}" x2="${X(p)}" y1="${y}" y2="${y+24}" style="stroke:var(--blue)" stroke-width="2.5"/>
+        <text x="${X(Math.max(a, p)) + 8}" y="${y+16}" font-size="12.5">${a >= p ? 'late by' : 'early by'} ${fmt(Math.abs(a - p), 1)} min</text>`); });
+    g.push(`<text x="${X(0)}" y="246" font-size="12.5" class="t-ink">${q ? 'Every miss has the same length and the same sign: one number about the runway, not six about aircraft.' : 'The misses are small and unrelated.'}</text>`);
+    svg.innerHTML = g.join('');
+  }
+  function drawOracle(){
+    const o = D.oracle.find(x => String(x.win) === win);
+    $('#qgain').textContent = '−' + fmt(o.gain, 2) + ' s'; $('#qrel').textContent = fmt(100 * o.gain / poolRmse, 1) + ' %';
+  }
+  $$('[data-eb]').forEach(b => b.onclick = () => { cells = b.dataset.eb; $$('[data-eb]').forEach(x => x.setAttribute('aria-pressed', x === b)); drawCells(); });
+  $$('[data-q]').forEach(b => b.onclick = () => { q = +b.dataset.q; $$('[data-q]').forEach(x => x.setAttribute('aria-pressed', x === b)); drawQueue(); });
+  $$('[data-w]').forEach(b => b.onclick = () => { win = b.dataset.w; $$('[data-w]').forEach(x => x.setAttribute('aria-pressed', x === b)); drawOracle(); });
+  return {draw(){ drawWaffle(); drawCells(); drawQueue(); drawOracle(); }};
+})();
+
+// ---------------------------------------------------------------- using the model
+$$('[data-use]').forEach(b => b.onclick = () => {
+  $$('[data-use]').forEach(x => x.setAttribute('aria-pressed', x === b));
+  $$('.use .panel').forEach(p => p.classList.toggle('on', p.id === 'use-' + b.dataset.use));
+});
+
+// ---------------------------------------------------------------- nav highlight
+const secs = $$('section');
+const navObs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ $$('#nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); } }), {rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(s => navObs.observe(s));
+const navEl = $('#nav');
+function navFade(){ navEl.classList.toggle('more', navEl.scrollWidth - navEl.clientWidth - navEl.scrollLeft > 6); }
+navEl.addEventListener('scroll', navFade); navFade();
+new MutationObserver(() => { const a = $('#nav a.on'); if(a){ const l = a.offsetLeft - navEl.clientWidth/2 + a.offsetWidth/2; if(Math.abs(navEl.scrollLeft - l) > 40 && navEl.scrollWidth > navEl.clientWidth) navEl.scrollTo({left:Math.max(0,l)}); } })
+  .observe(navEl, {attributes:true, subtree:true, attributeFilter:['class']});
+
+// ================================================================ 0. overview: the pipeline as a line map
+const OV_SRC = [
+  {id:'clk', t:"The flight's clocks", s:'schedule, plan, NM off-block, take-off', c:'blue', short:'clocks'},
+  {id:'rec', t:'How the record is made', s:"handler, airline, stand; arrivals' copies", c:'blue', short:'record'},
+  {id:'apt', t:'The airport around it', s:'load, stands, runways, weather', c:'orange', short:'airport'},
+  {id:'adsb', t:'Open ADS-B ground tracks', s:'when the aircraft really moved', c:'aqua', short:'ADS-B'},
+  {id:'pub', t:"EUROCONTROL's published totals", s:'daily delay', c:'aqua', short:'totals'},
+];
+function ovStations(){
+  const P = D.pipe, f2 = v => fmt(v, 2);
+  return [
+    {id:'copy', t:'Is it a copy?', s:'classifier → p', sec:'#mixture', reads:['clk','rec','apt'],
+     tip:`Gradient-boosted trees estimate <i>p</i>, the chance that the recorded off-block is the schedule.` + row('log loss (constant)', P.logloss) + row('AUC', P.auc)},
+    {id:'taxi', t:'Taxi time', s:'eleven regressors', sec:'#stages', reads:['clk','rec','apt','adsb','pub'], cv:P.anchor, cvlab:'first model on the NM clock: ',
+     tip:`Each learns a correction to a clock-based guess, on non-copy rows only; they differ in learner, anchor and inputs.` + row('alone in the mixture', `${f2(P.members[0])}–${f2(P.members[1])} s`) + row('one model on the NM off-block clock', f2(P.anchor) + ' s')},
+    {id:'mix', t:'Mix', s:'p·copy + (1−p)·taxi', sec:'#mixture', reads:['clk'], cv:P.mix,
+     tip:`If the record is a copy, its label is take-off minus schedule, known exactly. The probability-weighted mix is the squared-error optimum.` + row('error after it', f2(P.mix) + ' s')},
+    {id:'rules', t:'Record rules', s:'known faults', sec:'#mechanisms', reads:['clk','rec'], cv:P.rules,
+     tip:`The ways a record goes wrong, in order: a gate for delayed rows, the plan cliff, Rome's three regimes, the clock rules, the plan window.` + row('error after it', f2(P.rules) + ' s')},
+    {id:'stack', t:'Stackers', s:'the track corrects', sec:'#track', reads:['clk','apt','adsb'], cv:P.stack,
+     tip:`Four second-level models, taught on every month, predict the remaining error from the ADS-B track, the clock gaps, the regressors' disagreement and what the neighbouring flights are doing.` + row('error after it', f2(P.stack) + ' s')},
+    {id:'tail', t:'Calibrate', s:'to published totals', sec:'#calibration', reads:['clk','pub'], cv:P.ref,
+     tip:`Calibration to EUROCONTROL's daily delay (and, in the reference chain only, its monthly runway taxi-out), with small rules for specific record faults.` + row('error after it (reference chain)', f2(P.ref) + ' s')},
+  ];
+}
+function drawOverview(){
+  const svg = $('#ovsvg'), P = D.pipe, ST = ovStations(), narrow = $('#ovfig').clientWidth < 640, g = [];
+  const srcY = {}, f2 = v => fmt(v, 2);
+  const finTip = `<b>The shipped chain</b>The reference chain plus context from the surrounding departures, stackers trained on every month and fed by stream transformers, four small post-steps and a last plan-window step.` + row('error', f2(P.final) + ' s');
+  if(!narrow){
+    svg.setAttribute('viewBox', '0 0 1000 585');
+    const cx = i => 300 + i*110, bw = 102, by = 34, bh = 70, outx = cx(6) + 4;
+    // input lines
+    OV_SRC.forEach((s, i) => { const y = 168 + i*40; srcY[s.id] = y;
+      g.push(`<g class="src" data-s="${s.id}"><rect x="0" y="${y-18}" width="${outx}" height="36" fill="transparent"/>
+        <text x="8" y="${y-2}" font-size="13" class="t-ink t-b">${esc(s.t)}</text><text x="8" y="${y+13}" font-size="11" class="t-mut">${esc(s.s)}</text>
+        <line x1="248" x2="${cx(5)+30}" y1="${y}" y2="${y}" style="stroke:var(--${s.c})" stroke-width="3" stroke-linecap="round" opacity=".55"/></g>`); });
+    g.push(`<text x="8" y="142" font-size="11.5" class="t-mut" letter-spacing=".6">WHAT EACH BOX READS</text>`);
+    // station columns, stops, boxes
+    ST.forEach((st, i) => { const x = cx(i), ys = st.reads.map(r => srcY[r]);
+      g.push(`<g class="st" data-st="${st.id}" data-href="${st.sec}" role="link" data-tip="${esc(`<b>${st.t}</b>` + st.tip)}">`);
+      g.push(`<line x1="${x}" x2="${x}" y1="${by+bh}" y2="${Math.max(...ys)}" style="stroke:var(--line)" stroke-width="2"/>`);
+      st.reads.forEach(r => { const s = OV_SRC.find(o => o.id === r); g.push(`<circle cx="${x}" cy="${srcY[r]}" r="7.5" style="fill:var(--${s.c});stroke:var(--panel)" stroke-width="3"/>`); });
+      g.push(`<rect class="box" x="${x-bw/2}" y="${by}" width="${bw}" height="${bh}" rx="12" style="fill:var(--bg);stroke:var(--ink)" stroke-width="1.4"/>
+        <text x="${x}" y="${by+20}" text-anchor="middle" font-size="10.5" class="t-mut">${i+1}</text>
+        <text x="${x}" y="${by+40}" text-anchor="middle" font-size="13.5" class="t-ink t-b">${esc(st.t)}</text>
+        <text x="${x}" y="${by+57}" text-anchor="middle" font-size="11" class="t-mut">${esc(st.s)}</text></g>`); });
+    // flow between boxes
+    const fy = by + bh/2;
+    g.push(`<path class="flow" d="M${cx(0)},${by} C${cx(0)},${by-26} ${cx(2)-20},${by-26} ${cx(2)-20},${by}" style="stroke:var(--ink2)"/>`);
+    for(let i = 1; i < 6; i++) g.push(`<path class="flow" d="M${cx(i)+bw/2+2},${fy} H${cx(i+1)-bw/2-4}" style="stroke:var(--ink2)"/>`);
+    g.push(`<path class="flow" d="M${cx(5)+bw/2+2},${fy} H${outx-26}" style="stroke:var(--ink2)"/>`);
+    g.push(`<g class="st" data-st="out" data-href="#descent" role="link" data-tip="${esc(finTip)}"><circle cx="${outx}" cy="${fy}" r="22" style="fill:var(--ink)"/><path d="M${outx-9},${fy} h16 m-6,-6 l6,6 l-6,6" fill="none" style="stroke:var(--bg)" stroke-width="2.2"/>
+      <text x="${outx}" y="${fy+40}" text-anchor="middle" font-size="12" class="t-ink t-b">prediction</text></g>`);
+    g.push(`<text x="${(cx(0)+cx(2))/2 - 10}" y="${by-28}" text-anchor="middle" font-size="11" class="t-mut">in parallel, then mixed</text>`);
+    // the error after each box
+    const ey0 = 410, ey1 = 568, lo = 250, hi = Math.ceil(P.baseline/50)*50, Y = v => ey1 - (v - lo)/(hi - lo)*(ey1 - ey0);
+    g.push(`<text x="8" y="${ey0-16}" font-size="11.5" class="t-mut" letter-spacing=".6">ERROR AFTER EACH BOX (CV RMSE, S)</text>`);
+    [300, 400, 500, 600].forEach(v => g.push(`<line x1="248" x2="${outx+20}" y1="${Y(v)}" y2="${Y(v)}" class="gridl"/><text x="240" y="${Y(v)+4}" text-anchor="end" font-size="11" class="t-mut">${v}</text>`));
+    const pts = [[cx(1), P.anchor], [cx(2), P.mix], [cx(3), P.rules], [cx(4), P.stack], [cx(5), P.ref], [outx, P.final]];
+    let d = `M248,${Y(P.baseline)} H${cx(1) - 56}`; pts.forEach(([x, v]) => d += ` L${x},${Y(v)}`);
+    g.push(`<path d="${d} V${ey1} H248Z" style="fill:var(--blue-soft)"/><path d="${d}" fill="none" style="stroke:var(--blue)" stroke-width="2.4" stroke-linejoin="round"/>`);
+    g.push(`<text x="254" y="${Y(P.baseline)-10}" font-size="12" class="t-ink">airport mean <tspan class="t-b">${f2(P.baseline)}</tspan></text>`);
+    pts.forEach(([x, v], i) => { const last = i === pts.length - 1;
+      g.push(`<circle cx="${x}" cy="${Y(v)}" r="${last ? 6 : 4.5}" style="fill:var(--blue);stroke:var(--panel)" stroke-width="2"/>`);
+      g.push(`<text x="${x}" y="${Y(v) + (i === 1 ? 5 : -12)}" text-anchor="${i === 1 ? 'start' : 'middle'}" dx="${i === 1 ? 12 : 0}" font-size="${last ? 13 : 12}" class="t-ink${last ? ' t-b' : ''}">${f2(v)}</text>`); });
+    g.push(`<text x="${cx(1)}" y="${Y(P.anchor) + 20}" text-anchor="middle" font-size="10.5" class="t-mut">NM clock anchor</text>`);
+  } else {
+    // narrow screens: the same map turned on its side, one box per row
+    const rh = 74, x0 = 10, bw = 196, sx = i => 236 + i*36, top = 92, H = top + ST.length*rh + 70;
+    svg.setAttribute('viewBox', `0 0 420 ${H}`);
+    OV_SRC.forEach((s, i) => { g.push(`<g class="src" data-s="${s.id}"><text transform="translate(${sx(i)+4},${top-12}) rotate(-55)" font-size="11.5" class="t-ink">${esc(s.short)}</text>
+      <line x1="${sx(i)}" x2="${sx(i)}" y1="${top}" y2="${top + ST.length*rh - 20}" style="stroke:var(--${s.c})" stroke-width="3" opacity=".5"/></g>`); });
+    ST.forEach((st, i) => { const y = top + i*rh;
+      g.push(`<g class="st" data-st="${st.id}" data-href="${st.sec}" role="link" data-tip="${esc(`<b>${st.t}</b>` + st.tip)}">`);
+      g.push(`<line x1="${x0+bw}" x2="${sx(4)}" y1="${y+26}" y2="${y+26}" style="stroke:var(--line)" stroke-width="1.5"/>`);
+      st.reads.forEach(r => { const k = OV_SRC.findIndex(o => o.id === r); g.push(`<circle cx="${sx(k)}" cy="${y+26}" r="7" style="fill:var(--${OV_SRC[k].c});stroke:var(--panel)" stroke-width="3"/>`); });
+      g.push(`<rect class="box" x="${x0}" y="${y}" width="${bw}" height="52" rx="10" style="fill:var(--bg);stroke:var(--ink)" stroke-width="1.3"/>
+        <text x="${x0+12}" y="${y+22}" font-size="14" class="t-ink t-b">${i+1} · ${esc(st.t)}</text>
+        <text x="${x0+12}" y="${y+40}" font-size="11.5" class="t-mut">${st.cv ? (st.cvlab || 'error after it: ') + f2(st.cv) + ' s' : esc(st.s)}</text></g>`);
+      if(i < ST.length - 1) g.push(`<path class="flow" d="M${x0+30},${y+54} V${y+rh-2}" style="stroke:var(--ink2)"/>`); });
+    const yb = top + ST.length*rh;
+    g.push(`<g class="st" data-st="out" data-href="#descent" role="link" data-tip="${esc(finTip)}"><rect x="${x0}" y="${yb}" width="${bw}" height="44" rx="22" style="fill:var(--ink)"/><text x="${x0+bw/2}" y="${yb+28}" text-anchor="middle" font-size="14" class="t-b" style="fill:var(--bg)">prediction · ${f2(P.final)} s</text></g>`);
+    g.push(`<text x="${x0}" y="16" font-size="11.5" class="t-mut">baseline (airport mean): ${f2(P.baseline)} s</text><text x="${x0}" y="34" font-size="11.5" class="t-mut">dots: what each box reads</text>`);
+  }
+  svg.innerHTML = g.join(''); bindTips(svg);
+  const sts = [...svg.querySelectorAll('.st')], srcs = [...svg.querySelectorAll('.src')];
+  const light = (stIds, srcIds) => { sts.forEach(e => e.classList.toggle('dim', !!stIds && !stIds.includes(e.dataset.st)));
+    srcs.forEach(e => e.classList.toggle('dim', !!srcIds && !srcIds.includes(e.dataset.s))); };
+  sts.forEach(e => { const st = ST.find(o => o.id === e.dataset.st);
+    e.addEventListener('mouseenter', () => light([e.dataset.st], st ? st.reads : []));
+    e.addEventListener('mouseleave', () => light(null, null));
+    e.addEventListener('focus', () => light([e.dataset.st], st ? st.reads : []));
+    e.addEventListener('blur', () => light(null, null));
+    e.addEventListener('click', () => { const t = $(e.dataset.href); if(t) t.scrollIntoView(); }); });
+  srcs.forEach(e => { e.addEventListener('mouseenter', () => light(ST.filter(o => o.reads.includes(e.dataset.s)).map(o => o.id), [e.dataset.s]));
+    e.addEventListener('mouseleave', () => light(null, null)); });
+}
+let ovW = 0;
+// ---- narrow screens: wide figures scroll sideways inside a wrapper, and small SVG text is raised to about 10.5 px on screen
+const HS_SKIP = new Set(['ovsvg', 'ebsvg']);
+const FIGS = $$('.fig svg').filter(v => !HS_SKIP.has(v.id) && !v.closest('.mcard'));
+FIGS.forEach(v => {
+  let box = v.closest('.scrollx');
+  if(!box){ box = document.createElement('div'); box.className = 'scrollx'; v.parentNode.insertBefore(box, v); box.appendChild(v); }
+  box.classList.add('hs');
+  const vb = v.viewBox.baseVal.width;
+  if(vb >= 900){ const h = document.createElement('div'); h.className = 'swipe'; h.textContent = 'swipe sideways ›'; box.parentNode.insertBefore(h, box); }
+});
+let fitBusy = false;
+function fitText(){
+  if(fitBusy) return; fitBusy = true;
+  const narrow = window.innerWidth <= 640;
+  FIGS.forEach(v => {
+    const vb = v.viewBox.baseVal.width;
+    v.style.minWidth = narrow && vb >= 900 ? '880px' : '';
+    const sc = v.getBoundingClientRect().width / vb;
+    v.querySelectorAll('text').forEach(t => {
+      if(t.dataset.fs0 === undefined) t.dataset.fs0 = parseFloat(getComputedStyle(t).fontSize) || 11;
+      const f0 = +t.dataset.fs0, want = sc > 0 ? (narrow ? 10.5 : 9.5) / sc : 0;
+      t.style.fontSize = f0 < want ? Math.min(want, 15) + 'px' : '';
+    });
+  });
+  fitBusy = false;
+}
+let fitT = 0;
+const fitSoon = () => { cancelAnimationFrame(fitT); fitT = requestAnimationFrame(fitText); };
+new MutationObserver(fitSoon).observe(document.body, {childList:true, subtree:true});
+window.addEventListener('resize', () => {
+  const w = $('#ovfig').clientWidth;
+  if((w < 640) !== (ovW < 640)){ ovW = w; drawOverview(); EB.draw(); drawDescent(); }
+  fitSoon(); navFade();
+});
+function redrawAll(){ ovW = $('#ovfig').clientWidth; drawOverview(); W.draw(); drawRibbon(); C.draw(); drawMech(); M.draw(); drawRel(); drawScene(); drawStages(); drawFams(); drawTrack(); drawMatch(); drawCov(); SM.draw(); STR.draw(); DAY.draw(); drawBias(); drawCal(); drawBoard(); drawReh(); drawMonths(); drawDescent(); EB.draw(); }
+redrawAll(); fitText();
+</script>
+</body>
+</html>

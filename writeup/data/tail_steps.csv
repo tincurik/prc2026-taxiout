@@ -1,0 +1,9 @@
+step,cv_rmse,delta,ci_low,ci_high
+Rules chain on the blend,292.333,,,
+ADS-B residual stackers,288.854,-3.479,-4.613,-2.687
+LIRF no-plan copy classifier,287.7,-1.154,-2.62,-0.098
+LIRF near-schedule rule,287.25,-0.449,-0.979,-0.073
+LIRF plan-row copy classifier,286.877,-0.373,-0.689,-0.109
+Daily delay calibration,285.75,-1.127,-1.952,-0.526
+Duplicated-record rule,285.47,-0.28,-0.595,-0.066
+Monthly runway calibration,285.443,-0.027,-0.059,-0.0

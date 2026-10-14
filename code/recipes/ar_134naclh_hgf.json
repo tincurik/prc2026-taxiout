@@ -1,0 +1,50 @@
+{
+ "id": "ar_134naclh_hgf",
+ "base": "ar_134naclh_rwnb",
+ "phase": "final",
+ "step": "hg_far50",
+ "day": 87500.0,
+ "min_c": 50000.0,
+ "calib": "bin2",
+ "fit_base": "ar_134na_dup",
+ "pool_rows": 16,
+ "oof_coefs": {
+  "hi_lofinal": [
+   2,
+   2,
+   0.8333333333333334
+  ],
+  "lo_lofinal": [
+   1,
+   7,
+   0.1875
+  ]
+ },
+ "base_cv_rmse": 282.59865135476895,
+ "cv_rmse": 279.95461498296214,
+ "oof_moved": 7,
+ "folds": {
+  "jan": {
+   "base": 320.84008317063933,
+   "new": 315.6863809311123
+  },
+  "jul": {
+   "base": 247.51464733444226,
+   "new": 247.42920472514487
+  }
+ },
+ "test_coefs": {
+  "hi_lonone": [
+   3,
+   3,
+   0.875
+  ],
+  "lo_lonone": [
+   2,
+   13,
+   0.17857142857142858
+  ]
+ },
+ "test_moved": 6,
+ "test_shift_rms": 33.98434457988244
+}

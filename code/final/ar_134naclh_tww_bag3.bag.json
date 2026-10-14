@@ -1,0 +1,16 @@
+{
+ "K": 3,
+ "draws": {
+  "final": "56b8d976163ba5dd1bfa304da20e96104b84111071a50dc0bb569de874af43d4",
+  "finalb2": "0efdd35cb33833ec97a368d3f2d857aa996802faceeae2426dee8749cb81e11c",
+  "finalb3": "1662d3d5c91e47e6ebb08f20232e371dfedf94161a9f6dca3931847e9b22070a"
+ },
+ "rms_diff": {
+  "final~finalb2": 27.29342661482368,
+  "final~finalb3": 32.407772603608265,
+  "finalb2~finalb3": 27.936531230044572
+ },
+ "est_gain_rmse": -0.5126885303302687,
+ "out": "outputs/overnight_final/test/ar_134naclh_tww_bag3.parquet",
+ "mean_abs_bag_minus_draw1": 5.662704639722428
+}

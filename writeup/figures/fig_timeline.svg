@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="720pt" height="417.6pt" viewBox="0 0 720 417.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 417.6 
+L 720 417.6 
+L 720 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 86.4 184.176 
+L 691.2 184.176 
+L 691.2 87.696 
+L 86.4 87.696 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 86.4 135.936 
+L 691.2 135.936 
+" clip-path="url(#pd740408e64)" style="fill: none; stroke: #c3c2b7; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="matplotlib.axis_1"/>
+   <g id="matplotlib.axis_2"/>
+   <g id="line2d_2">
+    <path d="M 350.030769 135.936 
+L 598.153846 135.936 
+" clip-path="url(#pd740408e64)" style="fill: none; stroke: #2a78d6; stroke-opacity: 0.35; stroke-width: 6"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 132.923077 135.936 
+L 132.923077 121.196 
+" clip-path="url(#pd740408e64)" style="fill: none; stroke: #52514e; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(116.359678 102.540248)">SCHED</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(119.434561 113.942846)">0 min</text>
+   </g>
+   <g id="line2d_4">
+    <path d="M 350.030769 135.936 
+L 350.030769 150.676 
+" clip-path="url(#pd740408e64)" style="fill: none; stroke: #2a78d6; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(287.986121 162.865443)">BLOCK, recorded off-block</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(333.520066 174.268041)">14 min</text>
+   </g>
+   <g id="line2d_5">
+    <path d="M 381.046154 135.936 
+L 381.046154 121.196 
+" clip-path="url(#pd740408e64)" style="fill: none; stroke: #1baf7a; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(314.410334 102.540248)">AOBT_3, NM's own estimate</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(364.535451 113.942846)">16 min</text>
+   </g>
+   <g id="line2d_6">
+    <path d="M 598.153846 135.936 
+L 598.153846 150.676 
+" clip-path="url(#pd740408e64)" style="fill: none; stroke: #eb6834; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(566.627948 162.865443)">MVT, take-off</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(581.643143 174.268041)">30 min</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="86.4" y="85.053422" transform="rotate(-0 86.4 85.053422)">An ordinary departure</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="691.2" y="85.053422" transform="rotate(-0 691.2 85.053422)">label = 16 min, a physical taxi</text>
+   </g>
+   <g id="line2d_7">
+    <defs>
+     <path id="mef843eacb1" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #fcfcfb; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#pd740408e64)">
+     <use xlink:href="#mef843eacb1" x="132.923077" y="135.936" style="fill: #52514e; stroke: #fcfcfb; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="line2d_8">
+    <defs>
+     <path id="m006d963a57" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #fcfcfb; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#pd740408e64)">
+     <use xlink:href="#m006d963a57" x="350.030769" y="135.936" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="line2d_9">
+    <defs>
+     <path id="md0964e13cd" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #fcfcfb; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#pd740408e64)">
+     <use xlink:href="#md0964e13cd" x="381.046154" y="135.936" style="fill: #1baf7a; stroke: #fcfcfb; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="line2d_10">
+    <defs>
+     <path id="m5d105fdc5e" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #fcfcfb; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#pd740408e64)">
+     <use xlink:href="#m5d105fdc5e" x="598.153846" y="135.936" style="fill: #eb6834; stroke: #fcfcfb; stroke-width: 2"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_3">
+    <path d="M 86.4 367.488 
+L 691.2 367.488 
+L 691.2 271.008 
+L 86.4 271.008 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="line2d_11">
+    <path d="M 86.4 319.248 
+L 691.2 319.248 
+" clip-path="url(#p23723bb25b)" style="fill: none; stroke: #c3c2b7; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="matplotlib.axis_3"/>
+   <g id="matplotlib.axis_4"/>
+   <g id="line2d_12">
+    <path d="M 118.371806 319.248 
+L 603.277533 319.248 
+" clip-path="url(#p23723bb25b)" style="fill: none; stroke: #2a78d6; stroke-opacity: 0.35; stroke-width: 6"/>
+   </g>
+   <g id="line2d_13">
+    <path d="M 118.371806 319.248 
+L 118.371806 304.508 
+" clip-path="url(#p23723bb25b)" style="fill: none; stroke: #2a78d6; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(57.893916 285.852248)">SCHED = BLOCK (copied)</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(104.883291 297.254846)">0 min</text>
+   </g>
+   <g id="line2d_14">
+    <path d="M 557.984141 319.248 
+L 557.984141 333.988 
+" clip-path="url(#p23723bb25b)" style="fill: none; stroke: #1baf7a; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(539.521485 346.176701)">AOBT_3</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(538.45125 357.579299)">165 min</text>
+   </g>
+   <g id="line2d_15">
+    <path d="M 603.277533 319.248 
+L 603.277533 304.508 
+" clip-path="url(#p23723bb25b)" style="fill: none; stroke: #eb6834; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(571.751635 285.852248)">MVT, take-off</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(583.744642 297.254846)">182 min</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="86.4" y="268.365422" transform="rotate(-0 86.4 268.365422)">A schedule copy</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="691.2" y="268.365422" transform="rotate(-0 691.2 268.365422)">label = 182 min, but the aircraft taxied for about 17 min</text>
+   </g>
+   <g id="line2d_16">
+    <g clip-path="url(#p23723bb25b)">
+     <use xlink:href="#m006d963a57" x="118.371806" y="319.248" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="line2d_17">
+    <g clip-path="url(#p23723bb25b)">
+     <use xlink:href="#md0964e13cd" x="557.984141" y="319.248" style="fill: #1baf7a; stroke: #fcfcfb; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="line2d_18">
+    <g clip-path="url(#p23723bb25b)">
+     <use xlink:href="#m5d105fdc5e" x="603.277533" y="319.248" style="fill: #eb6834; stroke: #fcfcfb; stroke-width: 2"/>
+    </g>
+   </g>
+  </g>
+  <g id="text_12">
+   <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="14.4" y="21.837656" transform="rotate(-0 14.4 21.837656)">A recorded off-block is not always an event</text>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(14.4 41.537969)">The label is take-off minus the recorded off-block. Illustrative times in minutes after the scheduled off-block; shaded: the</text>
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(14.4 55.079375)">span the label measures.</text>
+  </g>
+  <g id="text_14">
+   <text style="font-size: 8px; font-family: 'DejaVu Sans'; fill: #898781" transform="translate(14.4 397.9963)">Schematic, not a real flight. A flight the plan re-filed more than an hour after schedule never copies; a copy happens when the handler leaves the scheduled time in the</text>
+   <text style="font-size: 8px; font-family: 'DejaVu Sans'; fill: #898781" transform="translate(14.4 409.9713)">record.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pd740408e64">
+   <rect x="86.4" y="87.696" width="604.8" height="96.48"/>
+  </clipPath>
+  <clipPath id="p23723bb25b">
+   <rect x="86.4" y="271.008" width="604.8" height="96.48"/>
+  </clipPath>
+ </defs>
+</svg>

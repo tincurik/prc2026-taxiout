@@ -1,0 +1,21 @@
+# Exact versions of the environment the pipeline was checked in.  The CPU smoke test passes in a clean venv built from this file under both
+# Python 3.12.15 and Python 3.14.4; the recorded results were produced under Python 3.12.
+# pyarrow 26.0.0 matters for the byte-identity of the written prediction file: another version writes the same values but different file bytes.
+# torch: the GPU members ran on CUDA builds (any CUDA 12.x wheel of this version); for a CPU-only box install
+#   pip install --index-url https://download.pytorch.org/whl/cpu torch==2.11.0
+# before this file, or let pip take the default wheel.
+numpy==2.5.3
+pandas==3.0.6
+polars==2.0.0
+pyarrow==26.0.0
+scipy==1.18.1
+scikit-learn==1.9.1
+xgboost==3.4.0
+catboost==1.2.10
+lightgbm==4.7.0
+torch==2.11.0
+holidays==0.106
+requests==2.32.5
+boto3==1.43.111
+# optional: scripts/adsb_fetch.py parses ADS-B traces 3-5x faster with orjson and falls back to the standard json module without it
+# orjson

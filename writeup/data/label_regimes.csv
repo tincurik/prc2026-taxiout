@@ -1,0 +1,5 @@
+regime,rows,share_rows,share_sse,rmse
+Physical taxi (up to 1 h),326333,0.9475,0.4162,189.1774
+Schedule copy,17450,0.0507,0.1314,459.7137
+"Long taxi, 1-2 h",584,0.0017,0.0502,1553.4256
+"Very long, over 2 h",52,0.0002,0.4022,14732.5795

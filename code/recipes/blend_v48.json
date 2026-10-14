@@ -1,0 +1,88 @@
+{
+ "id": "blend_v48",
+ "model": "blend",
+ "p_from": "mix_v18_fs3_deep",
+ "regs": [
+  "mix_v34_cat_lr15_ord",
+  "mix_v32_cat_d10_opdiev",
+  "mix_v8_cat_it16k",
+  "dae_v6_fs3_h2048_sw25",
+  "mix_v37_cat_lobt_ord",
+  "mix_v36_cat_adsbdec",
+  "mlp_v1_fs3",
+  "mlp_v2_adsb",
+  "mlp_v4_lobt_adsb",
+  "mix_v39_cat_adsb_lobt",
+  "mix_v36s2_cat_adsbdec"
+ ],
+ "note": "ar_57_more18",
+ "tol": 30,
+ "covw": 0,
+ "single": {
+  "mix_v34_cat_lr15_ord": 444.7313734320746,
+  "mix_v32_cat_d10_opdiev": 446.40851871734327,
+  "mix_v8_cat_it16k": 446.4724595601937,
+  "dae_v6_fs3_h2048_sw25": 455.2228600475566,
+  "mix_v37_cat_lobt_ord": 437.62888568011897,
+  "mix_v36_cat_adsbdec": 437.58479753827714,
+  "mlp_v1_fs3": 449.0481382653768,
+  "mlp_v2_adsb": 437.4044509834758,
+  "mlp_v4_lobt_adsb": 433.38249150721833,
+  "mix_v39_cat_adsb_lobt": 429.7931852725806,
+  "mix_v36s2_cat_adsbdec": 436.0014052749755
+ },
+ "equal": 433.44415157532785,
+ "weights": {
+  "mix_v34_cat_lr15_ord": 0.0,
+  "mix_v32_cat_d10_opdiev": 0.0,
+  "mix_v8_cat_it16k": 0.0,
+  "dae_v6_fs3_h2048_sw25": 0.0364,
+  "mix_v37_cat_lobt_ord": 0.0364,
+  "mix_v36_cat_adsbdec": 0.1736,
+  "mlp_v1_fs3": 0.0,
+  "mlp_v2_adsb": 0.2143,
+  "mlp_v4_lobt_adsb": 0.2194,
+  "mix_v39_cat_adsb_lobt": 0.1976,
+  "mix_v36s2_cat_adsbdec": 0.1209
+ },
+ "cv_rmse": 429.05842272703944,
+ "cv_rmse_crossfit_weights": 429.5000095621338,
+ "cv_clean_rmse_crossfit_weights": 214.7248628557333,
+ "cv_trim_rmse_crossfit_weights": 237.52486455646186,
+ "cv_clean_rmse": 214.59030038781472,
+ "cv_trim_rmse": 237.2616426572067,
+ "folds": {
+  "jan": {
+   "rmse": 378.41389592635716,
+   "clean_rmse": 185.86356677561153,
+   "per_airport": {
+    "EDDF": 130.07825314200053,
+    "EDDM": 90.56635411321676,
+    "EGLL": 204.9457854057695,
+    "EHAM": 155.24220279224204,
+    "LEBL": 97.15344156332408,
+    "LEMD": 162.0927616957281,
+    "LFPG": 799.4258962751265,
+    "LIRF": 797.9130047680952,
+    "LSZH": 146.71036832343052,
+    "LTFM": 215.41637022915387
+   }
+  },
+  "jul": {
+   "rmse": 465.88611958396206,
+   "clean_rmse": 235.21175203365317,
+   "per_airport": {
+    "EDDF": 134.71988513434883,
+    "EDDM": 150.99837863455375,
+    "EGLL": 275.93084317710645,
+    "EHAM": 117.75307244436374,
+    "LEBL": 231.8425554739899,
+    "LEMD": 175.23949438485846,
+    "LFPG": 244.3231405001521,
+    "LIRF": 1494.1546884482987,
+    "LSZH": 138.35939863183316,
+    "LTFM": 265.7121507102992
+   }
+  }
+ }
+}

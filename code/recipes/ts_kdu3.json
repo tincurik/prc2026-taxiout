@@ -1,0 +1,117 @@
+{
+ "id": "ts_kdu3",
+ "model": "stx",
+ "args": {
+  "id": "ts_kdu3",
+  "extra": "ext_metar,ext_prc,ext_osm,ext_opdiev,ext_ord,adsb2fullrel",
+  "fs3": 1,
+  "anchor": "aobt",
+  "ctx": 1,
+  "arr": 1,
+  "tdir": 1,
+  "rope": 1,
+  "mtm": 0.15,
+  "mtm_w": 0.3,
+  "pre_ep": 0,
+  "pre_mtm": 0.3,
+  "unl_rank": 0,
+  "adrop": 0.4,
+  "aux_w": 0.25,
+  "sig": 1,
+  "tail": "1800,3600",
+  "head_w": 0.1,
+  "ema": 0.999,
+  "knn": "",
+  "mask_val": "final",
+  "kd_w": 1.0,
+  "kd_unl": 1,
+  "kd_start": 2,
+  "kd_h": 0.0,
+  "pl": "",
+  "pl_w": 1.0,
+  "chunk": 512,
+  "bs": 32,
+  "d": 256,
+  "layers": 4,
+  "heads": 8,
+  "drop": 0.1,
+  "ff": 4,
+  "pct": 0.1,
+  "epochs": 24,
+  "lr": 0.0005,
+  "wd": 0.01,
+  "clip": 5000,
+  "seeds": 3,
+  "seed0": 0,
+  "final": 0,
+  "refit_only": 0,
+  "nosync": 1,
+  "compile": 1,
+  "fused": 1,
+  "smoke": 0,
+  "amp": "bf16"
+ },
+ "folds": {
+  "jan": {
+   "reg_rmse": 447.84186324772554,
+   "reg_clean_rmse": 195.63872966637612,
+   "best_epochs": [
+    19,
+    24,
+    24
+   ]
+  },
+  "jul": {
+   "reg_rmse": 618.7557962995764,
+   "reg_clean_rmse": 244.9870669713388,
+   "best_epochs": [
+    24,
+    24,
+    24
+   ]
+  }
+ },
+ "cv_reg_rmse": 549.0939734603766,
+ "cv_reg_clean_rmse": 224.30425344416025,
+ "mask_val": {
+  "plain": 549.0939734603766,
+  "masked": 549.789364231519,
+  "hidden_share": 0.05216611162566525,
+  "hidden_rows_plain": 965.192277530089,
+  "hidden_rows_masked": 970.7333511986677,
+  "hidden_rows_bias_masked": -40.639887810748654,
+  "hidden_rows_bias_plain": -40.06355793457394,
+  "by_apt": {
+   "EDDF": {
+    "n": 10708,
+    "plain": 125.8103062223274,
+    "masked": 156.02427258352827,
+    "bias_masked": -2.7588402595055115,
+    "bias_plain": -0.8350486929487015
+   },
+   "EHAM": {
+    "n": 1022,
+    "plain": 109.5718350772986,
+    "masked": 154.33743824770187,
+    "bias_masked": -34.86435095531367,
+    "bias_plain": -22.972772773697884
+   },
+   "LEBL": {
+    "n": 558,
+    "plain": 176.03960348569152,
+    "masked": 205.0512682400264,
+    "bias_masked": -10.687346308034808,
+    "bias_plain": -15.734662756697679
+   },
+   "LIRF": {
+    "n": 5679,
+    "plain": 1706.5454348693358,
+    "masked": 1710.8380622499467,
+    "bias_masked": -116.04865238258884,
+    "bias_plain": -119.49676499620334
+   }
+  }
+ },
+ "final_epochs": 23,
+ "minutes": 16.3
+}

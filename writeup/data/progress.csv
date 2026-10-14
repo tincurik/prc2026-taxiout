@@ -1,0 +1,21 @@
+stage,family,cv_from,cv_to
+Predict the residual on the NM off-block clock,Label structure,660.89,511.51
+Mixture: probability that BLOCK is a copy of SCHED,Label structure,511.51,437.17
+LIRF record-regime post-processing,Label structure,437.17,351.80
+"Target clip, deeper trees, stand and runway history",Models and features,351.80,330.12
+CatBoost and denoising-autoencoder members + blend,Models and features,330.12,320.47
+"Clock rules: date shift, gate hold, LIRF copy",Label structure,320.47,311.46
+OPDI own-flight taxi events,Open data,311.46,309.86
+"Plan-window rules, LIRF delayed-row gate",Label structure,309.86,306.96
+ADS-B ground-track residual stacker,Open data,306.96,294.51
+"MLP and LOBT members, second stacker, LIRF rules",Models and features,294.51,288.33
+"Record rules, EUROCONTROL calibrations, a second ADS-B feed",Open data,288.33,286.29
+Member-disagreement stacker inputs,Models and features,286.29,285.44
+Departure-stream context features,Models and features,285.44,284.32
+Month-complete stackers,Models and features,284.32,283.64
+LIRF plan-row classifier dropped,Removed,283.64,284.11
+Stream-transformer inputs,Models and features,284.11,282.69
+Neighbour-label head,Models and features,282.69,282.48
+Monthly runway calibration dropped,Removed,282.48,282.53
+Four chain post-steps,Label structure,282.53,279.27
+Second ADS-B feed dropped,Removed,279.27,279.61

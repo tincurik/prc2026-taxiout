@@ -1,0 +1,16 @@
+# data, outputs and weights never go in this repository
+data/
+outputs/
+reports/
+logs/
+smoke_run/
+__pycache__/
+catboost_info/
+*.pyc
+*.parquet
+*.zip
+*.pt
+*.cbm
+*.ubj
+# the prediction file that ships
+!final/*.parquet

@@ -1,0 +1,26 @@
+What this tree is, and how far it was checked
+===============================================
+
+Copied (most files): the scripts the recorded run used, taken from the authors' development tree by a script that is not part of this repository.
+The copy changes only: the licence header on every .py / .sh file; a CPU switch for the smoke test (EC_DEVICE=cpu, see overnight/ocommon.py);
+an interpreter variable for the stage scripts (PY); comments and help texts that pointed into the development tree (reworded); the phase and
+chain names (the recorded run's phase is called "final" here; the recorded pool ids "bndna_dup" and "r16rmx2na" are "ar_134na_dup" and
+"ar_134naclh_rmx"); the switches RWNB_FEAT / M12_FEAT / BAG_SEED (defaults = the recorded run of the shipped chain); and the removal of progress-dashboard
+hooks and of tooling that is not part of the model (see the leak gate in the copy script: no file outside the model's pipeline is shipped).
+
+Written for this tree, not copied: pipeline/00_data.sh, 39_bnd1.sh, 39_post_steps.sh, 40_final_file.sh, 50_final_phase.sh (they run the
+recorded run's commands in the recorded order, with this tree's names), pipeline/45_bag_draw.sh and 46_bag_file.sh, scripts/bag_build.py (the
+seed bag), README.md, Makefile, requirements.txt, smoke/ and the helpers overnight/compare.py, overnight/month_weighted.py,
+scripts/build_witness_cache.py, check_final.py, density_cap/caps.py, fetch_final.py, import_data.py, score_phase.py, validate_file.py,
+witness_eval.py.
+
+Checked against the recorded run (details: docs/reproduction.md in the repository's docs/):
+  - the four post-steps, given the same bundle output as the validation run, reproduce it exactly (670,790 rows, rms difference 0.000 s at every step;
+    checked on the earlier version of the chain, whose stackers read a second ADS-B source; the shipped chain runs the same four scripts with the same arguments);
+  - the post-step reproduces every value of the recorded prediction file from its chain output (the file bytes only under the same pyarrow version);
+  - the seed-bag average of the three recorded draws reproduces the shipped bag file's values exactly (scripts/bag_build.py);
+  - the chain stage, replayed twice from the same features, is bit-identical up to the blend (51 of 65 files); from the delayed-row gate on (a GPU CatBoost
+    model) runs differ, and the rebuilt bundle differs from the validation run by 31.8 s rms on the earlier version of the chain (32.1 s on the shipped version, correlation 0.9984 for both; docs/reproduction.md);
+  - smoke/run_smoke.sh runs the tree through stage 3c on synthetic data (Python 3.12 and 3.14, 12-10-2026).
+Not checked: the data, feature and member stages from a clean checkout at full scale; stage 3d (the four post-steps' scripts as written here), the draw
+script 45_bag_draw.sh and the file script 46_bag_file.sh are not part of the smoke test. A rerun gives a file of the same quality, not the same bytes.

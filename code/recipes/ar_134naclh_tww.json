@@ -1,0 +1,30 @@
+{
+ "id": "ar_134naclh_tww",
+ "base": "ar_134naclh_hgf",
+ "phase": "final",
+ "step": "twin_window",
+ "q": 1.0,
+ "window": 3606.0,
+ "dmax": 30000.0,
+ "base_cv_rmse": 279.95461498296214,
+ "cv_rmse": 279.61291205422845,
+ "oof_moved": {
+  "normal": 10,
+  "copy": 4
+ },
+ "folds": {
+  "jan": {
+   "base": 315.6863809311123,
+   "new": 315.65368461892837
+  },
+  "jul": {
+   "base": 247.42920472514487,
+   "new": 246.7641367222224
+  }
+ },
+ "test_moved": {
+  "normal": 19,
+  "copy": 6
+ },
+ "test_shift_rms": 23.655059262713056
+}

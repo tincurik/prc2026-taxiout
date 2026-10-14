@@ -1,0 +1,30 @@
+{
+ "id": "blend_v48_cf",
+ "model": "blend_crossfit",
+ "p_from": "mix_v18_fs3_deep",
+ "regs": [
+  "mix_v34_cat_lr15_ord",
+  "mix_v32_cat_d10_opdiev",
+  "mix_v8_cat_it16k",
+  "dae_v6_fs3_h2048_sw25",
+  "mix_v37_cat_lobt_ord",
+  "mix_v36_cat_adsbdec",
+  "mlp_v1_fs3",
+  "mlp_v2_adsb",
+  "mlp_v4_lobt_adsb",
+  "mix_v39_cat_adsb_lobt",
+  "mix_v36s2_cat_adsbdec"
+ ],
+ "note": "ar_57_more18 (cross-fitted weights)",
+ "cv_rmse": 429.5000095621338,
+ "cv_clean_rmse": 214.7248628557333,
+ "cv_trim_rmse": 237.52486455646186,
+ "folds": {
+  "jan": {
+   "delta": 0.08072907654150084
+  },
+  "jul": {
+   "delta": 0.05517104076637506
+  }
+ }
+}

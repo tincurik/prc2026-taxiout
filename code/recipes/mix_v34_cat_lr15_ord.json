@@ -1,0 +1,421 @@
+{
+ "id": "mix_v34_cat_lr15_ord",
+ "model": "mix_xgbclf_catreg",
+ "clf_model": "xgb",
+ "p_from": "mix_v18_fs3_deep",
+ "reg_model": "cat",
+ "tol": 30,
+ "reg_params": {
+  "tree_method": "hist",
+  "device": "cuda",
+  "objective": "reg:squarederror",
+  "eta": 0.05,
+  "max_depth": 8,
+  "min_child_weight": 20,
+  "subsample": 0.8,
+  "colsample_bytree": 0.7,
+  "max_cat_to_onehot": 1,
+  "max_bin": 256,
+  "eval_metric": "rmse",
+  "learning_rate": 0.15,
+  "iterations": 8000
+ },
+ "clf_params": {
+  "tree_method": "hist",
+  "device": "cuda",
+  "objective": "binary:logistic",
+  "eta": 0.05,
+  "max_depth": 8,
+  "min_child_weight": 5,
+  "subsample": 0.8,
+  "colsample_bytree": 0.7,
+  "max_cat_to_onehot": 1,
+  "max_bin": 256,
+  "eval_metric": "logloss"
+ },
+ "note": "mix_v31 + ext_ord (Kaggle GPU)",
+ "reg_target": "resid",
+ "reg_clip": 5000.0,
+ "fs3": 1,
+ "fs4": 0,
+ "fs3_name": "features_dep_fs3",
+ "drop": "",
+ "es_clip": 3600.0,
+ "extra": "ext_metar,ext_prc,ext_osm,ext_opdiev,ext_ord",
+ "folds": {
+  "jan": {
+   "rmse": 391.46905309896357,
+   "clean_rmse": 210.2515978125756,
+   "trim_rmse": 218.75293420667995,
+   "reg_only_rmse": 458.3547062630119,
+   "clf_logloss": NaN,
+   "reg_iter": 2792,
+   "clf_iter": -1,
+   "delta": 0.08072907654150084,
+   "per_airport": {
+    "EDDF": 174.9893863381087,
+    "EDDM": 180.18922324149068,
+    "EGLL": 240.89131687749696,
+    "EHAM": 212.1277988768935,
+    "LEBL": 135.1340772177798,
+    "LEMD": 160.21196613536708,
+    "LFPG": 801.8298936669462,
+    "LIRF": 800.3510591148562,
+    "LSZH": 178.6979682527825,
+    "LTFM": 220.77448984087016
+   }
+  },
+  "jul": {
+   "rmse": 483.40622228187823,
+   "clean_rmse": 254.3550875530695,
+   "trim_rmse": 285.4320790462336,
+   "reg_only_rmse": 622.0814796711247,
+   "clf_logloss": NaN,
+   "reg_iter": 2542,
+   "clf_iter": -1,
+   "delta": 0.05517104076637506,
+   "per_airport": {
+    "EDDF": 190.65280743130083,
+    "EDDM": 179.58174441122154,
+    "EGLL": 292.05749404838576,
+    "EHAM": 176.0966633190382,
+    "LEBL": 260.3438432512329,
+    "LEMD": 186.79275364324496,
+    "LFPG": 254.475075359585,
+    "LIRF": 1524.3985099962201,
+    "LSZH": 162.7817896465822,
+    "LTFM": 276.9177945853213
+   }
+  }
+ },
+ "cat_importance": {
+  "jan": [
+   [
+    "d_aobt",
+    21.385
+   ],
+   [
+    "aobt_m_eobt",
+    15.916
+   ],
+   [
+    "f3_depsr_daobt_60d",
+    6.81
+   ],
+   [
+    "apt",
+    4.958
+   ],
+   [
+    "apt_rwy",
+    4.913
+   ],
+   [
+    "apt_stand",
+    3.195
+   ],
+   [
+    "d_eobt",
+    1.86
+   ],
+   [
+    "aobt_m_sched",
+    1.633
+   ],
+   [
+    "osm_taxi_thr_m",
+    1.369
+   ],
+   [
+    "d_sched",
+    1.309
+   ],
+   [
+    "prc_dep_slot_late_share",
+    1.081
+   ],
+   [
+    "gb_rwy_aobt",
+    1.043
+   ],
+   [
+    "AIRCRAFT_OPERATOR_flt",
+    1.037
+   ],
+   [
+    "gb_ratio",
+    0.97
+   ],
+   [
+    "fa_prevarr_blk_m_sched",
+    0.969
+   ],
+   [
+    "eobt_m_sched",
+    0.897
+   ],
+   [
+    "gb_apt_eobt",
+    0.813
+   ],
+   [
+    "fa_prevarr_gap",
+    0.794
+   ],
+   [
+    "f3_depstand_daobt_30d",
+    0.779
+   ],
+   [
+    "d_iobt",
+    0.746
+   ],
+   [
+    "nb_daobt_pm30",
+    0.727
+   ],
+   [
+    "eobt_m_iobt",
+    0.71
+   ],
+   [
+    "WK_TBL_CAT_flt",
+    0.621
+   ],
+   [
+    "ev_tax",
+    0.62
+   ],
+   [
+    "o_dev_flt",
+    0.608
+   ],
+   [
+    "fa_arrimp_apt_12h",
+    0.576
+   ],
+   [
+    "osm_euclid_thr_m",
+    0.575
+   ],
+   [
+    "f3_arrstand_taxiin_30d",
+    0.559
+   ],
+   [
+    "stand_pre",
+    0.548
+   ],
+   [
+    "AIRCRAFT_TYPE_mvt",
+    0.515
+   ],
+   [
+    "rwy_gap_next",
+    0.513
+   ],
+   [
+    "wxs_temp_c",
+    0.501
+   ],
+   [
+    "rwy_gap_prev",
+    0.465
+   ],
+   [
+    "local_min",
+    0.46
+   ],
+   [
+    "ev_tax_m_aobt",
+    0.452
+   ],
+   [
+    "osm_stand_y",
+    0.409
+   ],
+   [
+    "osm_taxi_rwy_any_m",
+    0.408
+   ],
+   [
+    "fa_prevarr_delay",
+    0.404
+   ],
+   [
+    "rwy_next_10",
+    0.4
+   ],
+   [
+    "arr_taxiin_pm60",
+    0.385
+   ]
+  ],
+  "jul": [
+   [
+    "d_aobt",
+    22.228
+   ],
+   [
+    "aobt_m_eobt",
+    15.947
+   ],
+   [
+    "apt",
+    4.813
+   ],
+   [
+    "apt_rwy",
+    4.221
+   ],
+   [
+    "f3_depsr_daobt_60d",
+    3.648
+   ],
+   [
+    "apt_stand",
+    3.023
+   ],
+   [
+    "aobt_m_sched",
+    1.976
+   ],
+   [
+    "d_eobt",
+    1.759
+   ],
+   [
+    "d_sched",
+    1.333
+   ],
+   [
+    "wxs_temp_c",
+    1.318
+   ],
+   [
+    "osm_taxi_thr_m",
+    1.232
+   ],
+   [
+    "stand_pre",
+    1.102
+   ],
+   [
+    "gb_rwy_aobt",
+    1.06
+   ],
+   [
+    "eobt_m_sched",
+    1.037
+   ],
+   [
+    "AIRCRAFT_OPERATOR_flt",
+    0.984
+   ],
+   [
+    "gb_ratio",
+    0.978
+   ],
+   [
+    "rwy_nb_daobt_pm30",
+    0.961
+   ],
+   [
+    "fa_prevarr_blk_m_sched",
+    0.934
+   ],
+   [
+    "fa_prevarr_gap",
+    0.922
+   ],
+   [
+    "gb_apt_eobt",
+    0.746
+   ],
+   [
+    "f3_sr_minus_arrstand_30d",
+    0.739
+   ],
+   [
+    "prc_dep_slot_late_share",
+    0.704
+   ],
+   [
+    "nb_daobt_pm30",
+    0.67
+   ],
+   [
+    "eobt_m_iobt",
+    0.653
+   ],
+   [
+    "f3_arrstand_taxiin_30d",
+    0.651
+   ],
+   [
+    "fa_arrimp_apt_12h",
+    0.65
+   ],
+   [
+    "o_dev_flt",
+    0.62
+   ],
+   [
+    "d_iobt",
+    0.615
+   ],
+   [
+    "ev_tax_m_aobt",
+    0.59
+   ],
+   [
+    "f3_depstand_daobt_30d",
+    0.568
+   ],
+   [
+    "arr_taxiin_pm60",
+    0.543
+   ],
+   [
+    "AIRCRAFT_TYPE_mvt",
+    0.539
+   ],
+   [
+    "dep_during_taxi",
+    0.479
+   ],
+   [
+    "nb_daobt_k20",
+    0.476
+   ],
+   [
+    "rwy_gap_next",
+    0.475
+   ],
+   [
+    "rwy_next_10",
+    0.447
+   ],
+   [
+    "ev_tax",
+    0.443
+   ],
+   [
+    "arvt3_m_arvt1",
+    0.42
+   ],
+   [
+    "rwy_gap_prev",
+    0.407
+   ],
+   [
+    "fa_prevarr_delay",
+    0.401
+   ]
+  ]
+ },
+ "cv_rmse": 444.7313734320746,
+ "cv_clean_rmse": 235.6899091873106,
+ "cv_trim_rmse": 257.813746365809,
+ "minutes": 28.18
+}

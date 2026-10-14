@@ -1,0 +1,12 @@
+member,learner,family,anchor,extra_inputs,cv_alone,blend_weight
+1,CatBoost,CatBoost,LOBT,"weather, EUROCONTROL data, OSM, OPDI, ordering, ADS-B",429.79,0.198
+2,MLP 4 x 1024,MLP,LOBT,ADS-B,433.38,0.219
+3,CatBoost (seed 2),CatBoost,AOBT_3,same as 1,436.00,0.121
+4,MLP 4 x 1024,MLP,AOBT_3,same as 1,437.40,0.214
+5,CatBoost,CatBoost,AOBT_3,same as 1,437.58,0.174
+6,CatBoost,CatBoost,LOBT,"weather, EUROCONTROL data, OSM, OPDI, ordering",437.63,0.036
+7,CatBoost,CatBoost,AOBT_3,"weather, EUROCONTROL data, OSM, OPDI, ordering",444.73,0
+8,"CatBoost, depth 10",CatBoost,AOBT_3,"weather, EUROCONTROL data, OSM, OPDI",446.41,0
+9,"CatBoost, 16k iterations",CatBoost,AOBT_3,none,446.47,0
+10,MLP 4 x 1024,MLP,AOBT_3,none,449.05,0
+11,"denoising autoencoder (swap noise 0.25, 2048 units) + MLP head",Autoencoder,AOBT_3,none,455.22,0.036

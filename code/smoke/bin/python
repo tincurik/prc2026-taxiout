@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Smoke-test interpreter shim (run_smoke.sh puts this directory first on PATH).  It runs the real interpreter and, in addition, copes with one observed
+# environment problem: with polars 2.0.0 on Python 3.14 a finished script sometimes never exits (all threads idle in a futex wait while the interpreter shuts
+# down; the work and its output files are complete).  sitecustomize.py drops a marker file when the interpreter starts shutting down; if the process is
+# still alive PRC_EXIT_GRACE seconds (default 60) after that, it is killed and the exit status the script had (0, or 1 after an uncaught exception) is returned.
+# Only the interpreter this shim started writes the marker (its parent pid is checked), not worker processes it spawns.
+# The same goes for a process that is killed by a signal (an abort in a library's thread teardown, seen on Python 3.12) after the marker.
+# Everything else (arguments, stdin, stdout, exit status of a normal run) passes through unchanged.
+real=${PRC_REAL_PYTHON:?run smoke/run_smoke.sh, which sets PRC_REAL_PYTHON}
+mark=$(mktemp -u "${TMPDIR:-/tmp}/prc_exit.XXXXXX")
+PRC_EXIT_MARK=$mark PRC_EXIT_PARENT=$$ "$real" "$@" <&0 &
+pid=$!
+since=
+while kill -0 $pid 2>/dev/null; do
+  if [ -e "$mark" ]; then
+    [ -n "$since" ] || since=$(date +%s)
+    if [ $(( $(date +%s) - since )) -ge "${PRC_EXIT_GRACE:-60}" ]; then
+      kill -9 $pid 2>/dev/null; wait $pid 2>/dev/null
+      echo "python shim: $* finished but did not exit within ${PRC_EXIT_GRACE:-60} s of shutdown; killed" >&2
+      rc=$(cat "$mark" 2>/dev/null); rm -f "$mark"; exit "${rc:-0}"
+    fi
+  fi
+  sleep 1
+done
+wait $pid; rc=$?
+if [ $rc -ge 128 ] && [ -e "$mark" ]; then   # killed by a signal (e.g. an abort in a library's thread teardown) after the script had finished
+  echo "python shim: $* finished, then the process died with status $rc during interpreter shutdown; reporting the script's own status" >&2
+  rc=$(cat "$mark" 2>/dev/null); rc=${rc:-0}
+fi
+rm -f "$mark"
+exit $rc

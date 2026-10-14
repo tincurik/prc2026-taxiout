@@ -1,0 +1,8 @@
+{
+ "id": "ar_134naclh_tww_wit_zf3",
+ "model": "witness_post",
+ "base": "ar_134naclh_tww",
+ "cv_rmse": 279.61291205422845,
+ "base_cv_rmse": 279.61291205422845,
+ "note": "witness post-step zf3 (window 3606) on ar_134naclh_tww; CV numbers are the base's (the step's own CV effect: scripts/witness_eval.py)"
+}

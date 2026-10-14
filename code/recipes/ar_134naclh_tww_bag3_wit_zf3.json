@@ -1,0 +1,36 @@
+{
+ "id": "ar_134naclh_tww_bag3_wit_zf3",
+ "model": "bag_witness",
+ "base": "ar_134naclh_tww",
+ "k": 3,
+ "draws": {
+  "final": {
+   "phase": "final",
+   "bag_seed": 0,
+   "sha256": "56b8d976163ba5dd1bfa304da20e96104b84111071a50dc0bb569de874af43d4"
+  },
+  "finalb2": {
+   "phase": "finalb2",
+   "bag_seed": 200,
+   "sha256": "0efdd35cb33833ec97a368d3f2d857aa996802faceeae2426dee8749cb81e11c"
+  },
+  "finalb3": {
+   "phase": "finalb3",
+   "bag_seed": 300,
+   "sha256": "1662d3d5c91e47e6ebb08f20232e371dfedf94161a9f6dca3931847e9b22070a"
+  }
+ },
+ "draw_rms_diff_s": {
+  "final~finalb2": 27.29,
+  "final~finalb3": 32.41,
+  "finalb2~finalb3": 27.94
+ },
+ "estimated_gain_rmse": -0.513,
+ "witness": {
+  "ideas": "zf3",
+  "window": 3606.0
+ },
+ "cv_rmse": 279.61291205422845,
+ "base_cv_rmse": 279.61291205422845,
+ "note": "average of 3 draws of ar_134naclh_tww (pipeline/45_bag_draw.sh, then scripts/bag_build.py), then the plan-window step zf3 (pipeline/46_bag_file.sh). cv_rmse is the single-draw chain's on the two validation folds: the draws share one out-of-fold side (2025 files are not redrawn), so the bag has no cross-validation score of its own; estimated_gain_rmse (negative = lower RMSE) is the variance argument in scripts/bag_build.py (draw-to-draw rms differences), an estimate and not a measurement."
+}

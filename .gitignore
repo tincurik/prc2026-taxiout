@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+*.parquet
+# the one prediction file that ships (code/final/README.md); code/.gitignore re-includes it too
+!code/final/*.parquet
+*.pdf
+# the built paper ships: paper/.gitignore re-includes paper/main.pdf, its figures and the class logo
+!paper/**/*.pdf
+!paper/*.pdf
+# the one-page leaderboard note of 03-10 (docs/validation.md, The public leaderboard)
+!docs/leaderboard_leakage.pdf

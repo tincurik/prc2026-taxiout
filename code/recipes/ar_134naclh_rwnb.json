@@ -1,0 +1,58 @@
+{
+ "id": "ar_134naclh_rwnb",
+ "base": "ar_134naclh_rmx",
+ "fit_base": "ar_134naclh_rmx",
+ "phase": "final",
+ "step": "r17_rwnb",
+ "model": "lgb",
+ "pool_rows": 2085047,
+ "pool_folds": [
+  "final",
+  "pseudo2",
+  "pseudo3",
+  "pseudo4",
+  "pseudo5",
+  "pseudo6"
+ ],
+ "base_cv_rmse": 282.5194469486331,
+ "cv_rmse": 282.59865135476895,
+ "oof_moved": 304589,
+ "oof_coefs": {
+  "lofinal": {
+   "model": "lgb",
+   "rows": 1740628,
+   "gain_top": {
+    "apt": 638063455.0,
+    "ap900_pred": 317936066.0,
+    "rw1800_pred": 276477070.0,
+    "rw300_pred": 252668528.0,
+    "rw1800_u_eobt": 233613835.0
+   }
+  }
+ },
+ "folds": {
+  "jan": {
+   "base": 320.7763982666918,
+   "new": 320.84008317063933
+  },
+  "jul": {
+   "base": 247.41786261354537,
+   "new": 247.51464733444226
+  }
+ },
+ "test_moved": 585034,
+ "test_shift_rms": 14.272759891594617,
+ "test_coefs": {
+  "lonone": {
+   "model": "lgb",
+   "rows": 2085047,
+   "gain_top": {
+    "apt": 631722356.0,
+    "rw1800_u_reg": 317589758.0,
+    "rw300_pred": 292545253.0,
+    "rw1800_pred": 288489012.0,
+    "rw300_u_eobt": 284329736.0
+   }
+  }
+ }
+}

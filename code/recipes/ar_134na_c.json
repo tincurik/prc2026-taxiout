@@ -1,0 +1,50 @@
+{
+ "id": "ar_134na_c",
+ "base": "rc_v34_more18",
+ "extra": "adsbdir4,adsbrev,ef_10111040_stxctx_memb,ctx,stxnb_f",
+ "feat": "adsb2m",
+ "seeds": 3,
+ "stack_model": "cat",
+ "covw": 0,
+ "bag_seed": 0,
+ "clip": 1800,
+ "train_ymax": 20000,
+ "skip": [
+  "LIRF"
+ ],
+ "k": 5,
+ "params": {
+  "tree_method": "hist",
+  "device": "cuda",
+  "objective": "reg:squarederror",
+  "eta": 0.03,
+  "max_depth": 5,
+  "min_child_weight": 50,
+  "subsample": 0.8,
+  "colsample_bytree": 0.8,
+  "reg_lambda": 10.0,
+  "max_cat_to_onehot": 1,
+  "eval_metric": "rmse",
+  "seed": 102
+ },
+ "phases": {
+  "final": {
+   "m12": {
+    "aux_rows": 1740628,
+    "oof_rmse": 286.1267672820565,
+    "oof_base": 292.2845065643429,
+    "oof_clean": 209.31678569724633,
+    "oof_by_fold": {
+     "jan": 321.65061431085127,
+     "jul": 253.90449633865123
+    },
+    "test_iters": {
+     "ok": 2356,
+     "un": 658
+    },
+    "test_rms_change": 58.41053676943175
+   }
+  }
+ },
+ "minutes": 14.8
+}

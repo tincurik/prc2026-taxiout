@@ -1,0 +1,12 @@
+name,value
+rows,344419.0
+rows_in_grid,338723.0
+rows_label_at_or_above_2400s,4858.0
+share_of_squared_error_label_at_or_above_2400s,0.6170040557147484
+median_label_s,923.0
+median_prediction_s,941.6471317660101
+median_abs_error_s,61.02191594645069
+p90_abs_error_s,252.96509220723195
+share_within_120s,0.7057130994515401
+share_within_300s,0.92858698271582
+rmse_label_under_3600s,190.07046534820873

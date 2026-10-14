@@ -1,0 +1,419 @@
+{
+ "id": "mix_v8_cat_it16k",
+ "model": "mix_xgbclf_catreg",
+ "clf_model": "xgb",
+ "p_from": "mix_v18_fs3_deep",
+ "reg_model": "cat",
+ "tol": 30,
+ "reg_params": {
+  "tree_method": "hist",
+  "device": "cuda",
+  "objective": "reg:squarederror",
+  "eta": 0.05,
+  "max_depth": 8,
+  "min_child_weight": 20,
+  "subsample": 0.8,
+  "colsample_bytree": 0.7,
+  "max_cat_to_onehot": 1,
+  "max_bin": 256,
+  "eval_metric": "rmse",
+  "iterations": 16000
+ },
+ "clf_params": {
+  "tree_method": "hist",
+  "device": "cuda",
+  "objective": "binary:logistic",
+  "eta": 0.05,
+  "max_depth": 8,
+  "min_child_weight": 5,
+  "subsample": 0.8,
+  "colsample_bytree": 0.7,
+  "max_cat_to_onehot": 1,
+  "max_bin": 256,
+  "eval_metric": "logloss"
+ },
+ "note": "catboost-lr0.08-uncapped-16k",
+ "reg_target": "resid",
+ "reg_clip": 5000.0,
+ "fs3": 1,
+ "fs4": 0,
+ "fs3_name": "features_dep_fs3",
+ "drop": "",
+ "es_clip": 3600.0,
+ "folds": {
+  "jan": {
+   "rmse": 392.64726256834257,
+   "clean_rmse": 212.5405987640023,
+   "trim_rmse": 221.23661536997687,
+   "reg_only_rmse": 459.1852267686981,
+   "clf_logloss": NaN,
+   "reg_iter": 8939,
+   "clf_iter": -1,
+   "delta": 0.08072907654150084,
+   "per_airport": {
+    "EDDF": 177.80286654311055,
+    "EDDM": 181.69373255299797,
+    "EGLL": 245.47420165501458,
+    "EHAM": 213.28458891345096,
+    "LEBL": 144.60848100008056,
+    "LEMD": 157.72619157471738,
+    "LFPG": 801.6108825553711,
+    "LIRF": 798.9515672209437,
+    "LSZH": 195.0439967914771,
+    "LTFM": 222.97678637106878
+   }
+  },
+  "jul": {
+   "rmse": 485.52983857944974,
+   "clean_rmse": 259.2068913881936,
+   "trim_rmse": 289.5216504626657,
+   "reg_only_rmse": 624.4410130430751,
+   "clf_logloss": NaN,
+   "reg_iter": 7546,
+   "clf_iter": -1,
+   "delta": 0.05517104076637506,
+   "per_airport": {
+    "EDDF": 192.903025034369,
+    "EDDM": 188.55809307450366,
+    "EGLL": 286.0699216335293,
+    "EHAM": 176.69428061356695,
+    "LEBL": 262.24907330142776,
+    "LEMD": 187.2476711202077,
+    "LFPG": 255.99099081737438,
+    "LIRF": 1527.9154894801813,
+    "LSZH": 196.29190705195168,
+    "LTFM": 279.57515049570355
+   }
+  }
+ },
+ "cat_importance": {
+  "jan": [
+   [
+    "d_aobt",
+    19.358
+   ],
+   [
+    "aobt_m_eobt",
+    15.184
+   ],
+   [
+    "apt_rwy",
+    6.421
+   ],
+   [
+    "f3_depsr_daobt_60d",
+    5.748
+   ],
+   [
+    "apt",
+    3.541
+   ],
+   [
+    "apt_stand",
+    3.455
+   ],
+   [
+    "d_eobt",
+    2.386
+   ],
+   [
+    "aobt_m_sched",
+    1.591
+   ],
+   [
+    "d_sched",
+    1.455
+   ],
+   [
+    "f3_depstand_daobt_30d",
+    1.375
+   ],
+   [
+    "eobt_m_sched",
+    1.353
+   ],
+   [
+    "fa_prevarr_blk_m_sched",
+    1.181
+   ],
+   [
+    "stand_pre",
+    1.175
+   ],
+   [
+    "fa_prevarr_gap",
+    1.163
+   ],
+   [
+    "nb_daobt_pm60",
+    1.106
+   ],
+   [
+    "arr_taxiin_pm60",
+    1.092
+   ],
+   [
+    "AIRCRAFT_OPERATOR_flt",
+    1.065
+   ],
+   [
+    "d_iobt",
+    1.039
+   ],
+   [
+    "f3_arrstand_taxiin_30d",
+    0.956
+   ],
+   [
+    "local_min",
+    0.951
+   ],
+   [
+    "fa_arrimp_apt_12h",
+    0.84
+   ],
+   [
+    "rwy_next_10",
+    0.824
+   ],
+   [
+    "rwy_nb_daobt_pm30",
+    0.788
+   ],
+   [
+    "rwy_gap_next",
+    0.784
+   ],
+   [
+    "eobt_m_iobt",
+    0.778
+   ],
+   [
+    "dep_day_cnt",
+    0.761
+   ],
+   [
+    "arvt3_m_arvt1",
+    0.738
+   ],
+   [
+    "rwy_gap_prev",
+    0.685
+   ],
+   [
+    "dep_prev_60",
+    0.656
+   ],
+   [
+    "d_lobt",
+    0.639
+   ],
+   [
+    "AIRCRAFT_TYPE_mvt",
+    0.623
+   ],
+   [
+    "rwy_share",
+    0.582
+   ],
+   [
+    "dep_next_60",
+    0.507
+   ],
+   [
+    "fa_prevarr_delay",
+    0.506
+   ],
+   [
+    "arr_taxiin_pm30",
+    0.505
+   ],
+   [
+    "f3_sr_minus_arrstand_30d",
+    0.505
+   ],
+   [
+    "arr_during_taxi",
+    0.501
+   ],
+   [
+    "fa_arrn_apt_1h",
+    0.494
+   ],
+   [
+    "fa_arrn_apt_airline_72h",
+    0.486
+   ],
+   [
+    "fa_arrimp_apt_3h",
+    0.473
+   ]
+  ],
+  "jul": [
+   [
+    "d_aobt",
+    20.259
+   ],
+   [
+    "aobt_m_eobt",
+    14.568
+   ],
+   [
+    "apt_rwy",
+    5.284
+   ],
+   [
+    "apt",
+    4.702
+   ],
+   [
+    "f3_depsr_daobt_60d",
+    4.686
+   ],
+   [
+    "apt_stand",
+    3.512
+   ],
+   [
+    "d_eobt",
+    2.3
+   ],
+   [
+    "aobt_m_sched",
+    2.128
+   ],
+   [
+    "d_sched",
+    1.664
+   ],
+   [
+    "nb_daobt_pm60",
+    1.613
+   ],
+   [
+    "stand_pre",
+    1.347
+   ],
+   [
+    "eobt_m_sched",
+    1.283
+   ],
+   [
+    "arr_taxiin_pm60",
+    1.151
+   ],
+   [
+    "fa_prevarr_blk_m_sched",
+    1.124
+   ],
+   [
+    "fa_prevarr_gap",
+    1.108
+   ],
+   [
+    "AIRCRAFT_OPERATOR_flt",
+    1.037
+   ],
+   [
+    "nb_daobt_k20",
+    0.964
+   ],
+   [
+    "f3_arrstand_taxiin_30d",
+    0.919
+   ],
+   [
+    "dep_day_cnt",
+    0.868
+   ],
+   [
+    "arvt3_m_arvt1",
+    0.851
+   ],
+   [
+    "rwy_nb_daobt_pm30",
+    0.848
+   ],
+   [
+    "fa_arrimp_apt_12h",
+    0.827
+   ],
+   [
+    "rwy_next_10",
+    0.804
+   ],
+   [
+    "local_min",
+    0.777
+   ],
+   [
+    "rwy_gap_next",
+    0.767
+   ],
+   [
+    "eobt_m_iobt",
+    0.735
+   ],
+   [
+    "nb_daobt_pm30",
+    0.692
+   ],
+   [
+    "d_iobt",
+    0.689
+   ],
+   [
+    "rwy_gap_prev",
+    0.669
+   ],
+   [
+    "AIRCRAFT_TYPE_mvt",
+    0.659
+   ],
+   [
+    "dep_prev_60",
+    0.626
+   ],
+   [
+    "f3_depstand_daobt_30d",
+    0.599
+   ],
+   [
+    "rwy_share",
+    0.57
+   ],
+   [
+    "fa_arrn_apt_airline_72h",
+    0.537
+   ],
+   [
+    "d_lobt",
+    0.526
+   ],
+   [
+    "fa_arrn_apt_1h",
+    0.525
+   ],
+   [
+    "rwy_dep_during_taxi",
+    0.517
+   ],
+   [
+    "fa_arrn_apt_12h",
+    0.512
+   ],
+   [
+    "f3_sr_minus_arrstand_30d",
+    0.499
+   ],
+   [
+    "f3_arrstand_n_30d",
+    0.487
+   ]
+  ]
+ },
+ "cv_rmse": 446.4724595601937,
+ "cv_clean_rmse": 239.5019321686321,
+ "cv_trim_rmse": 261.26151881290497,
+ "minutes": 34.31
+}

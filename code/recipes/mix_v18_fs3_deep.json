@@ -1,0 +1,90 @@
+{
+ "id": "mix_v18_fs3_deep",
+ "model": "mix_xgbclf_xgbreg",
+ "clf_model": "xgb",
+ "p_from": "",
+ "reg_model": "xgb",
+ "tol": 30,
+ "reg_params": {
+  "tree_method": "hist",
+  "device": "cuda",
+  "objective": "reg:squarederror",
+  "eta": 0.03,
+  "max_depth": 10,
+  "min_child_weight": 50,
+  "subsample": 0.8,
+  "colsample_bytree": 0.5,
+  "max_cat_to_onehot": 1,
+  "max_bin": 256,
+  "eval_metric": "rmse"
+ },
+ "clf_params": {
+  "tree_method": "hist",
+  "device": "cuda",
+  "objective": "binary:logistic",
+  "eta": 0.05,
+  "max_depth": 8,
+  "min_child_weight": 5,
+  "subsample": 0.8,
+  "colsample_bytree": 0.7,
+  "max_cat_to_onehot": 1,
+  "max_bin": 256,
+  "eval_metric": "logloss"
+ },
+ "note": "fs3+deep+clip5000+es3600",
+ "reg_target": "resid",
+ "reg_clip": 5000.0,
+ "fs3": 1,
+ "drop": "",
+ "es_clip": 3600.0,
+ "folds": {
+  "jan": {
+   "rmse": 396.7950725035733,
+   "clean_rmse": 217.07725496421583,
+   "trim_rmse": 227.18014440564983,
+   "reg_only_rmse": 464.8515051074544,
+   "clf_logloss": 0.16257747963253177,
+   "reg_iter": 1967,
+   "clf_iter": 89,
+   "delta": 0.08072907654150084,
+   "per_airport": {
+    "EDDF": 177.9575650993613,
+    "EDDM": 190.48161907808077,
+    "EGLL": 257.586830148998,
+    "EHAM": 214.62052120960723,
+    "LEBL": 146.6705595972876,
+    "LEMD": 164.36550355009976,
+    "LFPG": 802.2547088136427,
+    "LIRF": 807.050416349211,
+    "LSZH": 214.64013657941643,
+    "LTFM": 228.1868095946793
+   }
+  },
+  "jul": {
+   "rmse": 497.739961966995,
+   "clean_rmse": 268.7529072207976,
+   "trim_rmse": 302.7039830381758,
+   "reg_only_rmse": 637.8442138525144,
+   "clf_logloss": 0.13596476528241,
+   "reg_iter": 2094,
+   "clf_iter": 89,
+   "delta": 0.05517104076637506,
+   "per_airport": {
+    "EDDF": 200.88253900545692,
+    "EDDM": 191.69180619423406,
+    "EGLL": 306.0786623826216,
+    "EHAM": 186.43885189518383,
+    "LEBL": 267.28359000987825,
+    "LEMD": 192.33426818663716,
+    "LFPG": 279.6409177666905,
+    "LIRF": 1556.3488226404113,
+    "LSZH": 201.8729302619086,
+    "LTFM": 290.7126780672481
+   }
+  }
+ },
+ "cv_rmse": 455.46338137241935,
+ "cv_clean_rmse": 247.0250260355414,
+ "cv_trim_rmse": 271.60597888099795,
+ "minutes": 3.9
+}

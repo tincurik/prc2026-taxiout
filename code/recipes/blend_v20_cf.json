@@ -1,0 +1,23 @@
+{
+ "id": "blend_v20_cf",
+ "model": "blend_crossfit",
+ "p_from": "mix_v18_fs3_deep",
+ "regs": [
+  "mix_v31_cat_lr15_opdiev",
+  "mix_v32_cat_d10_opdiev",
+  "mix_v8_cat_it16k",
+  "dae_v6_fs3_h2048_sw25"
+ ],
+ "note": "blend_v19 with opdiev d10 (cross-fitted weights)",
+ "cv_rmse": 445.51994057927135,
+ "cv_clean_rmse": 234.25133549506353,
+ "cv_trim_rmse": 257.4202058739501,
+ "folds": {
+  "jan": {
+   "delta": 0.08072907654150084
+  },
+  "jul": {
+   "delta": 0.05517104076637506
+  }
+ }
+}

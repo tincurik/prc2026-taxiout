@@ -1,0 +1,6 @@
+key,label,kind,rows,share_pct,rmse
+datestamp,Date-stamp rows,artefact,8,28.1,39916.0
+giant,Giant labels,artefact,82,10.9,7769.0
+far,Far schedule copies,artefact,651,7.8,2332.0
+monster,Large misses on ordinary rows,tail,599,11.2,2910.0
+bulk,Ordinary rows,bulk,669952,42.0,169.0

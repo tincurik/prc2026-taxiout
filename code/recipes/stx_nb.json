@@ -1,0 +1,126 @@
+{
+ "id": "stx_nb",
+ "model": "stx",
+ "args": {
+  "id": "stx_nb",
+  "extra": "ext_metar,ext_prc,ext_osm,ext_opdiev,ext_ord,adsb2fullrel",
+  "fs3": 1,
+  "anchor": "aobt",
+  "ctx": 1,
+  "arr": 1,
+  "tdir": 1,
+  "rope": 1,
+  "mtm": 0.15,
+  "mtm_w": 0.3,
+  "pre_ep": 0,
+  "pre_mtm": 0.3,
+  "unl_rank": 0,
+  "adrop": 0.4,
+  "aux_w": 0.25,
+  "adrop_chunk": 0.0,
+  "sig": 1,
+  "tail": "1800,3600",
+  "head_w": 0.1,
+  "ema": 0.999,
+  "knn": "",
+  "mask_val": "final",
+  "kd_w": 1.0,
+  "kd_unl": 1,
+  "kd_start": 2,
+  "kd_h": 0.0,
+  "pl": "",
+  "pl_w": 1.0,
+  "nbaux": 0.3,
+  "nb_win": 1800,
+  "nb_k": 5.0,
+  "nb_min": 3,
+  "nb_clip": 1800.0,
+  "chunk": 512,
+  "bs": 32,
+  "d": 256,
+  "layers": 4,
+  "heads": 8,
+  "drop": 0.1,
+  "ff": 4,
+  "ple": 0,
+  "ple_d": 8,
+  "rel": 0,
+  "pct": 0.1,
+  "epochs": 24,
+  "lr": 0.0005,
+  "wd": 0.01,
+  "clip": 5000,
+  "seeds": 3,
+  "seed0": 0,
+  "final": 0,
+  "refit_only": 0,
+  "nosync": 1,
+  "compile": 1,
+  "fused": 1,
+  "smoke": 0,
+  "amp": "bf16"
+ },
+ "folds": {
+  "jan": {
+   "reg_rmse": 448.0758881491142,
+   "reg_clean_rmse": 195.2893654546253,
+   "best_epochs": [
+    20,
+    24,
+    23
+   ]
+  },
+  "jul": {
+   "reg_rmse": 620.8363851077037,
+   "reg_clean_rmse": 244.98411422513573,
+   "best_epochs": [
+    24,
+    24,
+    24
+   ]
+  }
+ },
+ "cv_reg_rmse": 550.4778469683961,
+ "cv_reg_clean_rmse": 224.16652637116619,
+ "mask_val": {
+  "plain": 550.4778469683961,
+  "masked": 550.9554228382109,
+  "hidden_share": 0.05216611162566525,
+  "hidden_rows_plain": 970.9496450189469,
+  "hidden_rows_masked": 975.9351567847203,
+  "hidden_rows_bias_masked": -50.16610305238435,
+  "hidden_rows_bias_plain": -50.061201679001286,
+  "by_apt": {
+   "EDDF": {
+    "n": 10708,
+    "plain": 126.22198456359473,
+    "masked": 156.22393415179866,
+    "bias_masked": -4.199429600673867,
+    "bias_plain": -2.500258841263433
+   },
+   "EHAM": {
+    "n": 1022,
+    "plain": 109.88986116576055,
+    "masked": 156.63725130918905,
+    "bias_masked": -36.87422265651875,
+    "bias_plain": -24.832162412878585
+   },
+   "LEBL": {
+    "n": 558,
+    "plain": 172.11603829320387,
+    "masked": 203.40456084655793,
+    "bias_masked": -14.399809943305122,
+    "bias_plain": -18.319957610099546
+   },
+   "LIRF": {
+    "n": 5679,
+    "plain": 1716.825572141276,
+    "masked": 1720.1231225302106,
+    "bias_masked": -142.7445557096051,
+    "bias_plain": -147.3984561651646
+   }
+  }
+ },
+ "final_epochs": 23,
+ "minutes": 17.28
+}

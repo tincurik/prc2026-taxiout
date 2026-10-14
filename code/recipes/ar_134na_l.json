@@ -1,0 +1,49 @@
+{
+ "id": "ar_134na_l",
+ "base": "rc_v34_more18",
+ "extra": "adsbdir4,adsbrev,ef_10111040_stxctx_memb,ctx,stxnb_f",
+ "feat": "adsb2m",
+ "seeds": 3,
+ "stack_model": "lgb",
+ "covw": 0,
+ "bag_seed": 0,
+ "clip": 1800,
+ "train_ymax": 20000,
+ "skip": [
+  "LIRF"
+ ],
+ "k": 5,
+ "params": {
+  "objective": "regression",
+  "learning_rate": 0.03,
+  "num_leaves": 127,
+  "min_data_in_leaf": 30,
+  "feature_fraction": 0.8,
+  "bagging_fraction": 0.8,
+  "bagging_freq": 1,
+  "lambda_l2": 10.0,
+  "verbose": -1,
+  "num_threads": 10,
+  "extra_trees": true
+ },
+ "phases": {
+  "final": {
+   "m12": {
+    "aux_rows": 1740628,
+    "oof_rmse": 285.977132548584,
+    "oof_base": 292.2845065643429,
+    "oof_clean": 209.01138791744606,
+    "oof_by_fold": {
+     "jan": 321.7163996306621,
+     "jul": 253.53260206105773
+    },
+    "test_iters": {
+     "ok": 2838,
+     "un": 932
+    },
+    "test_rms_change": 59.97586355908075
+   }
+  }
+ },
+ "minutes": 67.6
+}

@@ -1,0 +1,29 @@
+{
+ "id": "dae_v6_fs3_h2048_sw25",
+ "model": "dae_mlp",
+ "args": {
+  "id": "dae_v6_fs3_h2048_sw25",
+  "hidden": 2048,
+  "swap": 0.25,
+  "dae_epochs": 60,
+  "head_epochs": 15,
+  "bs": 4096,
+  "clip": 5000.0,
+  "fs3": 1,
+  "load": "",
+  "final": 1
+ },
+ "folds": {
+  "jan": {
+   "reg_rmse": 466.3419578656048,
+   "reg_clean_rmse": 224.19666921931037
+  },
+  "jul": {
+   "reg_rmse": 636.4802351816762,
+   "reg_clean_rmse": 279.7979190059057
+  }
+ },
+ "cv_reg_rmse": 566.8961770413148,
+ "cv_reg_clean_rmse": 256.47211673982343,
+ "minutes": 15.62
+}

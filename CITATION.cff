@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this model or its documentation, please cite it as below."
+title: "Taxi-out time at ten European airports: two processes in one column"
+type: software
+abstract: >-
+  A post-operational estimator of the taxi-out time (take-off minus off-block) of a departure at ten European airports,
+  built for the EUROCONTROL PRC Data Challenge 2026. It estimates for each departure the probability that the recorded
+  off-block is a copy of the schedule and mixes a physical taxi estimate with the schedule delay accordingly.
+authors:
+  - family-names: "Curik"
+    given-names: "Tin Josip"
+license: GPL-3.0-or-later
+date-released: "2026-10-14"
+keywords:
+  - taxi-out time
+  - air traffic management
+  - performance monitoring
+  - gradient boosting
+  - EUROCONTROL

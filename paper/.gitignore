@@ -1,0 +1,11 @@
+main.aux
+main.bbl
+main.blg
+main.bcf
+main.log
+main.out
+main.run.xml
+main.synctex.gz
+__pycache__/
+# the built paper, its figures and the class logo ship with the repo (the root ignores *.pdf)
+!*.pdf

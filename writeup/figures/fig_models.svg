@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="792pt" height="1162.16064pt" viewBox="0 0 792 1162.16064" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 1162.16064 
+L 792 1162.16064 
+L 792 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="line2d_1">
+    <path d="M 15.84 177.6384 
+L 776.16 177.6384 
+" clip-path="url(#p296fb56bd3)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 15.84 345.66912 
+L 776.16 345.66912 
+" clip-path="url(#p296fb56bd3)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 15.84 423.22176 
+L 776.16 423.22176 
+" clip-path="url(#p296fb56bd3)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 15.84 543.35232 
+L 776.16 543.35232 
+" clip-path="url(#p296fb56bd3)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 15.84 752.44032 
+L 776.16 752.44032 
+" clip-path="url(#p296fb56bd3)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 15.84 902.22336 
+L 776.16 902.22336 
+" clip-path="url(#p296fb56bd3)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_7">
+    <path d="M 15.84 1052.0064 
+L 776.16 1052.0064 
+" clip-path="url(#p296fb56bd3)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_8">
+    <path d="M 15.84 1129.55904 
+L 776.16 1129.55904 
+" clip-path="url(#p296fb56bd3)" style="fill: none; stroke: #e1e0d9; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_9">
+    <path d="M 34.08768 114.53184 
+L 34.08768 1065.69216 
+" clip-path="url(#p296fb56bd3)" style="fill: none; stroke: #c3c2b7; stroke-width: 1.2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_2">
+    <path d="M 144.33408 167.75424 
+L 769.31712 167.75424 
+Q 776.16 167.75424 776.16 160.91136 
+L 776.16 106.92864 
+Q 776.16 100.08576 769.31712 100.08576 
+L 144.33408 100.08576 
+Q 137.4912 100.08576 137.4912 106.92864 
+L 137.4912 160.91136 
+Q 137.4912 167.75424 144.33408 167.75424 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; fill-opacity: 0.109804; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 113.764508)">Copy</text>
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 125.28907)">classifier</text>
+   </g>
+   <g id="patch_3">
+    <path d="M 144.33408 274.95936 
+L 337.45536 274.95936 
+Q 344.29824 274.95936 344.29824 268.11648 
+L 344.29824 194.36544 
+Q 344.29824 187.52256 337.45536 187.52256 
+L 144.33408 187.52256 
+Q 137.4912 187.52256 137.4912 194.36544 
+L 137.4912 268.11648 
+Q 137.4912 274.95936 144.33408 274.95936 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; fill-opacity: 0.109804; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 360.26496 274.95936 
+L 553.38624 274.95936 
+Q 560.22912 274.95936 560.22912 268.11648 
+L 560.22912 194.36544 
+Q 560.22912 187.52256 553.38624 187.52256 
+L 360.26496 187.52256 
+Q 353.42208 187.52256 353.42208 194.36544 
+L 353.42208 268.11648 
+Q 353.42208 274.95936 360.26496 274.95936 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; fill-opacity: 0.109804; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 576.19584 274.95936 
+L 769.31712 274.95936 
+Q 776.16 274.95936 776.16 268.11648 
+L 776.16 194.36544 
+Q 776.16 187.52256 769.31712 187.52256 
+L 576.19584 187.52256 
+Q 569.35296 187.52256 569.35296 194.36544 
+L 569.35296 268.11648 
+Q 569.35296 274.95936 576.19584 274.95936 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; fill-opacity: 0.109804; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 137.4912 302.33088 
+L 476.024061 302.33088 
+L 476.024061 284.0832 
+L 137.4912 284.0832 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 476.024061 302.33088 
+L 753.121847 302.33088 
+L 753.121847 284.0832 
+L 476.024061 284.0832 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #eb6834; stroke: #fcfcfb; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 753.121847 302.33088 
+L 776.16 302.33088 
+L 776.16 284.0832 
+L 753.121847 284.0832 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #1baf7a; stroke: #fcfcfb; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #898781" x="776.16" y="312.211706" transform="rotate(-0 776.16 312.211706)">Each fits non-copy rows only, as a correction to a clock anchor. Blend: non-negative least squares, one weight set for all airports (CV 429.50); weights sum to 0.998 as rounded.</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 202.16587)">Eleven</text>
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 210.959682)">regressors</text>
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 223.28587)">and their</text>
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 233.84587)">blend</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 144.33408 413.3376 
+L 769.31712 413.3376 
+Q 776.16 413.3376 776.16 406.49472 
+L 776.16 362.39616 
+Q 776.16 355.55328 769.31712 355.55328 
+L 144.33408 355.55328 
+Q 137.4912 355.55328 137.4912 362.39616 
+L 137.4912 406.49472 
+Q 137.4912 413.3376 144.33408 413.3376 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #898781; fill-opacity: 0.109804; stroke: #898781; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="53.856" y="370.19659" transform="rotate(-0 53.856 370.19659)">Mixture</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 144.33408 533.46816 
+L 445.4208 533.46816 
+Q 452.26368 533.46816 452.26368 526.62528 
+L 452.26368 439.9488 
+Q 452.26368 433.10592 445.4208 433.10592 
+L 144.33408 433.10592 
+Q 137.4912 433.10592 137.4912 439.9488 
+L 137.4912 526.62528 
+Q 137.4912 533.46816 144.33408 533.46816 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; fill-opacity: 0.109804; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 468.2304 533.46816 
+L 769.31712 533.46816 
+Q 776.16 533.46816 776.16 526.62528 
+L 776.16 439.9488 
+Q 776.16 433.10592 769.31712 433.10592 
+L 468.2304 433.10592 
+Q 461.38752 433.10592 461.38752 439.9488 
+L 461.38752 526.62528 
+Q 461.38752 533.46816 468.2304 533.46816 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #1baf7a; fill-opacity: 0.109804; stroke: #1baf7a; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="53.856" y="447.74923" transform="rotate(-0 53.856 447.74923)">Rules chain</text>
+   </g>
+   <g id="patch_12">
+    <path d="M 144.33408 742.55616 
+L 315.88992 742.55616 
+Q 322.7328 742.55616 322.7328 735.71328 
+L 322.7328 560.07936 
+Q 322.7328 553.23648 315.88992 553.23648 
+L 144.33408 553.23648 
+Q 137.4912 553.23648 137.4912 560.07936 
+L 137.4912 735.71328 
+Q 137.4912 742.55616 144.33408 742.55616 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; fill-opacity: 0.109804; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 338.69952 742.55616 
+L 454.68288 742.55616 
+Q 461.52576 742.55616 461.52576 735.71328 
+L 461.52576 560.07936 
+Q 461.52576 553.23648 454.68288 553.23648 
+L 338.69952 553.23648 
+Q 331.85664 553.23648 331.85664 560.07936 
+L 331.85664 735.71328 
+Q 331.85664 742.55616 338.69952 742.55616 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #eda100; fill-opacity: 0.109804; stroke: #eda100; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 477.49248 742.55616 
+L 602.73792 742.55616 
+Q 609.5808 742.55616 609.5808 735.71328 
+L 609.5808 560.07936 
+Q 609.5808 553.23648 602.73792 553.23648 
+L 477.49248 553.23648 
+Q 470.6496 553.23648 470.6496 560.07936 
+L 470.6496 735.71328 
+Q 470.6496 742.55616 477.49248 742.55616 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; fill-opacity: 0.109804; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 625.54752 742.55616 
+L 769.31712 742.55616 
+Q 776.16 742.55616 776.16 735.71328 
+L 776.16 560.07936 
+Q 776.16 553.23648 769.31712 553.23648 
+L 625.54752 553.23648 
+Q 618.70464 553.23648 618.70464 560.07936 
+L 618.70464 735.71328 
+Q 618.70464 742.55616 625.54752 742.55616 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; fill-opacity: 0.109804; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 567.87979)">Month-</text>
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 577.58729)">complete</text>
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 588.99979)">stackers</text>
+   </g>
+   <g id="patch_16">
+    <path d="M 144.33408 892.3392 
+L 283.47264 892.3392 
+Q 290.31552 892.3392 290.31552 885.49632 
+L 290.31552 769.16736 
+Q 290.31552 762.32448 283.47264 762.32448 
+L 144.33408 762.32448 
+Q 137.4912 762.32448 137.4912 769.16736 
+L 137.4912 885.49632 
+Q 137.4912 892.3392 144.33408 892.3392 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; fill-opacity: 0.109804; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 306.28224 892.3392 
+L 445.4208 892.3392 
+Q 452.26368 892.3392 452.26368 885.49632 
+L 452.26368 769.16736 
+Q 452.26368 762.32448 445.4208 762.32448 
+L 306.28224 762.32448 
+Q 299.43936 762.32448 299.43936 769.16736 
+L 299.43936 885.49632 
+Q 299.43936 892.3392 306.28224 892.3392 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #1baf7a; fill-opacity: 0.109804; stroke: #1baf7a; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 468.2304 892.3392 
+L 607.36896 892.3392 
+Q 614.21184 892.3392 614.21184 885.49632 
+L 614.21184 769.16736 
+Q 614.21184 762.32448 607.36896 762.32448 
+L 468.2304 762.32448 
+Q 461.38752 762.32448 461.38752 769.16736 
+L 461.38752 885.49632 
+Q 461.38752 892.3392 468.2304 892.3392 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #1baf7a; fill-opacity: 0.109804; stroke: #1baf7a; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 630.17856 892.3392 
+L 769.31712 892.3392 
+Q 776.16 892.3392 776.16 885.49632 
+L 776.16 769.16736 
+Q 776.16 762.32448 769.31712 762.32448 
+L 630.17856 762.32448 
+Q 623.33568 762.32448 623.33568 769.16736 
+L 623.33568 885.49632 
+Q 623.33568 892.3392 630.17856 892.3392 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #1baf7a; fill-opacity: 0.109804; stroke: #1baf7a; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="53.856" y="776.96779" transform="rotate(-0 53.856 776.96779)">Record tail</text>
+   </g>
+   <g id="patch_20">
+    <path d="M 144.33408 1042.12224 
+L 283.47264 1042.12224 
+Q 290.31552 1042.12224 290.31552 1035.27936 
+L 290.31552 918.9504 
+Q 290.31552 912.10752 283.47264 912.10752 
+L 144.33408 912.10752 
+Q 137.4912 912.10752 137.4912 918.9504 
+L 137.4912 1035.27936 
+Q 137.4912 1042.12224 144.33408 1042.12224 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #1baf7a; fill-opacity: 0.109804; stroke: #1baf7a; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_21">
+    <path d="M 306.28224 1042.12224 
+L 445.4208 1042.12224 
+Q 452.26368 1042.12224 452.26368 1035.27936 
+L 452.26368 918.9504 
+Q 452.26368 912.10752 445.4208 912.10752 
+L 306.28224 912.10752 
+Q 299.43936 912.10752 299.43936 918.9504 
+L 299.43936 1035.27936 
+Q 299.43936 1042.12224 306.28224 1042.12224 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #2a78d6; fill-opacity: 0.109804; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_22">
+    <path d="M 468.2304 1042.12224 
+L 607.36896 1042.12224 
+Q 614.21184 1042.12224 614.21184 1035.27936 
+L 614.21184 918.9504 
+Q 614.21184 912.10752 607.36896 912.10752 
+L 468.2304 912.10752 
+Q 461.38752 912.10752 461.38752 918.9504 
+L 461.38752 1035.27936 
+Q 461.38752 1042.12224 468.2304 1042.12224 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #1baf7a; fill-opacity: 0.109804; stroke: #1baf7a; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_23">
+    <path d="M 630.17856 1042.12224 
+L 769.31712 1042.12224 
+Q 776.16 1042.12224 776.16 1035.27936 
+L 776.16 918.9504 
+Q 776.16 912.10752 769.31712 912.10752 
+L 630.17856 912.10752 
+Q 623.33568 912.10752 623.33568 918.9504 
+L 623.33568 1035.27936 
+Q 623.33568 1042.12224 630.17856 1042.12224 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #898781; fill-opacity: 0.109804; stroke: #898781; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 925.762892)">Four post-</text>
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 936.204642)">steps</text>
+   </g>
+   <g id="patch_24">
+    <path d="M 144.33408 1119.67488 
+L 769.31712 1119.67488 
+Q 776.16 1119.67488 776.16 1112.832 
+L 776.16 1068.73344 
+Q 776.16 1061.89056 769.31712 1061.89056 
+L 144.33408 1061.89056 
+Q 137.4912 1061.89056 137.4912 1068.73344 
+L 137.4912 1112.832 
+Q 137.4912 1119.67488 144.33408 1119.67488 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #898781; fill-opacity: 0.109804; stroke: #898781; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 1076.53387)">Plan-window</text>
+    <text style="font-weight: 700; font-size: 8.8px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(53.856 1085.987682)">step</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="145.0944" y="114.223616" transform="rotate(-0 145.0944 114.223616)">XGBoost classifier</text>
+   </g>
+   <g id="text_11">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2a78d6" x="145.0944" y="124.336682" transform="rotate(-0 145.0944 124.336682)">learned model</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 135.925983)">Predicts p, the chance that a departure's recorded off-block copies its schedule (|BLOCK − SCHED| ≤ 30 s). Depth 8,</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 145.895045)">learning rate 0.05, early-stopped on log loss. Reads challenge data only: clocks, recording process, arrival-side</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 155.775045)">habits, load, stand and runway history. Out of fold its p is close to calibrated (AUC 0.870): 30 % means 30 %.</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="145.0944" y="201.659744" transform="rotate(-0 145.0944 201.659744)">CatBoost × 7</text>
+   </g>
+   <g id="text_14">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2a78d6" x="145.0944" y="211.773482" transform="rotate(-0 145.0944 211.773482)">learned model</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 223.451845)">Blend weight 0.529 in total. Four</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 233.226157)">members carry it (LOBT or AOBT_3</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 243.211845)">anchor); three weigh 0 and only</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 253.828095)">feed the stackers' member-</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 262.971845)">disagreement features.</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="361.02528" y="201.659744" transform="rotate(-0 361.02528 201.659744)">MLP 4 × 1024 × 3</text>
+   </g>
+   <g id="text_17">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2a78d6" x="361.02528" y="211.773482" transform="rotate(-0 361.02528 211.773482)">learned model</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(361.02528 223.451845)">Blend weight 0.433 in total:</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(361.02528 233.331845)">members 2 and 4 carry it, member 10</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(361.02528 243.211845)">weighs 0.</text>
+   </g>
+   <g id="text_19">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="576.95616" y="201.660416" transform="rotate(-0 576.95616 201.660416)">Denoising autoencoder + MLP head</text>
+   </g>
+   <g id="text_20">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2a78d6" x="576.95616" y="211.773482" transform="rotate(-0 576.95616 211.773482)">learned model</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(576.95616 223.451845)">Blend weight 0.036. Swap noise</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(576.95616 233.680376)">0.25, 2048 units.</text>
+   </g>
+   <g id="text_22">
+    <text style="font-weight: 700; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="306.75763" y="295.233212" transform="rotate(-0 306.75763 295.233212)">CatBoost 0.529</text>
+   </g>
+   <g id="text_23">
+    <text style="font-weight: 700; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="614.572954" y="295.233212" transform="rotate(-0 614.572954 295.233212)">MLP 0.433</text>
+   </g>
+   <g id="text_24">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="145.0944" y="369.758324" transform="rotate(-0 145.0944 369.758324)">pred = p · (d_sched + δ) + (1 − p) · blended regressors</text>
+   </g>
+   <g id="text_25">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #52514e" x="145.0944" y="379.804202" transform="rotate(-0 145.0944 379.804202)">fixed rule</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 391.376877)">The prediction is the probability-weighted mix of the two branches: the copy answer d_sched + δ (take-off minus</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 401.362565)">schedule) and the blended physical taxi. With p and the regressors calibrated, this is the squared-error optimum.</text>
+   </g>
+   <g id="text_27">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="145.0944" y="447.243776" transform="rotate(-0 145.0944 447.243776)">Delayed-row gate: CatBoost classifier q</text>
+   </g>
+   <g id="text_28">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2a78d6" x="145.0944" y="457.356842" transform="rotate(-0 145.0944 457.356842)">learned model</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 469.035205)">The same copy flag, fitted only on departures</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 478.915205)">900–20,000 s late, cross-fitted by month, averaged over</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 488.795205)">5 seeds. Mixed in as p + w (q − p), w = 0.75 at LIRF</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 499.411455)">and 0 elsewhere.</text>
+   </g>
+   <g id="text_30">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(468.99072 448.104616)">Plan cliff, LIRF regimes, clock rules, plan-window</text>
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(468.99072 458.426968)">clip</text>
+   </g>
+   <g id="text_31">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0e8a5f" x="468.99072" y="471.802922" transform="rotate(-0 468.99072 471.802922)">fitted constants, no learner</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 483.481285)">Rules for known record faults, not models. The plan</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 493.361285)">cliff sets p = 0 when LOBT − SCHED &gt; 3,600 s. LIRF</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 503.241285)">regimes split a no-plan departure into copy, datestamp</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 513.121285)">or real taxi with rates per cell fitted on training</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 523.737535)">months.</text>
+   </g>
+   <g id="text_33">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(145.0944 568.235176)">Four gradient-boosting</text>
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(145.0944 578.557528)">stackers, equal average</text>
+   </g>
+   <g id="text_34">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2a78d6" x="145.0944" y="591.933482" transform="rotate(-0 145.0944 591.933482)">learned model</text>
+   </g>
+   <g id="text_35">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 603.611845)">XGBoost depth 7, CatBoost,</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 613.491845)">LightGBM extra trees (127</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 623.661001)">leaves), and XGBoost with rows</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 633.251845)">weighted to the 2026 ADS-B</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 643.131845)">coverage mix. Each predicts the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 653.011845)">chain's residual y − pred</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 662.891845)">(clipped at ±1,800 s); it is</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 673.508095)">added back. A second model of</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 683.388095)">the same learner corrects rows</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 693.268095)">without an ADS-B match. Trained</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 702.411845)">on January/July out-of-fold</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 712.291845)">rows plus five rehearsal pairs,</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 722.171845)">so it sees every month of 2025.</text>
+   </g>
+   <g id="text_36">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="339.45984" y="567.374336" transform="rotate(-0 339.45984 567.374336)">Stacker inputs</text>
+   </g>
+   <g id="text_37">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #9a6a00" x="339.45984" y="577.487402" transform="rotate(-0 339.45984 577.487402)">inputs, not a model</text>
+   </g>
+   <g id="text_38">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 589.165765)">ADS-B timings, stops</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 599.045765)">and path; the chain's</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 608.925765)">prediction and clock</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 618.805765)">gaps; airport;</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 628.685765)">pushback features;</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 638.565765)">departure-stream</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 648.794296)">context; member</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 658.325765)">disagreement (each</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 668.088796)">regressor's gap to</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 678.085765)">the blend, spread,</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(339.45984 687.961609)">range).</text>
+   </g>
+   <g id="text_39">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(478.2528 568.235176)">Context transformer</text>
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(478.2528 578.556856)">stx_ctx</text>
+   </g>
+   <g id="text_40">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2a78d6" x="478.2528" y="591.933482" transform="rotate(-0 478.2528 591.933482)">learned model</text>
+   </g>
+   <g id="text_41">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 604.348095)">A transformer over</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 613.491845)">every movement of an</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 623.371845)">airport in time order</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 633.541001)">(chunks of 512, learned</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 643.131845)">time decay per head),</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 653.011845)">with the departure-</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 663.628095)">stream windows on each</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 672.771845)">departure token. Its</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 682.651845)">prediction joins the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 692.531845)">eleven regressors in</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 702.411845)">the disagreement</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(478.2528 713.028095)">features.</text>
+   </g>
+   <g id="text_42">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(626.30784 568.235176)">Neighbour-label</text>
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(626.30784 578.557528)">transformer stx_nb</text>
+   </g>
+   <g id="text_43">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2a78d6" x="626.30784" y="591.933482" transform="rotate(-0 626.30784 591.933482)">learned model</text>
+   </g>
+   <g id="text_44">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 604.348095)">The same transformer with</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 613.491845)">ADS-B modality dropout and</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 624.108095)">one more head: a leave-</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 633.988095)">one-out mean of the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 643.131845)">clipped residual of the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 653.011845)">other departures within</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 662.891845)">±30 min, per airport (nbm)</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 672.771845)">and per runway (nbr), the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 682.651845)">queue level the flights</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 693.268095)">share. It hands the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 702.411845)">stackers its prediction,</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 712.291845)">gap to the chain, spread,</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 722.461001)">P(label &gt; 1,800 s), P(&gt;</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(626.30784 732.341001)">3,600 s), nbm30 and nbr30.</text>
+   </g>
+   <g id="text_45">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(145.0944 777.323176)">LIRF no-plan copy</text>
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(145.0944 787.645528)">classifier</text>
+   </g>
+   <g id="text_46">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2a78d6" x="145.0944" y="801.021482" transform="rotate(-0 145.0944 801.021482)">learned model</text>
+   </g>
+   <g id="text_47">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 813.436095)">CatBoost trained on all</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 822.928376)">twelve months, each out</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 833.196095)">of fold. For LIRF</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 842.339845)">departures without an NM</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 852.956095)">off-block that took off</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 862.448376)">1–5.6 h after schedule;</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 871.979845)">applied with weight 0.5,</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 881.859845)">ADS-B-matched rows only.</text>
+   </g>
+   <g id="text_48">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="307.04256" y="776.462336" transform="rotate(-0 307.04256 776.462336)">LIRF near-schedule rule</text>
+   </g>
+   <g id="text_49">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0e8a5f" x="307.04256" y="786.575402" transform="rotate(-0 307.04256 786.575402)">fitted constants, no learner</text>
+   </g>
+   <g id="text_50">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 798.253765)">Two carriers' no-plan</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 808.133765)">departures that take off</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 818.750015)">within 1 h of schedule</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 827.893765)">are set to the group's</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 838.510015)">mean 2025 label.</text>
+   </g>
+   <g id="text_51">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="468.99072" y="776.462336" transform="rotate(-0 468.99072 776.462336)">Daily delay calibration</text>
+   </g>
+   <g id="text_52">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0e8a5f" x="468.99072" y="786.575402" transform="rotate(-0 468.99072 786.575402)">fitted constants, no learner</text>
+   </g>
+   <g id="text_53">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 798.253765)">One multiplicative factor</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 808.133765)">per airport-day makes the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 818.013765)">predicted total match</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 827.893765)">EUROCONTROL's published</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 837.773765)">daily delay; 0.6 of the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 847.653765)">change is applied. No</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 857.533765)">per-flight value.</text>
+   </g>
+   <g id="text_54">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="630.93888" y="776.462336" transform="rotate(-0 630.93888 776.462336)">Duplicated-record rule</text>
+   </g>
+   <g id="text_55">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0e8a5f" x="630.93888" y="786.575402" transform="rotate(-0 630.93888 786.575402)">fitted constants, no learner</text>
+   </g>
+   <g id="text_56">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 798.990015)">The NM-matched half of a</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 808.133765)">duplicated take-off</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 818.013765)">record gets a + b · (MVT</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 828.182921)">− LOBT), a line fitted on</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 837.773765)">2025 pairs outside the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 848.390015)">scored month.</text>
+   </g>
+   <g id="text_57">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="145.0944" y="926.245376" transform="rotate(-0 145.0944 926.245376)">LIRF copy re-mix</text>
+   </g>
+   <g id="text_58">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0e8a5f" x="145.0944" y="936.358442" transform="rotate(-0 145.0944 936.358442)">fitted constants, no learner</text>
+   </g>
+   <g id="text_59">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 948.773055)">Refits the chain's</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 957.916805)">implied copy weight per</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 967.796805)">band of schedule delay</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 977.676805)">and plan or no plan, on</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 987.556805)">LIRF rows where the plan</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 997.436805)">copy and the rules-chain</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 1007.316805)">value differ by over 600</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 1017.173649)">s.</text>
+   </g>
+   <g id="text_60">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(307.04256 927.106216)">Runway-neighbour level:</text>
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(307.04256 937.428568)">LightGBM</text>
+   </g>
+   <g id="text_61">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2a78d6" x="307.04256" y="950.804522" transform="rotate(-0 307.04256 950.804522)">learned model</text>
+   </g>
+   <g id="text_62">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 962.482885)">Fits clip(pred − y,</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 972.652041)">±1,800 s) on 23 columns:</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 982.979135)">shrunk means of the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 992.122885)">neighbours' predictions</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 1002.002885)">and clock gaps (runway</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 1011.882885)">±5, ±15, ±30 min; airport</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 1021.762885)">±15 min). Its output is</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(307.04256 1032.379135)">subtracted.</text>
+   </g>
+   <g id="text_63">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="468.99072" y="926.245376" transform="rotate(-0 468.99072 926.245376)">Far-LIRF record mix</text>
+   </g>
+   <g id="text_64">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0e8a5f" x="468.99072" y="936.358442" transform="rotate(-0 468.99072 936.358442)">fitted constants, no learner</text>
+   </g>
+   <g id="text_65">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 948.036805)">5–7 LIRF rows per phase</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 958.653055)">with no NM off-block and</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 967.796805)">plan copy above 50,000 s:</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 977.672649)">p · C + (1 − p) · 87,500,</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 987.556805)">p the 2025 copy share at</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 997.436805)">the same first-stage</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(468.99072 1007.316805)">probability.</text>
+   </g>
+   <g id="text_66">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="630.93888" y="926.245376" transform="rotate(-0 630.93888 926.245376)">Arrival-twin window rule</text>
+   </g>
+   <g id="text_67">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #52514e" x="630.93888" y="936.358442" transform="rotate(-0 630.93888 936.358442)">fixed rule</text>
+   </g>
+   <g id="text_68">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 948.036805)">LIRF departures without</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 957.916805)">an NM flight whose</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 968.533055)">arrival twin has one: the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 977.676805)">prediction becomes the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 987.556805)">copy or the rules-chain</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 998.173055)">value. No fitted</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(630.93888 1007.097711)">parameter.</text>
+   </g>
+   <g id="text_69">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="145.0944" y="1076.028416" transform="rotate(-0 145.0944 1076.028416)">Clip into the plan window</text>
+   </g>
+   <g id="text_70">
+    <text style="font-style: italic; font-weight: 700; font-size: 6.9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #52514e" x="145.0944" y="1086.141482" transform="rotate(-0 145.0944 1086.141482)">fixed rule</text>
+   </g>
+   <g id="text_71">
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 1097.819845)">Matched rows are clipped to MVT − LOBT ± 3,606 s; some unmatched rows are moved relative to the window. 84 of the</text>
+    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(145.0944 1107.699845)">670,790 test rows change. The result is the final prediction (CV 279.61 on the two folds).</text>
+   </g>
+   <g id="patch_25">
+    <path d="M 34.08768 126.3168 
+C 37.213088 126.3168 40.210908 125.075062 42.420905 122.865065 
+C 44.630902 120.655068 45.87264 117.657248 45.87264 114.53184 
+C 45.87264 111.406432 44.630902 108.408612 42.420905 106.198615 
+C 40.210908 103.988618 37.213088 102.74688 34.08768 102.74688 
+C 30.962272 102.74688 27.964452 103.988618 25.754455 106.198615 
+C 23.544458 108.408612 22.30272 111.406432 22.30272 114.53184 
+C 22.30272 117.657248 23.544458 120.655068 25.754455 122.865065 
+C 27.964452 125.075062 30.962272 126.3168 34.08768 126.3168 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #0b0b0b"/>
+   </g>
+   <g id="patch_26">
+    <path d="M 34.08768 213.7536 
+C 37.213088 213.7536 40.210908 212.511862 42.420905 210.301865 
+C 44.630902 208.091868 45.87264 205.094048 45.87264 201.96864 
+C 45.87264 198.843232 44.630902 195.845412 42.420905 193.635415 
+C 40.210908 191.425418 37.213088 190.18368 34.08768 190.18368 
+C 30.962272 190.18368 27.964452 191.425418 25.754455 193.635415 
+C 23.544458 195.845412 22.30272 198.843232 22.30272 201.96864 
+C 22.30272 205.094048 23.544458 208.091868 25.754455 210.301865 
+C 27.964452 212.511862 30.962272 213.7536 34.08768 213.7536 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #0b0b0b"/>
+   </g>
+   <g id="patch_27">
+    <path d="M 34.08768 381.78432 
+C 37.213088 381.78432 40.210908 380.542582 42.420905 378.332585 
+C 44.630902 376.122588 45.87264 373.124768 45.87264 369.99936 
+C 45.87264 366.873952 44.630902 363.876132 42.420905 361.666135 
+C 40.210908 359.456138 37.213088 358.2144 34.08768 358.2144 
+C 30.962272 358.2144 27.964452 359.456138 25.754455 361.666135 
+C 23.544458 363.876132 22.30272 366.873952 22.30272 369.99936 
+C 22.30272 373.124768 23.544458 376.122588 25.754455 378.332585 
+C 27.964452 380.542582 30.962272 381.78432 34.08768 381.78432 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #0b0b0b"/>
+   </g>
+   <g id="patch_28">
+    <path d="M 34.08768 459.33696 
+C 37.213088 459.33696 40.210908 458.095222 42.420905 455.885225 
+C 44.630902 453.675228 45.87264 450.677408 45.87264 447.552 
+C 45.87264 444.426592 44.630902 441.428772 42.420905 439.218775 
+C 40.210908 437.008778 37.213088 435.76704 34.08768 435.76704 
+C 30.962272 435.76704 27.964452 437.008778 25.754455 439.218775 
+C 23.544458 441.428772 22.30272 444.426592 22.30272 447.552 
+C 22.30272 450.677408 23.544458 453.675228 25.754455 455.885225 
+C 27.964452 458.095222 30.962272 459.33696 34.08768 459.33696 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #0b0b0b"/>
+   </g>
+   <g id="patch_29">
+    <path d="M 34.08768 579.46752 
+C 37.213088 579.46752 40.210908 578.225782 42.420905 576.015785 
+C 44.630902 573.805788 45.87264 570.807968 45.87264 567.68256 
+C 45.87264 564.557152 44.630902 561.559332 42.420905 559.349335 
+C 40.210908 557.139338 37.213088 555.8976 34.08768 555.8976 
+C 30.962272 555.8976 27.964452 557.139338 25.754455 559.349335 
+C 23.544458 561.559332 22.30272 564.557152 22.30272 567.68256 
+C 22.30272 570.807968 23.544458 573.805788 25.754455 576.015785 
+C 27.964452 578.225782 30.962272 579.46752 34.08768 579.46752 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #0b0b0b"/>
+   </g>
+   <g id="patch_30">
+    <path d="M 34.08768 788.55552 
+C 37.213088 788.55552 40.210908 787.313782 42.420905 785.103785 
+C 44.630902 782.893788 45.87264 779.895968 45.87264 776.77056 
+C 45.87264 773.645152 44.630902 770.647332 42.420905 768.437335 
+C 40.210908 766.227338 37.213088 764.9856 34.08768 764.9856 
+C 30.962272 764.9856 27.964452 766.227338 25.754455 768.437335 
+C 23.544458 770.647332 22.30272 773.645152 22.30272 776.77056 
+C 22.30272 779.895968 23.544458 782.893788 25.754455 785.103785 
+C 27.964452 787.313782 30.962272 788.55552 34.08768 788.55552 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #0b0b0b"/>
+   </g>
+   <g id="patch_31">
+    <path d="M 34.08768 938.33856 
+C 37.213088 938.33856 40.210908 937.096822 42.420905 934.886825 
+C 44.630902 932.676828 45.87264 929.679008 45.87264 926.5536 
+C 45.87264 923.428192 44.630902 920.430372 42.420905 918.220375 
+C 40.210908 916.010378 37.213088 914.76864 34.08768 914.76864 
+C 30.962272 914.76864 27.964452 916.010378 25.754455 918.220375 
+C 23.544458 920.430372 22.30272 923.428192 22.30272 926.5536 
+C 22.30272 929.679008 23.544458 932.676828 25.754455 934.886825 
+C 27.964452 937.096822 30.962272 938.33856 34.08768 938.33856 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #0b0b0b"/>
+   </g>
+   <g id="patch_32">
+    <path d="M 34.08768 1088.1216 
+C 37.213088 1088.1216 40.210908 1086.879862 42.420905 1084.669865 
+C 44.630902 1082.459868 45.87264 1079.462048 45.87264 1076.33664 
+C 45.87264 1073.211232 44.630902 1070.213412 42.420905 1068.003415 
+C 40.210908 1065.793418 37.213088 1064.55168 34.08768 1064.55168 
+C 30.962272 1064.55168 27.964452 1065.793418 25.754455 1068.003415 
+C 23.544458 1070.213412 22.30272 1073.211232 22.30272 1076.33664 
+C 22.30272 1079.462048 23.544458 1082.459868 25.754455 1084.669865 
+C 27.964452 1086.879862 30.962272 1088.1216 34.08768 1088.1216 
+z
+" clip-path="url(#p296fb56bd3)" style="fill: #0b0b0b"/>
+   </g>
+   <g id="text_72">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="34.08768" y="116.869731" transform="rotate(-0 34.08768 116.869731)">1</text>
+   </g>
+   <g id="text_73">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="34.08768" y="204.306531" transform="rotate(-0 34.08768 204.306531)">2</text>
+   </g>
+   <g id="text_74">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="34.08768" y="372.337251" transform="rotate(-0 34.08768 372.337251)">3</text>
+   </g>
+   <g id="text_75">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="34.08768" y="449.889891" transform="rotate(-0 34.08768 449.889891)">4</text>
+   </g>
+   <g id="text_76">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="34.08768" y="570.020451" transform="rotate(-0 34.08768 570.020451)">5</text>
+   </g>
+   <g id="text_77">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="34.08768" y="779.108451" transform="rotate(-0 34.08768 779.108451)">6</text>
+   </g>
+   <g id="text_78">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="34.08768" y="928.891491" transform="rotate(-0 34.08768 928.891491)">7</text>
+   </g>
+   <g id="text_79">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="34.08768" y="1078.674531" transform="rotate(-0 34.08768 1078.674531)">8</text>
+   </g>
+  </g>
+  <g id="text_80">
+   <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="15.84" y="24.357656" transform="rotate(-0 15.84 24.357656)">Which model does what</text>
+  </g>
+  <g id="text_81">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #52514e" x="15.84" y="52.238438" transform="rotate(-0 15.84 52.238438)">Each stage of the final chain, top to bottom: the learner, the job, and what it reads. Stages without a learner are marked as rules or fitted constants.</text>
+  </g>
+  <g id="text_82">
+   <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #898781" x="15.84" y="1146.292837" transform="rotate(-0 15.84 1146.292837)">Every number and name is from docs/model.md. Blue: a learned model. Green: constants or a calibration fitted on 2025 data, no learner. Grey: a fixed rule or formula. Yellow: a list of inputs.</text>
+  </g>
+  <g id="legend_1">
+   <g id="patch_33">
+    <path d="M 373.690313 37.41 
+L 383.040313 37.41 
+L 383.040313 29.25 
+L 373.690313 29.25 
+z
+" style="fill: #2a78d6; fill-opacity: 0.333333; stroke: #2a78d6; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_83">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #52514e" x="389.840312" y="36.22" transform="rotate(-0 389.840312 36.22)">learned model</text>
+   </g>
+   <g id="patch_34">
+    <path d="M 461.369141 37.41 
+L 470.719141 37.41 
+L 470.719141 29.25 
+L 461.369141 29.25 
+z
+" style="fill: #1baf7a; fill-opacity: 0.333333; stroke: #1baf7a; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_84">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #52514e" x="477.519141" y="36.22" transform="rotate(-0 477.519141 36.22)">fitted constants, no learner</text>
+   </g>
+   <g id="patch_35">
+    <path d="M 603.392187 37.41 
+L 612.742188 37.41 
+L 612.742188 29.25 
+L 603.392187 29.25 
+z
+" style="fill: #898781; fill-opacity: 0.333333; stroke: #898781; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_85">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #52514e" x="619.542187" y="36.22" transform="rotate(-0 619.542187 36.22)">fixed rule</text>
+   </g>
+   <g id="patch_36">
+    <path d="M 669.665625 37.41 
+L 679.015625 37.41 
+L 679.015625 29.25 
+L 669.665625 29.25 
+z
+" style="fill: #eda100; fill-opacity: 0.333333; stroke: #eda100; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_86">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #52514e" x="685.815625" y="36.22" transform="rotate(-0 685.815625 36.22)">inputs, not a model</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p296fb56bd3">
+   <rect x="15.84" y="86.4" width="760.32" height="1046.96064"/>
+  </clipPath>
+ </defs>
+</svg>

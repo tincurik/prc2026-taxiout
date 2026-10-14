@@ -1,0 +1,37 @@
+{
+ "id": "rc_v34_more18",
+ "model": "rules_chain",
+ "blend": "blend_v48_cf",
+ "cliff": 3600.0,
+ "nocross": 1,
+ "window": 3606.0,
+ "sym": 1,
+ "witness": 0,
+ "q_cache": "gate2_v1",
+ "wl": 0.75,
+ "wo": 0.0,
+ "n_cliff_oof": 13875,
+ "cv_rmse_base_chain": 295.1609770991139,
+ "oof_base_chain_max_abs_diff": null,
+ "cv_rmse": 292.2845065643429,
+ "cv_trim_rmse": 230.24206904944506,
+ "cv_clean_rmse": 217.68252495899276,
+ "folds": {
+  "jan": {
+   "rmse": 326.6724970077721,
+   "base_rmse": 328.3453544817478,
+   "clean_rmse": 185.549117501491,
+   "n": 153706
+  },
+  "jul": {
+   "rmse": 261.29627465589346,
+   "base_rmse": 265.41338388558216,
+   "clean_rmse": 240.4853511887728,
+   "n": 190713
+  }
+ },
+ "note": "blend_v48_cf chain with p_imp = 0 where LOBT - SCHED > 3600.0, gate2 q gate2_v1 w LIRF 0.75 other 0.0, clockfix rule 3b, clip to MVT-LOBT +- 3606.0",
+ "n_cliff_test": 25716,
+ "test_rms_change": 48.01079640593513,
+ "test_n_changed": 619701
+}

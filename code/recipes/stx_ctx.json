@@ -1,0 +1,51 @@
+{
+ "id": "stx_ctx",
+ "model": "stx",
+ "args": {
+  "id": "stx_ctx",
+  "extra": "ext_metar,ext_prc,ext_osm,ext_opdiev,ext_ord,adsb2fullrel,ctxm",
+  "fs3": 1,
+  "anchor": "aobt",
+  "ctx": 1,
+  "arr": 1,
+  "chunk": 512,
+  "bs": 32,
+  "d": 256,
+  "layers": 4,
+  "heads": 8,
+  "drop": 0.1,
+  "epochs": 24,
+  "lr": 0.0005,
+  "wd": 0.01,
+  "clip": 5000,
+  "seeds": 3,
+  "seed0": 0,
+  "final": 1,
+  "refit_only": 0,
+  "smoke": 0
+ },
+ "folds": {
+  "jan": {
+   "reg_rmse": 448.89902169960163,
+   "reg_clean_rmse": 201.55871871668086,
+   "best_epochs": [
+    14,
+    11,
+    13
+   ]
+  },
+  "jul": {
+   "reg_rmse": 615.6093379211188,
+   "reg_clean_rmse": 250.16954916024122,
+   "best_epochs": [
+    11,
+    18,
+    15
+   ]
+  }
+ },
+ "cv_reg_rmse": 547.5186428547565,
+ "cv_reg_clean_rmse": 229.74482278176595,
+ "final_epochs": 14,
+ "minutes": 24.99
+}

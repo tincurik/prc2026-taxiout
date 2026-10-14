@@ -1,0 +1,42 @@
+{
+ "id": "mlp_v4_lobt_adsb",
+ "model": "mlp",
+ "args": {
+  "id": "mlp_v4_lobt_adsb",
+  "hidden": 1024,
+  "layers": 4,
+  "drop": 0.15,
+  "epochs": 12,
+  "lr": 0.002,
+  "bs": 4096,
+  "clip": 5000,
+  "seeds": 2,
+  "anchor": "lobt",
+  "seed0": 0,
+  "fs3": 1,
+  "extra": "adsb2fullrel",
+  "final": 1
+ },
+ "folds": {
+  "jan": {
+   "reg_rmse": 451.06696678939124,
+   "reg_clean_rmse": 203.88124742602704,
+   "best_epochs": [
+    9,
+    11
+   ]
+  },
+  "jul": {
+   "reg_rmse": 588.2018299329,
+   "reg_clean_rmse": 254.32249145812594,
+   "best_epochs": [
+    8,
+    7
+   ]
+  }
+ },
+ "cv_reg_rmse": 531.3926202028787,
+ "cv_reg_clean_rmse": 233.15855865119326,
+ "final_epochs": 9,
+ "minutes": 43.32
+}

@@ -1,0 +1,19 @@
+view,band,n,bias,rmse
+by prediction,0 or less,48,-31.79,200.41
+by prediction,0-5 min,2475,-6.59,274.05
+by prediction,5-10,32944,1.82,86.41
+by prediction,10-15,119143,-2.49,273.96
+by prediction,15-20,108380,-4.07,251.9
+by prediction,20-30,69329,-6.86,264.58
+by prediction,30-60,11464,-30.85,568.13
+by prediction,1-2 h,534,99.11,1474.53
+by prediction,over 2 h,102,-29.55,4532.07
+by true value,0 or less,79,417.75,602.19
+by true value,0-5 min,3625,117.44,237.16
+by true value,5-10,37740,57.43,134.89
+by true value,10-15,113077,42.29,132.18
+by true value,15-20,93266,8.29,153.6
+by true value,20-30,65058,-56.74,223.42
+by true value,30-60,13488,-250.98,497.34
+by true value,1-2 h,584,-991.52,1553.43
+by true value,over 2 h,52,-5571.05,14732.58

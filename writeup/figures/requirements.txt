@@ -1,0 +1,4 @@
+# Redraws the write-up figures (python writeup/figures/make_figures.py); checked with Python 3.14.4.
+matplotlib==3.11.2
+pandas==3.0.6
+numpy==2.5.3
